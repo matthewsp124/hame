@@ -1,0 +1,7 @@
+.pyc
+__pycache__/
+*.key
+thumbs.db
+db.sqlite3
+.env
+scotland-260713.osm.pbf
