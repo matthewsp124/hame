@@ -15,8 +15,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from hame import views
 
 urlpatterns = [
+    path('', views.index, name='index'),
+    path('hame/', include('hame.urls')),  # any 'hame/' URLs should be handled by .\hame\urls.py
     path('admin/', admin.site.urls),
 ]
