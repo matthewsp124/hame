@@ -5,4 +5,7 @@ def index(request):
     return render(request, 'hame/index.html')
 
 def about(request):
-    return HttpResponse("About page")
+    return render(request, 'hame/about.html')
+
+def resources(request):
+    return render(request, 'hame/resources.html')
