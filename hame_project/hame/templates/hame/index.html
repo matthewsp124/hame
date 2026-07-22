@@ -1,2 +1,23 @@
 {% extends 'hame/base.html' %}
 {% load static %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block header %}
+    <link rel='stylesheet' href='https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.css' />
+    <script src='https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js'></script>
+{% endblock %}
+
+{% block body %}
+<div id="map" style="width: 100%; height: 1000px"></div>
+<script>
+    const map = new maplibregl.Map({
+        style: 'https://tiles.openfreemap.org/styles/liberty',
+        center: [-3.188375, 55.95],
+        zoom: 11.5,
+        container: 'map',
+    })
+</script>
+{% endblock %}
