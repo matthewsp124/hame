@@ -13,6 +13,7 @@
 {% block body %}
 <div id="map"></div>
 <script>
+    // initialise the map
     const map = new maplibregl.Map({
         style: 'https://tiles.openfreemap.org/styles/liberty',  // tile source
         center: [-3.1958, 55.9416],  // centre on Edinburgh by default
@@ -23,6 +24,28 @@
             [-3.5, 55.855],  // west, south
             [-2.9, 56.0145]  // east, north
         ]
-    })
+    });
+
+    // define the area that isn't Edinburgh
+    map.on('load', async () => {
+        const response = await fetch("{% static 'edinburghmask.geojson' %}");
+        const geojson = await response.json();
+
+        map.addSource('mask', {
+            type: 'geojson',
+            data: geojson
+        });
+
+        map.addLayer({
+            id: 'mask-layer',
+            type: 'fill',
+            source: 'mask',
+            paint: {
+                'fill-color': '#888888',
+                'fill-opacity': 0.6,
+                'fill-outline-color': '#242424',
+            }
+        });
+    });
 </script>
 {% endblock %}
