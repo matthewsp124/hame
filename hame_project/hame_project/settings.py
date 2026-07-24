@@ -82,9 +82,10 @@ WSGI_APPLICATION = 'hame_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'osmdata',
-        'USER': os.getenv('DATABASE_USER'),
+        'NAME': 'edinburgh_map',
+        'USER': 'hame_user',
         'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
