@@ -1,23 +1,23 @@
 import osmium
 import json
 
-from collections import Counter
+"""
+Info I want:
 
-class TagCounter(osmium.SimpleHandler):
-    def __init__(self):
-        super().__init__()
-        self.key_counts = Counter()
+- latitude
+- longitude
+- address
+- keys
 
-    def _collect(self, obj):
-        for tag in obj.tags:
-            self.key_counts[tag.k] += 1
+Keys:
+amenity, shop, tourism, historic, leisure, surface, bridge, footway, foot, smoothness, crossing, sidewalk, sport, golf, wheelchair, railway=platform, barrier, public_transport, tactile_paving
+?highway?, ?access?, ?bicycle?
+considered railway=level_crossing, but there's only one in edinburgh
 
-    def node(self, n): self._collect(n)
-    def way(self, w): self._collect(w)
-    def relation(self, r): self._collect(r)
+New plan: write a script to count tags in dataset rather than manually going through the full list
 
-handler = TagCounter()
-handler.apply_file("osm_data/edinburgh.osm.pbf")
+Don't care about relations
+"""
 
-for key, count in handler.key_counts.most_common(20):
-    print(f"{key}: {count}")
+target_categories = ['amenity', 'shop', 'tourism', 'historic', 'leisure']
+
