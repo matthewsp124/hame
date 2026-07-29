@@ -22,29 +22,6 @@
     }
   },
   {
-    "prefix": "source",
-    "total_count": 429326,
-    "description": "For indicating the source of all tags added to the OSM database.",
-    "keys": {
-      "source": 427057,
-      "source:addr": 1131,
-      "source:addr:postcode": 332,
-      "source:outline": 170,
-      "source:ref": 115,
-      "source:maxspeed": 107,
-      "source:name": 100,
-      "source:highway": 72,
-      "source:operator": 67,
-      "source:lanes": 61,
-      "source:width": 35,
-      "source:geometry": 28,
-      "source:postcode": 16,
-      "source:maxwidth:physical": 13,
-      "source:bicycle": 11,
-      "source:destination": 11
-    }
-  },
-  {
     "prefix": "building",
     "total_count": 191605,
     "description": "To mark the outline of a building, a man-made structure with a roof, standing more or less permanently in one place.",
@@ -98,14 +75,6 @@
     }
   },
   {
-    "prefix": "denotation",
-    "total_count": 71997,
-    "description": "Defines the denotation of a tree",
-    "keys": {
-      "denotation": 71997
-    }
-  },
-  {
     "prefix": "access",
     "total_count": 60863,
     "description": "For describing the legal accessibility of a feature.",
@@ -151,30 +120,6 @@
     "description": "Describes the main material of a physical feature.",
     "keys": {
       "material": 53658
-    }
-  },
-  {
-    "prefix": "start_date",
-    "total_count": 51694,
-    "description": "Date when feature opened or the construction of the feature finished.",
-    "keys": {
-      "start_date": 51694
-    }
-  },
-  {
-    "prefix": "support",
-    "total_count": 51301,
-    "description": "Type of support for certain features",
-    "keys": {
-      "support": 51301
-    }
-  },
-  {
-    "prefix": "light",
-    "total_count": 51245,
-    "description": "",
-    "keys": {
-      "light:method": 51245
     }
   },
   {
@@ -264,39 +209,11 @@
     }
   },
   {
-    "prefix": "roof",
-    "total_count": 20016,
-    "description": "Undocumented tag.",
-    "keys": {
-      "roof:levels": 10218,
-      "roof:shape": 6175,
-      "roof:material": 1843,
-      "roof:height": 748,
-      "roof:orientation": 376,
-      "roof:colour": 332,
-      "roof:direction": 324
-    }
-  },
-  {
     "prefix": "amenity",
     "total_count": 19017,
     "description": "For describing useful and important facilities for visitors and residents.",
     "keys": {
       "amenity": 19017
-    }
-  },
-  {
-    "prefix": "generator",
-    "total_count": 18746,
-    "description": "",
-    "keys": {
-      "generator:source": 3312,
-      "generator:type": 3310,
-      "generator:method": 3310,
-      "generator:output:electricity": 3288,
-      "generator:orientation": 2927,
-      "generator:modules": 1352,
-      "generator:solar:modules": 1247
     }
   },
   {
@@ -308,20 +225,6 @@
     }
   },
   {
-    "prefix": "maxspeed",
-    "total_count": 12783,
-    "description": "Specifies the maximum legal speed limit on a road, railway or waterway.",
-    "keys": {
-      "maxspeed": 12563,
-      "maxspeed:type": 150,
-      "maxspeed:variable": 26,
-      "maxspeed:backward": 12,
-      "maxspeed:forward": 12,
-      "maxspeed:freight": 10,
-      "maxspeed:advisory": 10
-    }
-  },
-  {
     "prefix": "garden",
     "total_count": 11933,
     "description": null,
@@ -330,44 +233,11 @@
     }
   },
   {
-    "prefix": "check_date",
-    "total_count": 10642,
-    "description": "Date of latest review of the data. Format: YYYY-MM-DD.",
-    "keys": {
-      "check_date": 8934,
-      "check_date:opening_hours": 634,
-      "check_date:surface": 243,
-      "check_date:shelter": 237,
-      "check_date:capacity": 212,
-      "check_date:collection_times": 115,
-      "check_date:diet:vegetarian": 36,
-      "check_date:handrail": 35,
-      "check_date:tactile_paving": 29,
-      "check_date:lit": 27,
-      "check_date:diet:vegan": 26,
-      "check_date:ramp": 26,
-      "check_date:bench": 22,
-      "check_date:bin": 19,
-      "check_date:traffic_signals:sound": 13,
-      "check_date:traffic_signals:vibration": 12,
-      "check_date:kerb": 11,
-      "check_date:smoothness": 11
-    }
-  },
-  {
     "prefix": "entrance",
     "total_count": 8850,
     "description": "To mark the location of an entrance.",
     "keys": {
       "entrance": 8850
-    }
-  },
-  {
-    "prefix": "landuse",
-    "total_count": 7653,
-    "description": "Mainly used for describing the primary use of areas of land.",
-    "keys": {
-      "landuse": 7653
     }
   },
   {
@@ -421,19 +291,6 @@
     }
   },
   {
-    "prefix": "lanes",
-    "total_count": 5670,
-    "description": "Total number of traffic lanes available for motorised traffic.",
-    "keys": {
-      "lanes": 5141,
-      "lanes:forward": 232,
-      "lanes:backward": 226,
-      "lanes:psv": 31,
-      "lanes:psv:backward:conditional": 21,
-      "lanes:psv:forward:conditional": 19
-    }
-  },
-  {
     "prefix": "service",
     "total_count": 5492,
     "description": "Additional information about a service highway/railway/waterway, or about services offered at a business.",
@@ -479,14 +336,6 @@
       "brand:wikipedia": 916,
       "brand:website": 35,
       "brand:short": 22
-    }
-  },
-  {
-    "prefix": "power",
-    "total_count": 5081,
-    "description": "Facilities for generation and distribution of electrical power.",
-    "keys": {
-      "power": 5081
     }
   },
   {
@@ -687,22 +536,6 @@
     }
   },
   {
-    "prefix": "covered",
-    "total_count": 2504,
-    "description": "A property to denote if an object is covered by something.",
-    "keys": {
-      "covered": 2504
-    }
-  },
-  {
-    "prefix": "note",
-    "total_count": 2396,
-    "description": "A note to other mappers regarding the feature's mapping.",
-    "keys": {
-      "note": 2396
-    }
-  },
-  {
     "prefix": "recycling",
     "total_count": 2365,
     "description": "",
@@ -747,14 +580,6 @@
     }
   },
   {
-    "prefix": "leaf_type",
-    "total_count": 2314,
-    "description": "Describes the type of leaves",
-    "keys": {
-      "leaf_type": 2314
-    }
-  },
-  {
     "prefix": "bus",
     "total_count": 2244,
     "description": "Access restrictions for public transport buses, or vehicle type on route relations.",
@@ -768,14 +593,6 @@
     "description": "Used to mark the vertical relationship between two intersecting features.",
     "keys": {
       "layer": 2226
-    }
-  },
-  {
-    "prefix": "fence_type",
-    "total_count": 2171,
-    "description": "Describes the type of a fence.",
-    "keys": {
-      "fence_type": 2171
     }
   },
   {

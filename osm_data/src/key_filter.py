@@ -3,7 +3,7 @@ import time
 import urllib.request
 from collections import defaultdict
 
-with open("osm_data/edinburgh_tags_raw.json") as f:
+with open("osm_data/data/edinburgh_tags_raw.json") as f:
     stats = json.load(f)
 key_counts = stats["key_counts"]
 
@@ -54,5 +54,5 @@ for prefix, members in sorted(groups.items(), key=lambda item: -sum(item[1].valu
         "description": descriptions.get(prefix),
         "keys": dict(sorted(members.items(), key=lambda kv: -kv[1])),
     })
-with open("osm_data/key_data.json", "w") as f:
+with open("osm_data/data/key_data.json", "w") as f:
     json.dump(output, f, indent=2)

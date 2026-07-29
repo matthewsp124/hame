@@ -13,7 +13,7 @@ key_counts = Counter()  # counts instances of each key
 tag_counts = Counter()  # counts instances of each key-value pair
 element_counts = Counter()  # counts nodes, ways and relations
 
-for object in osmium.FileProcessor("osm_data/edinburgh.osm.pbf"):
+for object in osmium.FileProcessor("osm_data/data/edinburgh.osm.pbf"):
     element_counts[object.type_str()] += 1  # type_str() can be n (node), w (way), r (relation) or a (area) (or technically c (changeset), but this is metadata stuff)
     for tag in object.tags:
         key_counts[tag.k] += 1
@@ -26,5 +26,5 @@ output = {
     "top_key_value_pairs": dict(tag_counts.most_common(200))
 }
 
-with open("osm_data/edinburgh_tags.json", "w") as f:
+with open("osm_data/data/edinburgh_tags.json", "w") as f:
     f.write(output)
