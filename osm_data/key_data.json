@@ -1,0 +1,3666 @@
+[
+  {
+    "prefix": "addr",
+    "total_count": 471826,
+    "description": "",
+    "keys": {
+      "addr:street": 124326,
+      "addr:housenumber": 123543,
+      "addr:city": 119755,
+      "addr:country": 78099,
+      "addr:postcode": 21181,
+      "addr:housename": 1643,
+      "addr:flats": 1160,
+      "addr:place": 726,
+      "addr:suburb": 641,
+      "addr:floor": 217,
+      "addr:unit": 213,
+      "addr:interpolation": 185,
+      "addr:inclusion": 72,
+      "addr:parentstreet": 44,
+      "addr:substreet": 21
+    }
+  },
+  {
+    "prefix": "source",
+    "total_count": 429326,
+    "description": "For indicating the source of all tags added to the OSM database.",
+    "keys": {
+      "source": 427057,
+      "source:addr": 1131,
+      "source:addr:postcode": 332,
+      "source:outline": 170,
+      "source:ref": 115,
+      "source:maxspeed": 107,
+      "source:name": 100,
+      "source:highway": 72,
+      "source:operator": 67,
+      "source:lanes": 61,
+      "source:width": 35,
+      "source:geometry": 28,
+      "source:postcode": 16,
+      "source:maxwidth:physical": 13,
+      "source:bicycle": 11,
+      "source:destination": 11
+    }
+  },
+  {
+    "prefix": "building",
+    "total_count": 191605,
+    "description": "To mark the outline of a building, a man-made structure with a roof, standing more or less permanently in one place.",
+    "keys": {
+      "building": 149848,
+      "building:levels": 34880,
+      "building:part": 3452,
+      "building:material": 2831,
+      "building:colour": 308,
+      "building:flats": 116,
+      "building:min_level": 101,
+      "building:levels:underground": 40,
+      "building:use": 29
+    }
+  },
+  {
+    "prefix": "operator",
+    "total_count": 111841,
+    "description": "\u0421ompany, corporation, person or any other entity who is directly in charge of the current operation of a map object",
+    "keys": {
+      "operator": 57167,
+      "operator:wikidata": 53935,
+      "operator:type": 569,
+      "operator:wikipedia": 82,
+      "operator:short": 68,
+      "operator:website": 20
+    }
+  },
+  {
+    "prefix": "highway",
+    "total_count": 104780,
+    "description": "Used for roads and road-related facilities.",
+    "keys": {
+      "highway": 104780
+    }
+  },
+  {
+    "prefix": "natural",
+    "total_count": 90395,
+    "description": "Natural physical landscape features, including those modified or created by humans.",
+    "keys": {
+      "natural": 90395
+    }
+  },
+  {
+    "prefix": "barrier",
+    "total_count": 80074,
+    "description": "A barrier is a physical structure which blocks or impedes movement.",
+    "keys": {
+      "barrier": 80074
+    }
+  },
+  {
+    "prefix": "denotation",
+    "total_count": 71997,
+    "description": "Defines the denotation of a tree",
+    "keys": {
+      "denotation": 71997
+    }
+  },
+  {
+    "prefix": "access",
+    "total_count": 60863,
+    "description": "For describing the legal accessibility of a feature.",
+    "keys": {
+      "access": 60863
+    }
+  },
+  {
+    "prefix": "ref",
+    "total_count": 56902,
+    "description": "Used for reference numbers or codes. Common for roads, highway exits, routes, entrances to big buildings etc.",
+    "keys": {
+      "ref": 56214,
+      "ref:canmore": 247,
+      "ref:seedcode": 124,
+      "ref:GB:uprn": 112,
+      "ref:iwm": 64,
+      "ref:pol_id": 49,
+      "ref:GB:the_circuit": 42,
+      "ref:GB:hs": 38,
+      "ref:crs": 12
+    }
+  },
+  {
+    "prefix": "height",
+    "total_count": 54679,
+    "description": "Height is the measurement of vertical distance. It indicates how \"tall\" something is.",
+    "keys": {
+      "height": 54679
+    }
+  },
+  {
+    "prefix": "leisure",
+    "total_count": 53693,
+    "description": "Features associated with leisure activities.",
+    "keys": {
+      "leisure": 53693
+    }
+  },
+  {
+    "prefix": "material",
+    "total_count": 53658,
+    "description": "Describes the main material of a physical feature.",
+    "keys": {
+      "material": 53658
+    }
+  },
+  {
+    "prefix": "start_date",
+    "total_count": 51694,
+    "description": "Date when feature opened or the construction of the feature finished.",
+    "keys": {
+      "start_date": 51694
+    }
+  },
+  {
+    "prefix": "support",
+    "total_count": 51301,
+    "description": "Type of support for certain features",
+    "keys": {
+      "support": 51301
+    }
+  },
+  {
+    "prefix": "light",
+    "total_count": 51245,
+    "description": "",
+    "keys": {
+      "light:method": 51245
+    }
+  },
+  {
+    "prefix": "light_source",
+    "total_count": 51245,
+    "description": "A light emitting object.",
+    "keys": {
+      "light_source": 51245
+    }
+  },
+  {
+    "prefix": "name",
+    "total_count": 35986,
+    "description": "The primary name: in general, the most prominent signposted name or the most common name in the local language(s).",
+    "keys": {
+      "name": 33712,
+      "name:gd": 1072,
+      "name:left": 185,
+      "name:right": 172,
+      "name:sco": 143,
+      "name:etymology:wikidata": 76,
+      "name:en": 67,
+      "name:es": 57,
+      "name:zh": 43,
+      "name:fr": 38,
+      "name:ko": 37,
+      "name:ja": 36,
+      "name:ga": 20,
+      "name:pt": 20,
+      "name:nl": 19,
+      "name:signed": 19,
+      "name:cs": 18,
+      "name:de": 18,
+      "name:cy": 17,
+      "name:pl": 17,
+      "name:it": 16,
+      "name:ru": 16,
+      "name:sv": 13,
+      "name:tr": 13,
+      "name:br": 12,
+      "name:ca": 12,
+      "name:fi": 12,
+      "name:sk": 12,
+      "name:eu": 11,
+      "name:no": 11,
+      "name:uk": 11,
+      "name:zh-Hans": 11,
+      "name:bg": 10,
+      "name:et": 10,
+      "name:he": 10,
+      "name:hu": 10,
+      "name:lt": 10
+    }
+  },
+  {
+    "prefix": "surface",
+    "total_count": 29314,
+    "description": "Describes the surface of a feature.",
+    "keys": {
+      "surface": 29314
+    }
+  },
+  {
+    "prefix": "naptan",
+    "total_count": 28485,
+    "description": null,
+    "keys": {
+      "naptan:AtcoCode": 2279,
+      "naptan:NaptanCode": 2263,
+      "naptan:Street": 2241,
+      "naptan:CommonName": 2240,
+      "naptan:Indicator": 2234,
+      "naptan:Bearing": 2178,
+      "naptan:Landmark": 2074,
+      "naptan:PlusbusZoneRef": 2044,
+      "naptan:verified": 1930,
+      "naptan:AdministrativeAreaCode": 1012,
+      "naptan:Area_Name": 1012,
+      "naptan:AtcoAreaCode": 1012,
+      "naptan:LocalityName": 1012,
+      "naptan:NptgLocalityCode": 1012,
+      "naptan:SourceLocalityType": 1012,
+      "naptan:StopAreaCode": 855,
+      "naptan:StopAreaType": 855,
+      "naptan:StopArea_Name": 855,
+      "naptan:QualifierName": 365
+    }
+  },
+  {
+    "prefix": "roof",
+    "total_count": 20016,
+    "description": "Undocumented tag.",
+    "keys": {
+      "roof:levels": 10218,
+      "roof:shape": 6175,
+      "roof:material": 1843,
+      "roof:height": 748,
+      "roof:orientation": 376,
+      "roof:colour": 332,
+      "roof:direction": 324
+    }
+  },
+  {
+    "prefix": "amenity",
+    "total_count": 19017,
+    "description": "For describing useful and important facilities for visitors and residents.",
+    "keys": {
+      "amenity": 19017
+    }
+  },
+  {
+    "prefix": "generator",
+    "total_count": 18746,
+    "description": "",
+    "keys": {
+      "generator:source": 3312,
+      "generator:type": 3310,
+      "generator:method": 3310,
+      "generator:output:electricity": 3288,
+      "generator:orientation": 2927,
+      "generator:modules": 1352,
+      "generator:solar:modules": 1247
+    }
+  },
+  {
+    "prefix": "lit",
+    "total_count": 18731,
+    "description": "Indicates whether a feature is lit.",
+    "keys": {
+      "lit": 18731
+    }
+  },
+  {
+    "prefix": "maxspeed",
+    "total_count": 12783,
+    "description": "Specifies the maximum legal speed limit on a road, railway or waterway.",
+    "keys": {
+      "maxspeed": 12563,
+      "maxspeed:type": 150,
+      "maxspeed:variable": 26,
+      "maxspeed:backward": 12,
+      "maxspeed:forward": 12,
+      "maxspeed:freight": 10,
+      "maxspeed:advisory": 10
+    }
+  },
+  {
+    "prefix": "garden",
+    "total_count": 11933,
+    "description": null,
+    "keys": {
+      "garden:type": 11933
+    }
+  },
+  {
+    "prefix": "check_date",
+    "total_count": 10642,
+    "description": "Date of latest review of the data. Format: YYYY-MM-DD.",
+    "keys": {
+      "check_date": 8934,
+      "check_date:opening_hours": 634,
+      "check_date:surface": 243,
+      "check_date:shelter": 237,
+      "check_date:capacity": 212,
+      "check_date:collection_times": 115,
+      "check_date:diet:vegetarian": 36,
+      "check_date:handrail": 35,
+      "check_date:tactile_paving": 29,
+      "check_date:lit": 27,
+      "check_date:diet:vegan": 26,
+      "check_date:ramp": 26,
+      "check_date:bench": 22,
+      "check_date:bin": 19,
+      "check_date:traffic_signals:sound": 13,
+      "check_date:traffic_signals:vibration": 12,
+      "check_date:kerb": 11,
+      "check_date:smoothness": 11
+    }
+  },
+  {
+    "prefix": "entrance",
+    "total_count": 8850,
+    "description": "To mark the location of an entrance.",
+    "keys": {
+      "entrance": 8850
+    }
+  },
+  {
+    "prefix": "landuse",
+    "total_count": 7653,
+    "description": "Mainly used for describing the primary use of areas of land.",
+    "keys": {
+      "landuse": 7653
+    }
+  },
+  {
+    "prefix": "sidewalk",
+    "total_count": 7239,
+    "description": "Indicates the presence or absence of a sidewalk (pavement/footway).",
+    "keys": {
+      "sidewalk": 5432,
+      "sidewalk:both:surface": 689,
+      "sidewalk:left": 318,
+      "sidewalk:right": 316,
+      "sidewalk:both": 199,
+      "sidewalk:left:surface": 182,
+      "sidewalk:right:surface": 103
+    }
+  },
+  {
+    "prefix": "railway",
+    "total_count": 5998,
+    "description": "Used for railways and railway infrastructure.",
+    "keys": {
+      "railway": 2438,
+      "railway:aws": 445,
+      "railway:tpws": 398,
+      "railway:preferred_direction": 351,
+      "railway:traffic_mode": 332,
+      "railway:track_ref": 307,
+      "railway:signal:direction": 261,
+      "railway:signal:main": 171,
+      "railway:signal:main:form": 171,
+      "railway:signal:position": 102,
+      "railway:signal:main:design": 94,
+      "railway:signal:main:states": 94,
+      "railway:signal:shunting": 92,
+      "railway:signal:shunting:form": 92,
+      "railway:bidirectional": 67,
+      "railway:local_operated": 63,
+      "railway:signal:route": 63,
+      "railway:signal:route:design": 63,
+      "railway:signal:route:form": 63,
+      "railway:switch": 60,
+      "railway:switch:electric": 60,
+      "railway:turnout_side": 57,
+      "railway:signal:route:states": 34,
+      "railway:signal:main_repeated": 21,
+      "railway:signal:main_repeated:form": 21,
+      "railway:signal:speed_limit": 20,
+      "railway:signal:speed_limit:form": 20,
+      "railway:signal:speed_limit:speed": 20,
+      "railway:position": 18
+    }
+  },
+  {
+    "prefix": "lanes",
+    "total_count": 5670,
+    "description": "Total number of traffic lanes available for motorised traffic.",
+    "keys": {
+      "lanes": 5141,
+      "lanes:forward": 232,
+      "lanes:backward": 226,
+      "lanes:psv": 31,
+      "lanes:psv:backward:conditional": 21,
+      "lanes:psv:forward:conditional": 19
+    }
+  },
+  {
+    "prefix": "service",
+    "total_count": 5492,
+    "description": "Additional information about a service highway/railway/waterway, or about services offered at a business.",
+    "keys": {
+      "service": 5430,
+      "service:bicycle:pump": 20,
+      "service:bicycle:repair": 19,
+      "service:electricity": 12,
+      "service:bicycle:retail": 11
+    }
+  },
+  {
+    "prefix": "website",
+    "total_count": 5422,
+    "description": "Specifies the link to the official website for a feature.",
+    "keys": {
+      "website": 5397,
+      "website:menu": 25
+    }
+  },
+  {
+    "prefix": "crossing",
+    "total_count": 5365,
+    "description": "Further refinement for nodes already tagged with tag:highway=crossing or tag:railway=crossing",
+    "keys": {
+      "crossing": 2573,
+      "crossing:island": 1377,
+      "crossing:markings": 1005,
+      "crossing:signals": 205,
+      "crossing:barrier": 118,
+      "crossing:light": 42,
+      "crossing:continuous": 33,
+      "crossing:bell": 12
+    }
+  },
+  {
+    "prefix": "brand",
+    "total_count": 5245,
+    "description": "The identity of a specific product, service, or business. Often trademarks",
+    "keys": {
+      "brand": 2153,
+      "brand:wikidata": 2119,
+      "brand:wikipedia": 916,
+      "brand:website": 35,
+      "brand:short": 22
+    }
+  },
+  {
+    "prefix": "power",
+    "total_count": 5081,
+    "description": "Facilities for generation and distribution of electrical power.",
+    "keys": {
+      "power": 5081
+    }
+  },
+  {
+    "prefix": "bicycle",
+    "total_count": 4927,
+    "description": "Access permission for cyclists.",
+    "keys": {
+      "bicycle": 4927
+    }
+  },
+  {
+    "prefix": "level",
+    "total_count": 4872,
+    "description": "Zero-based floor number of a feature (where 0 is the ground level and -1 is the basement).",
+    "keys": {
+      "level": 4802,
+      "level:ref": 70
+    }
+  },
+  {
+    "prefix": "foot",
+    "total_count": 4715,
+    "description": "Access permission for pedestrians",
+    "keys": {
+      "foot": 4715
+    }
+  },
+  {
+    "prefix": "tactile_paving",
+    "total_count": 4282,
+    "description": "Indicates whether a blind or visually impaired pedestrian can detect or follow the feature using a cane.",
+    "keys": {
+      "tactile_paving": 4282
+    }
+  },
+  {
+    "prefix": "parking",
+    "total_count": 4215,
+    "description": "Indicates the type of the parking facility",
+    "keys": {
+      "parking": 3915,
+      "parking:both": 83,
+      "parking:both:orientation": 54,
+      "parking:left": 35,
+      "parking:right": 34,
+      "parking:right:orientation": 23,
+      "parking:lane:both:parallel": 22,
+      "parking:left:orientation": 16,
+      "parking:condition:both": 13,
+      "parking:condition:both:residents": 10,
+      "parking:lane:both": 10
+    }
+  },
+  {
+    "prefix": "location",
+    "total_count": 3972,
+    "description": "To define the location of a feature which may be above or under ground or in relation to objects such as roofs, bridges or buildings.",
+    "keys": {
+      "location": 3961,
+      "location:transition": 11
+    }
+  },
+  {
+    "prefix": "shop",
+    "total_count": 3906,
+    "description": "A place selling retail products or offering services.",
+    "keys": {
+      "shop": 3906
+    }
+  },
+  {
+    "prefix": "oneway",
+    "total_count": 3697,
+    "description": "Linear features that users can only go one direction in. Used in highways, zip lines, and other features.",
+    "keys": {
+      "oneway": 3605,
+      "oneway:bicycle": 92
+    }
+  },
+  {
+    "prefix": "phone",
+    "total_count": 3637,
+    "description": "A telephone number associated with the object. Use +CC XXX XXX XXX format, where CC is a country code.",
+    "keys": {
+      "phone": 3637
+    }
+  },
+  {
+    "prefix": "width",
+    "total_count": 3422,
+    "description": "The width of a feature. If not specified, the default unit is the metre [m].",
+    "keys": {
+      "width": 3422
+    }
+  },
+  {
+    "prefix": "fhrs",
+    "total_count": 3398,
+    "description": null,
+    "keys": {
+      "fhrs:id": 3398
+    }
+  },
+  {
+    "prefix": "direction",
+    "total_count": 3370,
+    "description": "Specifies the direction of a feature.",
+    "keys": {
+      "direction": 3370
+    }
+  },
+  {
+    "prefix": "cycleway",
+    "total_count": 3354,
+    "description": "Determines whether there are or what kind of cycle lanes or tracks provided within the carriageway or next to it.",
+    "keys": {
+      "cycleway:both": 1672,
+      "cycleway": 602,
+      "cycleway:left": 491,
+      "cycleway:right": 273,
+      "cycleway:left:lane": 94,
+      "cycleway:surface": 78,
+      "cycleway:both:lane": 51,
+      "cycleway:right:lane": 41,
+      "cycleway:width": 31,
+      "cycleway:right:oneway": 21
+    }
+  },
+  {
+    "prefix": "opening_hours",
+    "total_count": 3142,
+    "description": "Describes when something is open or closed in a standard format.",
+    "keys": {
+      "opening_hours": 2896,
+      "opening_hours:signed": 231,
+      "opening_hours:url": 15
+    }
+  },
+  {
+    "prefix": "wheelchair",
+    "total_count": 2951,
+    "description": "Indicate if a special place can be used with wheelchairs",
+    "keys": {
+      "wheelchair": 2928,
+      "wheelchair:description": 23
+    }
+  },
+  {
+    "prefix": "golf",
+    "total_count": 2910,
+    "description": "To map the details on a golf course",
+    "keys": {
+      "golf": 2882,
+      "golf:course": 15,
+      "golf:par": 13
+    }
+  },
+  {
+    "prefix": "fee",
+    "total_count": 2839,
+    "description": "Yes or no, to indicate if money is charged to use this facility.",
+    "keys": {
+      "fee": 2821,
+      "fee:conditional": 18
+    }
+  },
+  {
+    "prefix": "smoothness",
+    "total_count": 2776,
+    "description": "Specifies the physical usability of a way for wheeled vehicles due to surface regularity/flatness",
+    "keys": {
+      "smoothness": 2776
+    }
+  },
+  {
+    "prefix": "public_transport",
+    "total_count": 2713,
+    "description": "Public transport infrastructure key.",
+    "keys": {
+      "public_transport": 2483,
+      "public_transport:version": 230
+    }
+  },
+  {
+    "prefix": "wikidata",
+    "total_count": 2595,
+    "description": "The ID of the Wikidata item about the feature.",
+    "keys": {
+      "wikidata": 2595
+    }
+  },
+  {
+    "prefix": "incline",
+    "total_count": 2521,
+    "description": "Incline steepness",
+    "keys": {
+      "incline": 2521
+    }
+  },
+  {
+    "prefix": "covered",
+    "total_count": 2504,
+    "description": "A property to denote if an object is covered by something.",
+    "keys": {
+      "covered": 2504
+    }
+  },
+  {
+    "prefix": "note",
+    "total_count": 2396,
+    "description": "A note to other mappers regarding the feature's mapping.",
+    "keys": {
+      "note": 2396
+    }
+  },
+  {
+    "prefix": "recycling",
+    "total_count": 2365,
+    "description": "",
+    "keys": {
+      "recycling:paper": 293,
+      "recycling:cans": 267,
+      "recycling:glass_bottles": 210,
+      "recycling:plastic": 202,
+      "recycling:plastic_packaging": 177,
+      "recycling:cardboard": 177,
+      "recycling:food_waste": 137,
+      "recycling:plastic_bottles": 136,
+      "recycling:magazines": 108,
+      "recycling:paper_packaging": 105,
+      "recycling:newspaper": 103,
+      "recycling:beverage_cartons": 100,
+      "recycling:cartons": 96,
+      "recycling:organic": 88,
+      "recycling:glass": 72,
+      "recycling:clothes": 38,
+      "recycling:packaging": 20,
+      "recycling:green_waste": 13,
+      "recycling:foil": 12,
+      "recycling:shoes": 11
+    }
+  },
+  {
+    "prefix": "traffic_calming",
+    "total_count": 2346,
+    "description": "Features used to slow down traffic.",
+    "keys": {
+      "traffic_calming": 2346
+    }
+  },
+  {
+    "prefix": "capacity",
+    "total_count": 2345,
+    "description": "Describes the capacity a facility is suitable for.",
+    "keys": {
+      "capacity": 2262,
+      "capacity:disabled": 83
+    }
+  },
+  {
+    "prefix": "leaf_type",
+    "total_count": 2314,
+    "description": "Describes the type of leaves",
+    "keys": {
+      "leaf_type": 2314
+    }
+  },
+  {
+    "prefix": "bus",
+    "total_count": 2244,
+    "description": "Access restrictions for public transport buses, or vehicle type on route relations.",
+    "keys": {
+      "bus": 2244
+    }
+  },
+  {
+    "prefix": "layer",
+    "total_count": 2226,
+    "description": "Used to mark the vertical relationship between two intersecting features.",
+    "keys": {
+      "layer": 2226
+    }
+  },
+  {
+    "prefix": "fence_type",
+    "total_count": 2171,
+    "description": "Describes the type of a fence.",
+    "keys": {
+      "fence_type": 2171
+    }
+  },
+  {
+    "prefix": "house",
+    "total_count": 2149,
+    "description": "The type of a house. Used in combination with tag:building=house.",
+    "keys": {
+      "house": 2149
+    }
+  },
+  {
+    "prefix": "shelter",
+    "total_count": 1967,
+    "description": "Indicates the presence of an associated shelter.",
+    "keys": {
+      "shelter": 1967
+    }
+  },
+  {
+    "prefix": "man_made",
+    "total_count": 1961,
+    "description": "Artificial structures other than buildings.",
+    "keys": {
+      "man_made": 1961
+    }
+  },
+  {
+    "prefix": "nohousenumber",
+    "total_count": 1958,
+    "description": "For explicitly stating that no house number is assigned to a place.",
+    "keys": {
+      "nohousenumber": 1958
+    }
+  },
+  {
+    "prefix": "backrest",
+    "total_count": 1857,
+    "description": "Whether a bench has a backrest (or backrests).",
+    "keys": {
+      "backrest": 1857
+    }
+  },
+  {
+    "prefix": "type",
+    "total_count": 1802,
+    "description": "Type of a relation.",
+    "keys": {
+      "type": 1802
+    }
+  },
+  {
+    "prefix": "handrail",
+    "total_count": 1771,
+    "description": "Defines whether there is at least one handrail.",
+    "keys": {
+      "handrail": 1666,
+      "handrail:center": 45,
+      "handrail:right": 35,
+      "handrail:left": 25
+    }
+  },
+  {
+    "prefix": "bench",
+    "total_count": 1700,
+    "description": "Indicates the presence of an associated bench.",
+    "keys": {
+      "bench": 1700
+    }
+  },
+  {
+    "prefix": "bin",
+    "total_count": 1668,
+    "description": "Indicates the presence of an associated waste basket.",
+    "keys": {
+      "bin": 1668
+    }
+  },
+  {
+    "prefix": "traffic_signals",
+    "total_count": 1660,
+    "description": "Gives details about the type or function of traffic signals.",
+    "keys": {
+      "traffic_signals:sound": 662,
+      "traffic_signals:vibration": 633,
+      "traffic_signals:direction": 214,
+      "traffic_signals": 151
+    }
+  },
+  {
+    "prefix": "bicycle_parking",
+    "total_count": 1605,
+    "description": "For describing the type of bicycle parking.",
+    "keys": {
+      "bicycle_parking": 1605
+    }
+  },
+  {
+    "prefix": "surveillance",
+    "total_count": 1405,
+    "description": "Indicates whether a location is under surveillance or what type of surveilled area it is.",
+    "keys": {
+      "surveillance": 638,
+      "surveillance:type": 565,
+      "surveillance:zone": 202
+    }
+  },
+  {
+    "prefix": "tourism",
+    "total_count": 1375,
+    "description": "A place or object of specific interest to tourists.",
+    "keys": {
+      "tourism": 1375
+    }
+  },
+  {
+    "prefix": "step_count",
+    "total_count": 1366,
+    "description": "Number of individual steps in a stair, part of a stair or on a stile.",
+    "keys": {
+      "step_count": 1366
+    }
+  },
+  {
+    "prefix": "cuisine",
+    "total_count": 1326,
+    "description": "Describes the type of food served at a place.",
+    "keys": {
+      "cuisine": 1326
+    }
+  },
+  {
+    "prefix": "description",
+    "total_count": 1320,
+    "description": "To provide additional information about the related element to the end map user.",
+    "keys": {
+      "description": 1320
+    }
+  },
+  {
+    "prefix": "network",
+    "total_count": 1313,
+    "description": "A system of routes or amenities (bicycle rental stations, ATMs etc.) typically maintained or designated by a single agency or organization, or for bicycle and walking routes, an indication of the scope of the route.",
+    "keys": {
+      "network": 658,
+      "network:wikidata": 472,
+      "network:wikipedia": 171,
+      "network:website": 12
+    }
+  },
+  {
+    "prefix": "payment",
+    "total_count": 1310,
+    "description": "",
+    "keys": {
+      "payment:cash": 349,
+      "payment:credit_cards": 319,
+      "payment:debit_cards": 287,
+      "payment:visa": 78,
+      "payment:mastercard": 76,
+      "payment:coins": 49,
+      "payment:cards": 45,
+      "payment:contactless": 35,
+      "payment:american_express": 29,
+      "payment:qr_code": 27,
+      "payment:telephone_cards": 16
+    }
+  },
+  {
+    "prefix": "office",
+    "total_count": 1307,
+    "description": "A place of business predominately providing services.",
+    "keys": {
+      "office": 1307
+    }
+  },
+  {
+    "prefix": "old_name",
+    "total_count": 1280,
+    "description": "Old / previous / historic name for an element.",
+    "keys": {
+      "old_name": 1280
+    }
+  },
+  {
+    "prefix": "footway",
+    "total_count": 1248,
+    "description": "Further refinement of footways",
+    "keys": {
+      "footway": 1175,
+      "footway:surface": 73
+    }
+  },
+  {
+    "prefix": "ramp",
+    "total_count": 1244,
+    "description": "Whether a ramp for bicycles, strollers, wheelchairs and/or luggage is built into a stairway",
+    "keys": {
+      "ramp": 1179,
+      "ramp:wheelchair": 35,
+      "ramp:bicycle": 30
+    }
+  },
+  {
+    "prefix": "kerb",
+    "total_count": 1202,
+    "description": "Used to indicate height and thus accessibility of a kerb.",
+    "keys": {
+      "kerb": 1202
+    }
+  },
+  {
+    "prefix": "parking_space",
+    "total_count": 1191,
+    "description": "Indicates the type of the parking space.",
+    "keys": {
+      "parking_space": 1191
+    }
+  },
+  {
+    "prefix": "camera",
+    "total_count": 1159,
+    "description": null,
+    "keys": {
+      "camera:type": 495,
+      "camera:mount": 468,
+      "camera:direction": 196
+    }
+  },
+  {
+    "prefix": "contact",
+    "total_count": 1106,
+    "description": "",
+    "keys": {
+      "contact:website": 368,
+      "contact:facebook": 300,
+      "contact:instagram": 229,
+      "contact:phone": 105,
+      "contact:twitter": 63,
+      "contact:email": 30,
+      "contact:tripadvisor": 11
+    }
+  },
+  {
+    "prefix": "sport",
+    "total_count": 1092,
+    "description": "For categorising any specific sport.",
+    "keys": {
+      "sport": 1092
+    }
+  },
+  {
+    "prefix": "bridge",
+    "total_count": 1044,
+    "description": "A bridge is an artificial construction that spans features such as roads, railways, paths, waterways or valleys and carries a road, railway or other feature.",
+    "keys": {
+      "bridge": 857,
+      "bridge:ref": 80,
+      "bridge:structure": 66,
+      "bridge:name": 41
+    }
+  },
+  {
+    "prefix": "segregated",
+    "total_count": 1026,
+    "description": "Shows if a shared path is segregated or not.",
+    "keys": {
+      "segregated": 1026
+    }
+  },
+  {
+    "prefix": "tunnel",
+    "total_count": 1026,
+    "description": "A tunnel is an underground passageway built for a road or similar.",
+    "keys": {
+      "tunnel": 1009,
+      "tunnel:name": 17
+    }
+  },
+  {
+    "prefix": "colour",
+    "total_count": 1022,
+    "description": "The colour associated with the object",
+    "keys": {
+      "colour": 950,
+      "colour:arrow": 24,
+      "colour:back": 24,
+      "colour:text": 24
+    }
+  },
+  {
+    "prefix": "maxstay",
+    "total_count": 1014,
+    "description": "Maximum time you are allowed to stay somewhere.",
+    "keys": {
+      "maxstay": 1004,
+      "maxstay:conditional": 10
+    }
+  },
+  {
+    "prefix": "historic",
+    "total_count": 1013,
+    "description": "Used for describing various historic features.",
+    "keys": {
+      "historic": 623,
+      "historic:building": 97,
+      "historic:railway": 57,
+      "historic:addr:housenumber": 56,
+      "historic:addr:street": 55,
+      "historic:amenity": 44,
+      "historic:highway": 32,
+      "historic:addr:city": 14,
+      "historic:public_transport": 12,
+      "historic:barrier": 12,
+      "historic:civilization": 11
+    }
+  },
+  {
+    "prefix": "markings",
+    "total_count": 995,
+    "description": "Specifies whether a feature has markings or not.",
+    "keys": {
+      "markings": 995
+    }
+  },
+  {
+    "prefix": "wikipedia",
+    "total_count": 915,
+    "description": "Provides a link to Wikipedia's article about the feature.",
+    "keys": {
+      "wikipedia": 915
+    }
+  },
+  {
+    "prefix": "electrified",
+    "total_count": 911,
+    "description": "Indicates infrastructure to supply vehicles with electricity, on rail tracks or highways.",
+    "keys": {
+      "electrified": 911
+    }
+  },
+  {
+    "prefix": "email",
+    "total_count": 900,
+    "description": "An email address associated with the object",
+    "keys": {
+      "email": 900
+    }
+  },
+  {
+    "prefix": "gauge",
+    "total_count": 855,
+    "description": "Used to describe the 'gauge' (distance between the inside of the rails) on railways.",
+    "keys": {
+      "gauge": 855
+    }
+  },
+  {
+    "prefix": "button_operated",
+    "total_count": 817,
+    "description": "Used to indicate that some functionality may be (or needs to be) activated by pressing a button.",
+    "keys": {
+      "button_operated": 817
+    }
+  },
+  {
+    "prefix": "disused",
+    "total_count": 783,
+    "description": "Specifies if a feature is disused but in a reasonable state of repair.",
+    "keys": {
+      "disused:amenity": 294,
+      "disused:shop": 270,
+      "disused:office": 67,
+      "disused:highway": 37,
+      "disused:railway": 31,
+      "disused:tourism": 21,
+      "disused:name": 20,
+      "disused:leisure": 18,
+      "disused:man_made": 13,
+      "disused:craft": 12
+    }
+  },
+  {
+    "prefix": "voltage",
+    "total_count": 755,
+    "description": "For describing the voltage of power lines, cables, and substations.",
+    "keys": {
+      "voltage": 729,
+      "voltage:primary": 13,
+      "voltage:secondary": 13
+    }
+  },
+  {
+    "prefix": "frequency",
+    "total_count": 718,
+    "description": "For describing the frequency of electric power supply networks and devices, electrified railways, trolleybuses and communications devices. The unit is Hz (cycles per second).",
+    "keys": {
+      "frequency": 718
+    }
+  },
+  {
+    "prefix": "leaf_cycle",
+    "total_count": 664,
+    "description": "Describes the phenology of leaves",
+    "keys": {
+      "leaf_cycle": 664
+    }
+  },
+  {
+    "prefix": "substation",
+    "total_count": 659,
+    "description": "Specifies substation role in a utility network.",
+    "keys": {
+      "substation": 659
+    }
+  },
+  {
+    "prefix": "alt_name",
+    "total_count": 626,
+    "description": "Alternative name or names by which the feature is known in the local language; for names in other languages, use key:name:xy where xy is the ISO 639 language code; not to be confused with key:name:alt, which is for the name in the Altai language.",
+    "keys": {
+      "alt_name": 583,
+      "alt_name:gd": 24,
+      "alt_name:es": 19
+    }
+  },
+  {
+    "prefix": "outdoor_seating",
+    "total_count": 614,
+    "description": "To indicate if a restaurant or similar feature offers outdoor seating (or to specify the type of outdoor seating with tag:leisure=outdoor_seating).",
+    "keys": {
+      "outdoor_seating": 614
+    }
+  },
+  {
+    "prefix": "motor_vehicle",
+    "total_count": 610,
+    "description": "Access permission for motor vehicles",
+    "keys": {
+      "motor_vehicle": 583,
+      "motor_vehicle:conditional": 27
+    }
+  },
+  {
+    "prefix": "area",
+    "total_count": 577,
+    "description": "Indicates whether a closed way represents an area or just a circular way.",
+    "keys": {
+      "area": 471,
+      "area:highway": 106
+    }
+  },
+  {
+    "prefix": "mapillary",
+    "total_count": 547,
+    "description": "Reference code for a Mapillary image",
+    "keys": {
+      "mapillary": 547
+    }
+  },
+  {
+    "prefix": "indoor",
+    "total_count": 531,
+    "description": "Key used with the Simple Indoor Tagging scheme or to tag wether an object is indoor or not.",
+    "keys": {
+      "indoor": 531
+    }
+  },
+  {
+    "prefix": "fire_hydrant",
+    "total_count": 526,
+    "description": "",
+    "keys": {
+      "fire_hydrant:type": 199,
+      "fire_hydrant:pressure": 133,
+      "fire_hydrant:position": 121,
+      "fire_hydrant:diameter": 47,
+      "fire_hydrant:diameter:signed": 26
+    }
+  },
+  {
+    "prefix": "internet_access",
+    "total_count": 514,
+    "description": "Indicates if an object offers internet access. The access can be with given computers or WLAN access. The only limitation is that the internet access has to be public.",
+    "keys": {
+      "internet_access": 318,
+      "internet_access:fee": 157,
+      "internet_access:ssid": 28,
+      "internet_access:operator": 11
+    }
+  },
+  {
+    "prefix": "healthcare",
+    "total_count": 500,
+    "description": "Specifies the type of a healthcare facility.",
+    "keys": {
+      "healthcare": 423,
+      "healthcare:speciality": 77
+    }
+  },
+  {
+    "prefix": "lane_markings",
+    "total_count": 495,
+    "description": "Specifies if a highway has painted markings to indicate the position of the lanes",
+    "keys": {
+      "lane_markings": 495
+    }
+  },
+  {
+    "prefix": "takeaway",
+    "total_count": 490,
+    "description": "Whether the restaurant offers meals for pick-up that can be consumed elsewhere.",
+    "keys": {
+      "takeaway": 490
+    }
+  },
+  {
+    "prefix": "post_box",
+    "total_count": 481,
+    "description": null,
+    "keys": {
+      "post_box:type": 399,
+      "post_box:design": 36,
+      "post_box:mounting": 25,
+      "post_box:apertures": 21
+    }
+  },
+  {
+    "prefix": "royal_cypher",
+    "total_count": 476,
+    "description": "A monarch's initials or symbol.",
+    "keys": {
+      "royal_cypher": 386,
+      "royal_cypher:wikidata": 90
+    }
+  },
+  {
+    "prefix": "survey",
+    "total_count": 468,
+    "description": null,
+    "keys": {
+      "survey:date": 468
+    }
+  },
+  {
+    "prefix": "junction",
+    "total_count": 459,
+    "description": "Describing the kind of a junction.",
+    "keys": {
+      "junction": 459
+    }
+  },
+  {
+    "prefix": "usage",
+    "total_count": 449,
+    "description": "Describes the primary usage of railways, pipeline or waterways",
+    "keys": {
+      "usage": 449
+    }
+  },
+  {
+    "prefix": "bollard",
+    "total_count": 440,
+    "description": "Finer-grained classification of a bollard.",
+    "keys": {
+      "bollard": 440
+    }
+  },
+  {
+    "prefix": "recycling_type",
+    "total_count": 437,
+    "description": "Used to differentiate between big recycling centers and just simple recycling containers.",
+    "keys": {
+      "recycling_type": 437
+    }
+  },
+  {
+    "prefix": "diet",
+    "total_count": 437,
+    "description": "",
+    "keys": {
+      "diet:vegetarian": 242,
+      "diet:vegan": 167,
+      "diet:gluten_free": 15,
+      "diet:halal": 13
+    }
+  },
+  {
+    "prefix": "collection_times",
+    "total_count": 436,
+    "description": "The collection times of a post box or recycling container",
+    "keys": {
+      "collection_times": 436
+    }
+  },
+  {
+    "prefix": "passenger_lines",
+    "total_count": 430,
+    "description": "Used to describe number of tracks of the railway line a certain track segment belongs to.",
+    "keys": {
+      "passenger_lines": 430
+    }
+  },
+  {
+    "prefix": "waterway",
+    "total_count": 420,
+    "description": "Used to mark rivers or other kind of waterways.",
+    "keys": {
+      "waterway": 420
+    }
+  },
+  {
+    "prefix": "emergency",
+    "total_count": 412,
+    "description": "Describes various emergency services, facilities, amenities or the possibility of access for emergency services",
+    "keys": {
+      "emergency": 412
+    }
+  },
+  {
+    "prefix": "route",
+    "total_count": 403,
+    "description": "A customary or regular line of passage or travel, often predetermined and publicized.",
+    "keys": {
+      "route": 403
+    }
+  },
+  {
+    "prefix": "species",
+    "total_count": 402,
+    "description": "The scientific name of the species for a living or fossil organism.",
+    "keys": {
+      "species": 159,
+      "species:wikidata": 121,
+      "species:wikipedia": 103,
+      "species:en": 19
+    }
+  },
+  {
+    "prefix": "aeroway",
+    "total_count": 386,
+    "description": "For physical infrastructure used to support aircraft, air travel, spacecraft and space flight.",
+    "keys": {
+      "aeroway": 386
+    }
+  },
+  {
+    "prefix": "tower",
+    "total_count": 384,
+    "description": null,
+    "keys": {
+      "tower:type": 266,
+      "tower:construction": 118
+    }
+  },
+  {
+    "prefix": "place",
+    "total_count": 378,
+    "description": "Defines the center or outline of a named place",
+    "keys": {
+      "place": 378
+    }
+  },
+  {
+    "prefix": "loading_gauge",
+    "total_count": 378,
+    "description": "Used to show what freight wagons can go on a track.",
+    "keys": {
+      "loading_gauge": 378
+    }
+  },
+  {
+    "prefix": "indoor_seating",
+    "total_count": 361,
+    "description": "To indicate if a restaurant offers indoor seating.",
+    "keys": {
+      "indoor_seating": 361
+    }
+  },
+  {
+    "prefix": "information",
+    "total_count": 356,
+    "description": "Refines detail for tag:tourism=information.",
+    "keys": {
+      "information": 356
+    }
+  },
+  {
+    "prefix": "from",
+    "total_count": 355,
+    "description": "Start station",
+    "keys": {
+      "from": 355
+    }
+  },
+  {
+    "prefix": "old_ref",
+    "total_count": 353,
+    "description": "Old, former or historical reference.",
+    "keys": {
+      "old_ref": 353
+    }
+  },
+  {
+    "prefix": "maxheight",
+    "total_count": 352,
+    "description": "The legal maximum height.",
+    "keys": {
+      "maxheight": 297,
+      "maxheight:signed": 45,
+      "maxheight:ft": 10
+    }
+  },
+  {
+    "prefix": "seats",
+    "total_count": 350,
+    "description": "An estimate of the number of people that can comfortably sit on a bench.",
+    "keys": {
+      "seats": 350
+    }
+  },
+  {
+    "prefix": "toilets",
+    "total_count": 350,
+    "description": "Indicates if a feature has a toilet.",
+    "keys": {
+      "toilets": 141,
+      "toilets:wheelchair": 129,
+      "toilets:disposal": 33,
+      "toilets:handwashing": 17,
+      "toilets:access": 15,
+      "toilets:position": 15
+    }
+  },
+  {
+    "prefix": "crossing_ref",
+    "total_count": 345,
+    "description": "Used to reference a specific type of crossing.",
+    "keys": {
+      "crossing_ref": 345
+    }
+  },
+  {
+    "prefix": "memorial",
+    "total_count": 344,
+    "description": "Type of a memorial.",
+    "keys": {
+      "memorial": 283,
+      "memorial:conflict": 61
+    }
+  },
+  {
+    "prefix": "to",
+    "total_count": 343,
+    "description": "Destination station.",
+    "keys": {
+      "to": 343
+    }
+  },
+  {
+    "prefix": "tracktype",
+    "total_count": 336,
+    "description": "Provides a classification of tracks.",
+    "keys": {
+      "tracktype": 336
+    }
+  },
+  {
+    "prefix": "restriction",
+    "total_count": 332,
+    "description": "Type of a turn restriction at a junction or specification of parking restrictions",
+    "keys": {
+      "restriction": 332
+    }
+  },
+  {
+    "prefix": "playground",
+    "total_count": 331,
+    "description": "Specifies the type of playground equipment.",
+    "keys": {
+      "playground": 331
+    }
+  },
+  {
+    "prefix": "orientation",
+    "total_count": 318,
+    "description": "Indicates the orientation of the feature with respect to the flow of vehicles or passerby.",
+    "keys": {
+      "orientation": 318
+    }
+  },
+  {
+    "prefix": "passenger_information_display",
+    "total_count": 306,
+    "description": "Specifies the presence of an associated passenger information system.in an airport, train station, bus terminal or stop, etc displaying real-time departures, disruption information, notices, etc.",
+    "keys": {
+      "passenger_information_display": 306
+    }
+  },
+  {
+    "prefix": "communication",
+    "total_count": 303,
+    "description": "",
+    "keys": {
+      "communication:mobile_phone": 206,
+      "communication:lte": 34,
+      "communication:gsm": 30,
+      "communication:umts": 19,
+      "communication:nr": 14
+    }
+  },
+  {
+    "prefix": "boundary",
+    "total_count": 302,
+    "description": "Used to mark the borders of areas, mostly political, but possibly also of other administrative areas.",
+    "keys": {
+      "boundary": 302
+    }
+  },
+  {
+    "prefix": "religion",
+    "total_count": 301,
+    "description": "Defines the specific religion.",
+    "keys": {
+      "religion": 301
+    }
+  },
+  {
+    "prefix": "trail_visibility",
+    "total_count": 278,
+    "description": "Classification scheme for trail (not route) visibility and way-finding skill required.",
+    "keys": {
+      "trail_visibility": 278
+    }
+  },
+  {
+    "prefix": "min_height",
+    "total_count": 263,
+    "description": "Height of location of bottom part of building, part of building or another objects.",
+    "keys": {
+      "min_height": 263
+    }
+  },
+  {
+    "prefix": "boat",
+    "total_count": 261,
+    "description": "Access permission for boats",
+    "keys": {
+      "boat": 261
+    }
+  },
+  {
+    "prefix": "not",
+    "total_count": 246,
+    "description": "",
+    "keys": {
+      "not:name": 133,
+      "not:addr:postcode": 66,
+      "not:brand:wikidata": 21,
+      "not:highway": 13,
+      "not:ref:GB:the_circuit": 13
+    }
+  },
+  {
+    "prefix": "locked",
+    "total_count": 245,
+    "description": "Used to mark a gate, barrier or other feature as locked or not.",
+    "keys": {
+      "locked": 245
+    }
+  },
+  {
+    "prefix": "lcn",
+    "total_count": 237,
+    "description": "",
+    "keys": {
+      "lcn": 237
+    }
+  },
+  {
+    "prefix": "male",
+    "total_count": 236,
+    "description": "Access restriction for persons of the male sex or gender or service is provided for these.",
+    "keys": {
+      "male": 182,
+      "male:signed": 54
+    }
+  },
+  {
+    "prefix": "horse",
+    "total_count": 232,
+    "description": "Access permission for equestrians.",
+    "keys": {
+      "horse": 232
+    }
+  },
+  {
+    "prefix": "water",
+    "total_count": 228,
+    "description": "Specification of a water body.",
+    "keys": {
+      "water": 228
+    }
+  },
+  {
+    "prefix": "heritage",
+    "total_count": 226,
+    "description": "Site/building/object registered by an official heritage organisation",
+    "keys": {
+      "heritage": 193,
+      "heritage:operator": 33
+    }
+  },
+  {
+    "prefix": "fixme",
+    "total_count": 224,
+    "description": "Description of a (possible) error in the map.",
+    "keys": {
+      "fixme": 224
+    }
+  },
+  {
+    "prefix": "denomination",
+    "total_count": 217,
+    "description": "Defines the subgroup of a specific religion.",
+    "keys": {
+      "denomination": 217
+    }
+  },
+  {
+    "prefix": "design",
+    "total_count": 215,
+    "description": "Describes the design of poles or pylons carrying high voltage electricity cables",
+    "keys": {
+      "design": 215
+    }
+  },
+  {
+    "prefix": "construction",
+    "total_count": 214,
+    "description": "Used together with the top-level tags like tag:highway=construction or tag:building=construction to describe the type of feature which is currently under construction.",
+    "keys": {
+      "construction": 127,
+      "construction:electrified": 31,
+      "construction:frequency": 28,
+      "construction:voltage": 28
+    }
+  },
+  {
+    "prefix": "booth",
+    "total_count": 211,
+    "description": "The physical design of the phonebox, how it looks.",
+    "keys": {
+      "booth": 211
+    }
+  },
+  {
+    "prefix": "artwork_type",
+    "total_count": 209,
+    "description": "Describes the type of an artwork.",
+    "keys": {
+      "artwork_type": 209
+    }
+  },
+  {
+    "prefix": "door",
+    "total_count": 209,
+    "description": "Specifies the type of a door",
+    "keys": {
+      "door": 209
+    }
+  },
+  {
+    "prefix": "is_in",
+    "total_count": 208,
+    "description": "The is_in tag is used to index where a place or feature is.",
+    "keys": {
+      "is_in": 208
+    }
+  },
+  {
+    "prefix": "craft",
+    "total_count": 194,
+    "description": "A place producing or processing customized goods",
+    "keys": {
+      "craft": 194
+    }
+  },
+  {
+    "prefix": "turn",
+    "total_count": 190,
+    "description": "Used to specify the direction in which a way or a lane will lead.",
+    "keys": {
+      "turn:lanes:forward": 79,
+      "turn:lanes": 61,
+      "turn:lanes:backward": 50
+    }
+  },
+  {
+    "prefix": "noexit",
+    "total_count": 188,
+    "description": "This is a one-value key used only with the value \"yes\". See tag:noexit=yes.",
+    "keys": {
+      "noexit": 188
+    }
+  },
+  {
+    "prefix": "local_ref",
+    "total_count": 182,
+    "description": "Letters and/or numbers identifying a public transport stop within a larger stop group",
+    "keys": {
+      "local_ref": 182
+    }
+  },
+  {
+    "prefix": "armrest",
+    "total_count": 181,
+    "description": "Whether a bench has any armrests.",
+    "keys": {
+      "armrest": 181
+    }
+  },
+  {
+    "prefix": "female",
+    "total_count": 171,
+    "description": "Access for persons of the female sex or gender only",
+    "keys": {
+      "female": 117,
+      "female:signed": 54
+    }
+  },
+  {
+    "prefix": "wall",
+    "total_count": 170,
+    "description": "Used to provide more detailed information about a tag:barrier=wall. The value should indicate the principle feature of the wall, which might be the type, purpose, or building material of the wall.",
+    "keys": {
+      "wall": 170
+    }
+  },
+  {
+    "prefix": "social_facility",
+    "total_count": 168,
+    "description": "Specifies the type of a facility that provides social services.",
+    "keys": {
+      "social_facility": 98,
+      "social_facility:for": 70
+    }
+  },
+  {
+    "prefix": "inscription",
+    "total_count": 167,
+    "description": "Text which is written on an object.",
+    "keys": {
+      "inscription": 167
+    }
+  },
+  {
+    "prefix": "utility",
+    "total_count": 162,
+    "description": "Specifies the type of utility infrastructure which a feature represents.",
+    "keys": {
+      "utility": 162
+    }
+  },
+  {
+    "prefix": "defibrillator",
+    "total_count": 155,
+    "description": "",
+    "keys": {
+      "defibrillator:location": 155
+    }
+  },
+  {
+    "prefix": "board_type",
+    "total_count": 146,
+    "description": "Specifies the details of an tag:information=board",
+    "keys": {
+      "board_type": 146
+    }
+  },
+  {
+    "prefix": "groundanchor",
+    "total_count": 146,
+    "description": null,
+    "keys": {
+      "groundanchor": 146
+    }
+  },
+  {
+    "prefix": "waste",
+    "total_count": 145,
+    "description": "The type of waste in waste disposal.",
+    "keys": {
+      "waste": 145
+    }
+  },
+  {
+    "prefix": "destination",
+    "total_count": 144,
+    "description": "Destination when following a linear feature.",
+    "keys": {
+      "destination": 77,
+      "destination:forward": 30,
+      "destination:ref": 22,
+      "destination:ref:to": 15
+    }
+  },
+  {
+    "prefix": "drive_through",
+    "total_count": 140,
+    "description": "To indicate whether an amenity offers a drive-through service.",
+    "keys": {
+      "drive_through": 140
+    }
+  },
+  {
+    "prefix": "mtb",
+    "total_count": 136,
+    "description": "Used for different types of information for mountain bikes, actual use unclear. Can regard both practical suitability or legal access both for bicycles in general or specifically for mountain bikes. For general legal access use key:bicycle=* instead.",
+    "keys": {
+      "mtb": 121,
+      "mtb:scale": 15
+    }
+  },
+  {
+    "prefix": "route_master",
+    "total_count": 132,
+    "description": "Defines the type of vehicle operated on a public transport route_master relation",
+    "keys": {
+      "route_master": 132
+    }
+  },
+  {
+    "prefix": "maxwidth",
+    "total_count": 131,
+    "description": "The legally restricted maximum width of a vehicle",
+    "keys": {
+      "maxwidth": 84,
+      "maxwidth:physical": 47
+    }
+  },
+  {
+    "prefix": "informal",
+    "total_count": 129,
+    "description": "Indicates whether the feature was intentionally planned or formally set up.",
+    "keys": {
+      "informal": 129
+    }
+  },
+  {
+    "prefix": "genus",
+    "total_count": 129,
+    "description": "The scientific name of the genus for a living or fossil organism.",
+    "keys": {
+      "genus": 119,
+      "genus:en": 10
+    }
+  },
+  {
+    "prefix": "admin_level",
+    "total_count": 126,
+    "description": "Indicates the level of an administrative boundary.",
+    "keys": {
+      "admin_level": 126
+    }
+  },
+  {
+    "prefix": "maxweight",
+    "total_count": 120,
+    "description": "Permissible maximum actual weight in metric tonnes (or other explicitly specified unit).",
+    "keys": {
+      "maxweight:signed": 93,
+      "maxweight": 27
+    }
+  },
+  {
+    "prefix": "cash_in",
+    "total_count": 119,
+    "description": "Specifies whether ATM can be used to deposit cash.",
+    "keys": {
+      "cash_in": 119
+    }
+  },
+  {
+    "prefix": "club",
+    "total_count": 117,
+    "description": "The type of club meeting regularly at given location.",
+    "keys": {
+      "club": 117
+    }
+  },
+  {
+    "prefix": "abandoned",
+    "total_count": 113,
+    "description": "Man-made features that have been abandoned by their owner, but which are still useful for navigation and visible in the landscape. Immediate reuse is not planned, and they may have fallen into disrepair.",
+    "keys": {
+      "abandoned:railway": 98,
+      "abandoned": 15
+    }
+  },
+  {
+    "prefix": "cycle_barrier",
+    "total_count": 112,
+    "description": "Classification of types / designs of cycle barriers",
+    "keys": {
+      "cycle_barrier": 64,
+      "cycle_barrier:installation": 48
+    }
+  },
+  {
+    "prefix": "expressway",
+    "total_count": 111,
+    "description": "A highway with high-speed design features and limited access to adjacent properties. Usually a dual-carriageway (divided).",
+    "keys": {
+      "expressway": 111
+    }
+  },
+  {
+    "prefix": "tram",
+    "total_count": 110,
+    "description": "Specifies whether trams stop at a feature",
+    "keys": {
+      "tram": 110
+    }
+  },
+  {
+    "prefix": "image",
+    "total_count": 108,
+    "description": "Reference to an image of the object.",
+    "keys": {
+      "image": 98,
+      "image:license": 10
+    }
+  },
+  {
+    "prefix": "ele",
+    "total_count": 108,
+    "description": "Elevation of a point above sea level, in metres.",
+    "keys": {
+      "ele": 54,
+      "ele:msl": 27,
+      "ele:source": 27
+    }
+  },
+  {
+    "prefix": "artist_name",
+    "total_count": 107,
+    "description": "A name of an artist who created the piece of art.",
+    "keys": {
+      "artist_name": 107
+    }
+  },
+  {
+    "prefix": "official_name",
+    "total_count": 107,
+    "description": "The official name of the feature, or the name as used by governments and other official organizations. Usually tagged when object has unwieldy and typically not used name that was officially assigned.",
+    "keys": {
+      "official_name": 107
+    }
+  },
+  {
+    "prefix": "residential",
+    "total_count": 107,
+    "description": "Subtag of tag:landuse=residential used to mark the type of residential area",
+    "keys": {
+      "residential": 107
+    }
+  },
+  {
+    "prefix": "train",
+    "total_count": 101,
+    "description": "Specifies whether trains stop at a feature",
+    "keys": {
+      "train": 101
+    }
+  },
+  {
+    "prefix": "pole",
+    "total_count": 99,
+    "description": "To describe whether a bus stop has a pole at it or not, or what function is installed on a power pole.",
+    "keys": {
+      "pole": 99
+    }
+  },
+  {
+    "prefix": "school",
+    "total_count": 97,
+    "description": "The type of school.",
+    "keys": {
+      "school": 97
+    }
+  },
+  {
+    "prefix": "paypoint",
+    "total_count": 95,
+    "description": null,
+    "keys": {
+      "paypoint": 95
+    }
+  },
+  {
+    "prefix": "vending",
+    "total_count": 95,
+    "description": "Specifies the items dispensed by a vending machine.",
+    "keys": {
+      "vending": 95
+    }
+  },
+  {
+    "prefix": "demolished",
+    "total_count": 93,
+    "description": "",
+    "keys": {
+      "demolished:building": 75,
+      "demolished:power": 18
+    }
+  },
+  {
+    "prefix": "money_transfer",
+    "total_count": 92,
+    "description": "Indicate if a place like a bank or money lender provides money transfer.",
+    "keys": {
+      "money_transfer": 46,
+      "money_transfer:website": 46
+    }
+  },
+  {
+    "prefix": "motorcar",
+    "total_count": 89,
+    "description": "Access permission for cars.",
+    "keys": {
+      "motorcar": 89
+    }
+  },
+  {
+    "prefix": "opening_date",
+    "total_count": 86,
+    "description": "Expected date in the future when a construction will be finished and feature will be opened. Use YYYY-MM-DD format.",
+    "keys": {
+      "opening_date": 86
+    }
+  },
+  {
+    "prefix": "wikimedia_commons",
+    "total_count": 83,
+    "description": "Links to related Wikimedia Commons' media of the feature (syntax File:xxxxxx.xxx / Category:xxxxx).",
+    "keys": {
+      "wikimedia_commons": 83
+    }
+  },
+  {
+    "prefix": "baby",
+    "total_count": 83,
+    "description": "Specifies whether an item, such as a playground, is baby-friendly.",
+    "keys": {
+      "baby": 83
+    }
+  },
+  {
+    "prefix": "hgv",
+    "total_count": 82,
+    "description": "Access permission for heavy goods vehicle; in most countries goods vehicles with a permissible maximum mass over 3.5 tonnes",
+    "keys": {
+      "hgv": 82
+    }
+  },
+  {
+    "prefix": "subject",
+    "total_count": 80,
+    "description": "The subject that the feature is about (explains, commemorates, symbolizes, etc.).",
+    "keys": {
+      "subject:wikidata": 51,
+      "subject:wikipedia": 29
+    }
+  },
+  {
+    "prefix": "postal_code",
+    "total_count": 78,
+    "description": "For tagging postal codes of streets and areas.",
+    "keys": {
+      "postal_code": 78
+    }
+  },
+  {
+    "prefix": "education",
+    "total_count": 77,
+    "description": "Schools, kindergartens, universities, and other educational features.",
+    "keys": {
+      "education": 77
+    }
+  },
+  {
+    "prefix": "navigationaid",
+    "total_count": 77,
+    "description": "A type of facility that supports navigation for aircraft",
+    "keys": {
+      "navigationaid": 77
+    }
+  },
+  {
+    "prefix": "socket",
+    "total_count": 76,
+    "description": "",
+    "keys": {
+      "socket:type2": 54,
+      "socket:type2:output": 22
+    }
+  },
+  {
+    "prefix": "smoking",
+    "total_count": 75,
+    "description": "For marking applicable smoking rules. However, if a law mandates a given smoking rule, that need not be mapped.",
+    "keys": {
+      "smoking": 75
+    }
+  },
+  {
+    "prefix": "disabled",
+    "total_count": 75,
+    "description": "Used to map legal access rules regarding disabled people. To map facilities or physical access restrictions, please use wheelchair=* instead.",
+    "keys": {
+      "disabled": 75
+    }
+  },
+  {
+    "prefix": "military",
+    "total_count": 74,
+    "description": "Facilities used by military forces.",
+    "keys": {
+      "military": 74
+    }
+  },
+  {
+    "prefix": "busway",
+    "total_count": 74,
+    "description": "Describes the characteristics of a busway.",
+    "keys": {
+      "busway": 50,
+      "busway:right": 24
+    }
+  },
+  {
+    "prefix": "plant",
+    "total_count": 73,
+    "description": "The generic type of plant that is grown.",
+    "keys": {
+      "plant:source": 37,
+      "plant:output:electricity": 36
+    }
+  },
+  {
+    "prefix": "architect",
+    "total_count": 72,
+    "description": "Name of architect.",
+    "keys": {
+      "architect": 72
+    }
+  },
+  {
+    "prefix": "war_memorial",
+    "total_count": 71,
+    "description": "Specifies whether a memorial is a war memorial.",
+    "keys": {
+      "war_memorial": 71
+    }
+  },
+  {
+    "prefix": "departures_board",
+    "total_count": 70,
+    "description": "Specifies the presence (or type) of an associated board in an airport, train station, bus terminal or stop, etc displaying the information about future departures.",
+    "keys": {
+      "departures_board": 70
+    }
+  },
+  {
+    "prefix": "shoulder",
+    "total_count": 70,
+    "description": "Presence of shoulder in highway",
+    "keys": {
+      "shoulder": 70
+    }
+  },
+  {
+    "prefix": "branch",
+    "total_count": 69,
+    "description": "Identifies which branch of a brand or chain this object represents, or controversially the name of a branch railway.",
+    "keys": {
+      "branch": 69
+    }
+  },
+  {
+    "prefix": "airside",
+    "total_count": 69,
+    "description": "To denote whether you have to have been through security to access this place at an airport",
+    "keys": {
+      "airside": 69
+    }
+  },
+  {
+    "prefix": "dual_carriageway",
+    "total_count": 69,
+    "description": "Specifies whether a highway is a dual-carriageway (divided) road",
+    "keys": {
+      "dual_carriageway": 69
+    }
+  },
+  {
+    "prefix": "substance",
+    "total_count": 67,
+    "description": "Specifies the substance transported in pipelines or processed in related facilities.",
+    "keys": {
+      "substance": 67
+    }
+  },
+  {
+    "prefix": "designation",
+    "total_count": 66,
+    "description": "The legal classification of an object, usually used on key:highway features.",
+    "keys": {
+      "designation": 66
+    }
+  },
+  {
+    "prefix": "int_ref",
+    "total_count": 66,
+    "description": "International reference number or code on roads, highway exits, routes, etc.",
+    "keys": {
+      "int_ref": 66
+    }
+  },
+  {
+    "prefix": "via",
+    "total_count": 66,
+    "description": "An important station stop that distinguishes this route from another route with the same origin and destination.",
+    "keys": {
+      "via": 66
+    }
+  },
+  {
+    "prefix": "embankment",
+    "total_count": 65,
+    "description": "A dyke or raised bank to carry a road, railway, or canal across a low-lying or wet area.",
+    "keys": {
+      "embankment": 65
+    }
+  },
+  {
+    "prefix": "clothes",
+    "total_count": 64,
+    "description": "Tagged on shops and other features to denote if they sell clothes or not and what type of clothes they sell.",
+    "keys": {
+      "clothes": 64
+    }
+  },
+  {
+    "prefix": "attraction",
+    "total_count": 63,
+    "description": "Specifies the type of attraction.",
+    "keys": {
+      "attraction": 63
+    }
+  },
+  {
+    "prefix": "advertising",
+    "total_count": 63,
+    "description": "To characterize all types of advertising devices",
+    "keys": {
+      "advertising": 63
+    }
+  },
+  {
+    "prefix": "passenger",
+    "total_count": 63,
+    "description": "Specifies whether a route is used for passenger traffic, or for the size of the region served.",
+    "keys": {
+      "passenger": 63
+    }
+  },
+  {
+    "prefix": "noname",
+    "total_count": 63,
+    "description": "",
+    "keys": {
+      "noname": 63
+    }
+  },
+  {
+    "prefix": "delivery",
+    "total_count": 62,
+    "description": "Sets whether the restaurant or shop offers delivery service.",
+    "keys": {
+      "delivery": 62
+    }
+  },
+  {
+    "prefix": "razed",
+    "total_count": 61,
+    "description": "",
+    "keys": {
+      "razed:railway": 61
+    }
+  },
+  {
+    "prefix": "hairdresser",
+    "total_count": 61,
+    "description": "Specifies the type of hairdresser",
+    "keys": {
+      "hairdresser": 61
+    }
+  },
+  {
+    "prefix": "beauty",
+    "total_count": 58,
+    "description": "To indicate the services in a beauty shop.",
+    "keys": {
+      "beauty": 58
+    }
+  },
+  {
+    "prefix": "par",
+    "total_count": 58,
+    "description": "Base number of strokes required to complete a golf hole.",
+    "keys": {
+      "par": 58
+    }
+  },
+  {
+    "prefix": "food",
+    "total_count": 57,
+    "description": "Indicates whether a feature provides food.",
+    "keys": {
+      "food": 57
+    }
+  },
+  {
+    "prefix": "country",
+    "total_count": 57,
+    "description": "Country code of a sending country of a diplomatic mission; country of flag when used on flagpoles.",
+    "keys": {
+      "country": 57
+    }
+  },
+  {
+    "prefix": "sac_scale",
+    "total_count": 57,
+    "description": "A difficulty rating scheme for hiking trails.",
+    "keys": {
+      "sac_scale": 57
+    }
+  },
+  {
+    "prefix": "cemetery",
+    "total_count": 56,
+    "description": "Specifies parts of a cemetery, single graves or special kinds of cemeteries.",
+    "keys": {
+      "cemetery": 56
+    }
+  },
+  {
+    "prefix": "shelter_type",
+    "total_count": 55,
+    "description": "Indicates the use and structure type of a shelter.",
+    "keys": {
+      "shelter_type": 55
+    }
+  },
+  {
+    "prefix": "highway_authority_ref",
+    "total_count": 54,
+    "description": "Road reference for internal use by the highway authority.",
+    "keys": {
+      "highway_authority_ref": 54
+    }
+  },
+  {
+    "prefix": "handicap",
+    "total_count": 54,
+    "description": "Specifies the ranking of a hole in a golf course from 1 to 18 which is used to determine the allocation of handicap shots",
+    "keys": {
+      "handicap": 18,
+      "handicap:men": 18,
+      "handicap:women": 18
+    }
+  },
+  {
+    "prefix": "loc_name",
+    "total_count": 53,
+    "description": "",
+    "keys": {
+      "loc_name": 53
+    }
+  },
+  {
+    "prefix": "changing_table",
+    "total_count": 52,
+    "description": "Provides a surface for changing the nappy (diaper) of an infant or young child.",
+    "keys": {
+      "changing_table": 52
+    }
+  },
+  {
+    "prefix": "artist",
+    "total_count": 49,
+    "description": "",
+    "keys": {
+      "artist:wikidata": 49
+    }
+  },
+  {
+    "prefix": "vehicle",
+    "total_count": 48,
+    "description": "Access permission for all vehicles",
+    "keys": {
+      "vehicle": 48
+    }
+  },
+  {
+    "prefix": "dispensing",
+    "total_count": 47,
+    "description": "Whether a pharmacy dispenses prescription drugs or not.",
+    "keys": {
+      "dispensing": 47
+    }
+  },
+  {
+    "prefix": "lift",
+    "total_count": 47,
+    "description": null,
+    "keys": {
+      "lift": 47
+    }
+  },
+  {
+    "prefix": "second_hand",
+    "total_count": 46,
+    "description": "Whether a shop, dedicated to a specific kind of good, sells second-hand items.",
+    "keys": {
+      "second_hand": 46
+    }
+  },
+  {
+    "prefix": "psv",
+    "total_count": 46,
+    "description": "Access permission for Public Service Vehicles: buses, taxis, minibuses and share taxis.",
+    "keys": {
+      "psv": 46
+    }
+  },
+  {
+    "prefix": "cables",
+    "total_count": 46,
+    "description": "Number of electrically separated, individual or bundled, power-carrying conductors in a power segment, section or circuit.",
+    "keys": {
+      "cables": 46
+    }
+  },
+  {
+    "prefix": "self_service",
+    "total_count": 45,
+    "description": "Indicates whether an object is self service.",
+    "keys": {
+      "self_service": 45
+    }
+  },
+  {
+    "prefix": "panoramax",
+    "total_count": 45,
+    "description": "Picture identifier for a Panoramax image.",
+    "keys": {
+      "panoramax": 45
+    }
+  },
+  {
+    "prefix": "shrubbery",
+    "total_count": 45,
+    "description": null,
+    "keys": {
+      "shrubbery:density": 45
+    }
+  },
+  {
+    "prefix": "short_name",
+    "total_count": 44,
+    "description": "A recognizable, commonly used short version of the main name.",
+    "keys": {
+      "short_name": 44
+    }
+  },
+  {
+    "prefix": "goods",
+    "total_count": 44,
+    "description": "Access permission for goods vehicles which are not heavy goods vehicles.",
+    "keys": {
+      "goods": 44
+    }
+  },
+  {
+    "prefix": "tracks",
+    "total_count": 43,
+    "description": "Number of tracks which are represented by this way",
+    "keys": {
+      "tracks": 43
+    }
+  },
+  {
+    "prefix": "was",
+    "total_count": 43,
+    "description": "",
+    "keys": {
+      "was:amenity": 29,
+      "was:name": 14
+    }
+  },
+  {
+    "prefix": "duration",
+    "total_count": 42,
+    "description": "Time needed to pass through an element (usually a route).",
+    "keys": {
+      "duration": 42
+    }
+  },
+  {
+    "prefix": "intermittent",
+    "total_count": 41,
+    "description": "Used to indicate whether or not a waterway or water body does not permanently contain water.",
+    "keys": {
+      "intermittent": 41
+    }
+  },
+  {
+    "prefix": "plots",
+    "total_count": 41,
+    "description": null,
+    "keys": {
+      "plots": 41
+    }
+  },
+  {
+    "prefix": "interval",
+    "total_count": 41,
+    "description": "Indicates the arrival frequency of a public transport route. Use \"HH:MM:SS\", \"HH:MM\", \"MM\", or \"M\" format.",
+    "keys": {
+      "interval": 41
+    }
+  },
+  {
+    "prefix": "street_cabinet",
+    "total_count": 39,
+    "description": "Describes the functional type or role of a street cabinet, for supplementary roles that aren't key:utility.",
+    "keys": {
+      "street_cabinet": 39
+    }
+  },
+  {
+    "prefix": "window",
+    "total_count": 39,
+    "description": "Marks the location of a window.",
+    "keys": {
+      "window": 39
+    }
+  },
+  {
+    "prefix": "real_ale",
+    "total_count": 38,
+    "description": "Indicates whether a location (pub, bar or similar) supplies real ale - traditional draught cask beers.",
+    "keys": {
+      "real_ale": 38
+    }
+  },
+  {
+    "prefix": "currency",
+    "total_count": 38,
+    "description": "",
+    "keys": {
+      "currency:GBP": 38
+    }
+  },
+  {
+    "prefix": "reservation",
+    "total_count": 38,
+    "description": "Whether a reservation is applicable before a visit.",
+    "keys": {
+      "reservation": 38
+    }
+  },
+  {
+    "prefix": "tourist_bus",
+    "total_count": 38,
+    "description": "Legal access restrictions for buses not acting as public transport.",
+    "keys": {
+      "tourist_bus": 38
+    }
+  },
+  {
+    "prefix": "traffic_sign",
+    "total_count": 38,
+    "description": "Traffic signs give instructions or provide information to road users.",
+    "keys": {
+      "traffic_sign": 28,
+      "traffic_sign:direction": 10
+    }
+  },
+  {
+    "prefix": "supervised",
+    "total_count": 36,
+    "description": "Indicates whether there is a person who supervises the place",
+    "keys": {
+      "supervised": 36
+    }
+  },
+  {
+    "prefix": "industrial",
+    "total_count": 36,
+    "description": "Type of industry or type of industrial object.",
+    "keys": {
+      "industrial": 36
+    }
+  },
+  {
+    "prefix": "dog",
+    "total_count": 35,
+    "description": "Describes if dogs are allowed",
+    "keys": {
+      "dog": 35
+    }
+  },
+  {
+    "prefix": "seamark",
+    "total_count": 35,
+    "description": "",
+    "keys": {
+      "seamark:type": 35
+    }
+  },
+  {
+    "prefix": "towpath",
+    "total_count": 35,
+    "description": "Describes a road along an inland waterway.",
+    "keys": {
+      "towpath": 35
+    }
+  },
+  {
+    "prefix": "atm",
+    "total_count": 34,
+    "description": "",
+    "keys": {
+      "atm": 34
+    }
+  },
+  {
+    "prefix": "listed_status",
+    "total_count": 34,
+    "description": "Buildings or other structures that are listed due to their historical significance.",
+    "keys": {
+      "listed_status": 34
+    }
+  },
+  {
+    "prefix": "public_bookcase",
+    "total_count": 34,
+    "description": null,
+    "keys": {
+      "public_bookcase:type": 34
+    }
+  },
+  {
+    "prefix": "basin",
+    "total_count": 34,
+    "description": "Used for more detailed specification of tag:natural=water + tag:water=basin or tag:landuse=basin.",
+    "keys": {
+      "basin": 34
+    }
+  },
+  {
+    "prefix": "facebook",
+    "total_count": 33,
+    "description": "Username or URL of the Facebook page at which the point of interest can be contacted.",
+    "keys": {
+      "facebook": 33
+    }
+  },
+  {
+    "prefix": "comment",
+    "total_count": 33,
+    "description": "",
+    "keys": {
+      "comment": 33
+    }
+  },
+  {
+    "prefix": "map_size",
+    "total_count": 33,
+    "description": "Specifies the area which is covered by a map.",
+    "keys": {
+      "map_size": 33
+    }
+  },
+  {
+    "prefix": "display",
+    "total_count": 33,
+    "description": "Describes the type of a display.",
+    "keys": {
+      "display": 33
+    }
+  },
+  {
+    "prefix": "gas_insulated",
+    "total_count": 32,
+    "description": "",
+    "keys": {
+      "gas_insulated": 32
+    }
+  },
+  {
+    "prefix": "motorcycle",
+    "total_count": 31,
+    "description": "Access permission for motorcycles.",
+    "keys": {
+      "motorcycle": 31
+    }
+  },
+  {
+    "prefix": "stars",
+    "total_count": 31,
+    "description": "Used to classify or rate certain places (e.g. restaurants, hotels, camp sites).",
+    "keys": {
+      "stars": 31
+    }
+  },
+  {
+    "prefix": "marker",
+    "total_count": 31,
+    "description": "Shape and function of a physical spot indicating underground utility infrastructure, highway milestones or private property limits",
+    "keys": {
+      "marker": 31
+    }
+  },
+  {
+    "prefix": "physically_present",
+    "total_count": 30,
+    "description": "The object exists but has no permanent traces in terrain, for example bus stop that is verifiable only as bus stops there.",
+    "keys": {
+      "physically_present": 30
+    }
+  },
+  {
+    "prefix": "fountain",
+    "total_count": 30,
+    "description": "indicates the type of a fountain or drinking water fountain",
+    "keys": {
+      "fountain": 30
+    }
+  },
+  {
+    "prefix": "diplomatic",
+    "total_count": 30,
+    "description": "Further specifies the nature of a diplomatic facility.",
+    "keys": {
+      "diplomatic": 30
+    }
+  },
+  {
+    "prefix": "taxi",
+    "total_count": 30,
+    "description": "Access permission for licensed taxis operating as public service vehicles.",
+    "keys": {
+      "taxi": 30
+    }
+  },
+  {
+    "prefix": "circuits",
+    "total_count": 30,
+    "description": "Number of electrical circuits in a power section, line, or cable.",
+    "keys": {
+      "circuits": 30
+    }
+  },
+  {
+    "prefix": "flashing_lights",
+    "total_count": 29,
+    "description": "Further refinement for nodes already tagged with tag:highway=crossing where crossing traffic receive a flashing caution light",
+    "keys": {
+      "flashing_lights": 29
+    }
+  },
+  {
+    "prefix": "route_ref",
+    "total_count": 29,
+    "description": "Route reference (number/code) cognizable on public transport stop signs",
+    "keys": {
+      "route_ref": 29
+    }
+  },
+  {
+    "prefix": "parcel_pickup",
+    "total_count": 29,
+    "description": "Specifies whether parcels can be picked up at a parcel locker.",
+    "keys": {
+      "parcel_pickup": 29
+    }
+  },
+  {
+    "prefix": "pipeline",
+    "total_count": 29,
+    "description": "Tags related to pipelines",
+    "keys": {
+      "pipeline": 29
+    }
+  },
+  {
+    "prefix": "motorroad",
+    "total_count": 28,
+    "description": "",
+    "keys": {
+      "motorroad": 28
+    }
+  },
+  {
+    "prefix": "protection_title",
+    "total_count": 28,
+    "description": "Title or type of protection of a protected area.",
+    "keys": {
+      "protection_title": 28
+    }
+  },
+  {
+    "prefix": "council_name",
+    "total_count": 28,
+    "description": null,
+    "keys": {
+      "council_name": 28
+    }
+  },
+  {
+    "prefix": "trade",
+    "total_count": 27,
+    "description": "",
+    "keys": {
+      "trade": 27
+    }
+  },
+  {
+    "prefix": "fitness_station",
+    "total_count": 27,
+    "description": "Individual exercise equipment within a fitness station, mapped as separate nodes.",
+    "keys": {
+      "fitness_station": 27
+    }
+  },
+  {
+    "prefix": "telecom",
+    "total_count": 27,
+    "description": "Main key for telecommunication systems and networks mapping",
+    "keys": {
+      "telecom": 27
+    }
+  },
+  {
+    "prefix": "embedded_rails",
+    "total_count": 27,
+    "description": "A highway (on which non-railway traffic is also allowed) has railway tracks embedded in it, but the rails are mapped as separate ways.",
+    "keys": {
+      "embedded_rails": 27
+    }
+  },
+  {
+    "prefix": "protect_class",
+    "total_count": 27,
+    "description": "To describe the class of a protected area.",
+    "keys": {
+      "protect_class": 27
+    }
+  },
+  {
+    "prefix": "proposed",
+    "total_count": 27,
+    "description": "The proposed tag may be used for any road, railway or route that is in planning phase.",
+    "keys": {
+      "proposed:landuse": 14,
+      "proposed:railway": 13
+    }
+  },
+  {
+    "prefix": "rooms",
+    "total_count": 26,
+    "description": "Amount of rooms available for guests",
+    "keys": {
+      "rooms": 26
+    }
+  },
+  {
+    "prefix": "map_type",
+    "total_count": 26,
+    "description": "Specifies the type of a map.",
+    "keys": {
+      "map_type": 26
+    }
+  },
+  {
+    "prefix": "line_attachment",
+    "total_count": 26,
+    "description": "Consistently defining how a power, telecom or even washing line is attached to its supports",
+    "keys": {
+      "line_attachment": 26
+    }
+  },
+  {
+    "prefix": "government",
+    "total_count": 26,
+    "description": "Indicates the subtypes of government agencies and institutions.",
+    "keys": {
+      "government": 26
+    }
+  },
+  {
+    "prefix": "park_ride",
+    "total_count": 26,
+    "description": "Park and ride",
+    "keys": {
+      "park_ride": 26
+    }
+  },
+  {
+    "prefix": "farmland",
+    "total_count": 26,
+    "description": "The land preparation technique used for farming.",
+    "keys": {
+      "farmland": 26
+    }
+  },
+  {
+    "prefix": "parcel_mail_in",
+    "total_count": 25,
+    "description": "Specifies whether parcels can be dropped off at a parcel locker",
+    "keys": {
+      "parcel_mail_in": 25
+    }
+  },
+  {
+    "prefix": "lamp_type",
+    "total_count": 25,
+    "description": "Type of lamp.",
+    "keys": {
+      "lamp_type": 25
+    }
+  },
+  {
+    "prefix": "wetland",
+    "total_count": 25,
+    "description": "Type of wetland.",
+    "keys": {
+      "wetland": 25
+    }
+  },
+  {
+    "prefix": "consulate",
+    "total_count": 24,
+    "description": "Specifies the type of a consulate.",
+    "keys": {
+      "consulate": 24
+    }
+  },
+  {
+    "prefix": "community_centre",
+    "total_count": 23,
+    "description": "To describe the type of a community centre.",
+    "keys": {
+      "community_centre": 23
+    }
+  },
+  {
+    "prefix": "road_marking",
+    "total_count": 23,
+    "description": "Road markings, i.e. colored markings on the surface of traffic areas for providing information and guidance for traffic.",
+    "keys": {
+      "road_marking": 23
+    }
+  },
+  {
+    "prefix": "brewery",
+    "total_count": 22,
+    "description": "Indicates the names of the brands of beer that are served or sold at the location.",
+    "keys": {
+      "brewery": 22
+    }
+  },
+  {
+    "prefix": "end_date",
+    "total_count": 22,
+    "description": "Date when object ceased to exist (or will cease to exist).",
+    "keys": {
+      "end_date": 22
+    }
+  },
+  {
+    "prefix": "working",
+    "total_count": 22,
+    "description": "Observation of the current functional status of a mapped feature \u2013 now discouraged.",
+    "keys": {
+      "working": 22
+    }
+  },
+  {
+    "prefix": "maxweightrating",
+    "total_count": 22,
+    "description": "Legal access restriction for vehicles with a max allowed weight above the specified weight in metric tonnes.",
+    "keys": {
+      "maxweightrating:hgv": 12,
+      "maxweightrating:hgv:conditional": 10
+    }
+  },
+  {
+    "prefix": "taxon",
+    "total_count": 21,
+    "description": "Describes the taxon of a feature.",
+    "keys": {
+      "taxon:en": 21
+    }
+  },
+  {
+    "prefix": "except",
+    "total_count": 21,
+    "description": "Used to describe exceptions to turn restrictions.",
+    "keys": {
+      "except": 21
+    }
+  },
+  {
+    "prefix": "path",
+    "total_count": 21,
+    "description": "",
+    "keys": {
+      "path": 21
+    }
+  },
+  {
+    "prefix": "pattern",
+    "total_count": 21,
+    "description": "Style of areal road markings.",
+    "keys": {
+      "pattern": 21
+    }
+  },
+  {
+    "prefix": "structure",
+    "total_count": 20,
+    "description": "Describes the structure of masts and poles (for power lines) or catenary masts.",
+    "keys": {
+      "structure": 20
+    }
+  },
+  {
+    "prefix": "visibility",
+    "total_count": 20,
+    "description": "Visibility of a given element",
+    "keys": {
+      "visibility": 20
+    }
+  },
+  {
+    "prefix": "edinburgh_fringe",
+    "total_count": 20,
+    "description": null,
+    "keys": {
+      "edinburgh_fringe": 20
+    }
+  },
+  {
+    "prefix": "int_name",
+    "total_count": 20,
+    "description": "",
+    "keys": {
+      "int_name": 20
+    }
+  },
+  {
+    "prefix": "stroke",
+    "total_count": 20,
+    "description": "Style of linear road markings or outlines of areal road markings.",
+    "keys": {
+      "stroke": 20
+    }
+  },
+  {
+    "prefix": "transformer",
+    "total_count": 19,
+    "description": "The purpose of a power transformer.",
+    "keys": {
+      "transformer": 19
+    }
+  },
+  {
+    "prefix": "distance",
+    "total_count": 19,
+    "description": "Distance (i.e. extent; length from start to finish) of a route given in kilometres, or distance along a route marked by milestone.",
+    "keys": {
+      "distance": 19
+    }
+  },
+  {
+    "prefix": "cec",
+    "total_count": 18,
+    "description": null,
+    "keys": {
+      "cec:ref": 18
+    }
+  },
+  {
+    "prefix": "air_conditioning",
+    "total_count": 18,
+    "description": "Indication whether a feature has air-conditioning",
+    "keys": {
+      "air_conditioning": 18
+    }
+  },
+  {
+    "prefix": "bottle",
+    "total_count": 18,
+    "description": "Indicates whether a water bottle can easily be filled",
+    "keys": {
+      "bottle": 18
+    }
+  },
+  {
+    "prefix": "lockable",
+    "total_count": 18,
+    "description": "Indicates whether an object is lockable.",
+    "keys": {
+      "lockable": 18
+    }
+  },
+  {
+    "prefix": "golf_cart",
+    "total_count": 18,
+    "description": "Access restrictions for golf carts.",
+    "keys": {
+      "golf_cart": 18
+    }
+  },
+  {
+    "prefix": "studio",
+    "total_count": 17,
+    "description": "Types of studios",
+    "keys": {
+      "studio": 17
+    }
+  },
+  {
+    "prefix": "product",
+    "total_count": 17,
+    "description": "The output or product that a feature produces.",
+    "keys": {
+      "product": 17
+    }
+  },
+  {
+    "prefix": "lamp_mount",
+    "total_count": 17,
+    "description": "Lamp holder of a street lamp",
+    "keys": {
+      "lamp_mount": 17
+    }
+  },
+  {
+    "prefix": "dist",
+    "total_count": 17,
+    "description": "The distance of the hole on a golf course",
+    "keys": {
+      "dist": 17
+    }
+  },
+  {
+    "prefix": "fax",
+    "total_count": 16,
+    "description": "A fax number associated with the object.",
+    "keys": {
+      "fax": 16
+    }
+  },
+  {
+    "prefix": "organic",
+    "total_count": 16,
+    "description": "Indicates if organic food/products are available or produced.",
+    "keys": {
+      "organic": 16
+    }
+  },
+  {
+    "prefix": "faces",
+    "total_count": 16,
+    "description": "Indicates the number of faces of the feature.",
+    "keys": {
+      "faces": 16
+    }
+  },
+  {
+    "prefix": "artwork_subject",
+    "total_count": 16,
+    "description": "The subject of the artwork, if applicable.",
+    "keys": {
+      "artwork_subject": 16
+    }
+  },
+  {
+    "prefix": "manhole",
+    "total_count": 16,
+    "description": "Hole with a cover that allows access to an underground service location, just large enough for a human to climb through.",
+    "keys": {
+      "manhole": 16
+    }
+  },
+  {
+    "prefix": "cutting",
+    "total_count": 16,
+    "description": "Signifies that a linear feature (e.g. a road) cuts into the surrounding land.",
+    "keys": {
+      "cutting": 16
+    }
+  },
+  {
+    "prefix": "salt",
+    "total_count": 16,
+    "description": "Indicates whether water is salty.",
+    "keys": {
+      "salt": 16
+    }
+  },
+  {
+    "prefix": "is_sidepath",
+    "total_count": 16,
+    "description": "To indicate whether a way (particularly a cycleway or footpath) runs parallel to a street, making it adjoining, or runs separated and thus detached from the road.",
+    "keys": {
+      "is_sidepath": 16
+    }
+  },
+  {
+    "prefix": "url",
+    "total_count": 15,
+    "description": "Specifying an url related to a feature.",
+    "keys": {
+      "url": 15
+    }
+  },
+  {
+    "prefix": "target",
+    "total_count": 15,
+    "description": "Country code of a receiving or hosting country of a diplomatic mission",
+    "keys": {
+      "target": 15
+    }
+  },
+  {
+    "prefix": "content",
+    "total_count": 15,
+    "description": "To describe the contents of a feature used to store materials.",
+    "keys": {
+      "content": 15
+    }
+  },
+  {
+    "prefix": "tidal",
+    "total_count": 15,
+    "description": "An area in the tidal range.",
+    "keys": {
+      "tidal": 15
+    }
+  },
+  {
+    "prefix": "line",
+    "total_count": 15,
+    "description": "Specifies the type of high-voltage power line, such as a busbar or bay. Also rarely used for the name of a railway line.",
+    "keys": {
+      "line": 15
+    }
+  },
+  {
+    "prefix": "min_age",
+    "total_count": 14,
+    "description": "Minimum age for a person to enter or use a facility",
+    "keys": {
+      "min_age": 14
+    }
+  },
+  {
+    "prefix": "bar",
+    "total_count": 14,
+    "description": "Indicates whether a feature has a bar.",
+    "keys": {
+      "bar": 14
+    }
+  },
+  {
+    "prefix": "turning_circle",
+    "total_count": 14,
+    "description": "Indicates the shape of a turning circle.",
+    "keys": {
+      "turning_circle": 14
+    }
+  },
+  {
+    "prefix": "ncn_milepost",
+    "total_count": 14,
+    "description": "Describes a milepost on Sustrans's National Cycle Network.",
+    "keys": {
+      "ncn_milepost": 14
+    }
+  },
+  {
+    "prefix": "sustrans_ref",
+    "total_count": 14,
+    "description": "The Walk Wheel Cycle Trust's unique reference for a National Cycle Network milepost or artwork.",
+    "keys": {
+      "sustrans_ref": 14
+    }
+  },
+  {
+    "prefix": "date",
+    "total_count": 14,
+    "description": "Is a clock showing the current date in addition to showing time (date=yes). Also date when related event happened (memorials). Depending on use, consider historic:date=, start_date=, construction_date=, survey:date=, check_date= instead.",
+    "keys": {
+      "date": 14
+    }
+  },
+  {
+    "prefix": "detail",
+    "total_count": 14,
+    "description": null,
+    "keys": {
+      "detail": 14
+    }
+  },
+  {
+    "prefix": "floating",
+    "total_count": 14,
+    "description": "This property indicates whether an object floats",
+    "keys": {
+      "floating": 14
+    }
+  },
+  {
+    "prefix": "monument",
+    "total_count": 13,
+    "description": null,
+    "keys": {
+      "monument": 13
+    }
+  },
+  {
+    "prefix": "real_fire",
+    "total_count": 13,
+    "description": "Used to identify pubs/bars which have a real fire: a wood or coal fireplace or stove you can sit around for ambiance and enjoying direct heat.",
+    "keys": {
+      "real_fire": 13
+    }
+  },
+  {
+    "prefix": "compressed_air",
+    "total_count": 13,
+    "description": "Specifies whether a feature provides compressed air or not.",
+    "keys": {
+      "compressed_air": 13
+    }
+  },
+  {
+    "prefix": "drinking_water",
+    "total_count": 13,
+    "description": "Indication whether a feature provides drinking water.",
+    "keys": {
+      "drinking_water": 13
+    }
+  },
+  {
+    "prefix": "line_management",
+    "total_count": 13,
+    "description": "Describes particular topologies of lines around their supports or significant points along their path",
+    "keys": {
+      "line_management": 13
+    }
+  },
+  {
+    "prefix": "highchair",
+    "total_count": 13,
+    "description": "To indicate if a cafe, shop or a restaurant offers high chairs for small children",
+    "keys": {
+      "highchair": 13
+    }
+  },
+  {
+    "prefix": "nobrand",
+    "total_count": 13,
+    "description": "",
+    "keys": {
+      "nobrand": 13
+    }
+  },
+  {
+    "prefix": "seasonal",
+    "total_count": 13,
+    "description": "Describes features that depend on seasonal conditions",
+    "keys": {
+      "seasonal": 13
+    }
+  },
+  {
+    "prefix": "wires",
+    "total_count": 13,
+    "description": "Number of wires per power cable. \"single\" (1), \"double\" (2), \"triple\" (3) or \"quad\" (4).",
+    "keys": {
+      "wires": 13
+    }
+  },
+  {
+    "prefix": "diameter",
+    "total_count": 13,
+    "description": "nominal diameter in millimeter",
+    "keys": {
+      "diameter": 13
+    }
+  },
+  {
+    "prefix": "roundtrip",
+    "total_count": 13,
+    "description": "Specifies whether a route starts and ends at the same location.",
+    "keys": {
+      "roundtrip": 13
+    }
+  },
+  {
+    "prefix": "statue",
+    "total_count": 12,
+    "description": "Type of statue.",
+    "keys": {
+      "statue": 12
+    }
+  },
+  {
+    "prefix": "automated",
+    "total_count": 12,
+    "description": "Indicates whether an object is operated automatically",
+    "keys": {
+      "automated": 12
+    }
+  },
+  {
+    "prefix": "length",
+    "total_count": 12,
+    "description": "The length of a feature. Values are interpreted as meters by default.",
+    "keys": {
+      "length": 12
+    }
+  },
+  {
+    "prefix": "note2",
+    "total_count": 12,
+    "description": null,
+    "keys": {
+      "note2": 12
+    }
+  },
+  {
+    "prefix": "notes_reply",
+    "total_count": 12,
+    "description": null,
+    "keys": {
+      "notes_reply": 12
+    }
+  },
+  {
+    "prefix": "ford",
+    "total_count": 11,
+    "description": "A small part of a highway where a waterway runs over it.",
+    "keys": {
+      "ford": 11
+    }
+  },
+  {
+    "prefix": "unisex",
+    "total_count": 11,
+    "description": "Access to all persons regardless of sex or gender.",
+    "keys": {
+      "unisex": 11
+    }
+  },
+  {
+    "prefix": "charge",
+    "total_count": 11,
+    "description": "How much is charged for use of or access to a facility.",
+    "keys": {
+      "charge": 11
+    }
+  },
+  {
+    "prefix": "lift_gate",
+    "total_count": 11,
+    "description": null,
+    "keys": {
+      "lift_gate:type": 11
+    }
+  },
+  {
+    "prefix": "mooring",
+    "total_count": 11,
+    "description": "The mooring tag is used to mark an area of bank where boats are explicitly permitted to moor.",
+    "keys": {
+      "mooring": 11
+    }
+  },
+  {
+    "prefix": "collection_plate",
+    "total_count": 10,
+    "description": "A notice plate fixed to a post box detailing when collections are made",
+    "keys": {
+      "collection_plate": 10
+    }
+  },
+  {
+    "prefix": "lgbtq",
+    "total_count": 10,
+    "description": "Indicates the level of LGBTQ+-friendliness of a feature.",
+    "keys": {
+      "lgbtq": 10
+    }
+  },
+  {
+    "prefix": "tomb",
+    "total_count": 10,
+    "description": "For historic tombs.",
+    "keys": {
+      "tomb": 10
+    }
+  },
+  {
+    "prefix": "flats",
+    "total_count": 10,
+    "description": "Numbers of flats in a landuse area.",
+    "keys": {
+      "flats": 10
+    }
+  },
+  {
+    "prefix": "flag",
+    "total_count": 10,
+    "description": "A flag at a bus stop.",
+    "keys": {
+      "flag:type": 10
+    }
+  },
+  {
+    "prefix": "ruins",
+    "total_count": 10,
+    "description": "Indicate that a structure is in ruins or specifies the type of ruins of an tag:historic=ruins.",
+    "keys": {
+      "ruins": 10
+    }
+  },
+  {
+    "prefix": "crane",
+    "total_count": 10,
+    "description": null,
+    "keys": {
+      "crane:type": 10
+    }
+  },
+  {
+    "prefix": "narrow",
+    "total_count": 10,
+    "description": "Relative indication that a way gets narrower.",
+    "keys": {
+      "narrow": 10
+    }
+  },
+  {
+    "prefix": "column",
+    "total_count": 10,
+    "description": null,
+    "keys": {
+      "column:style": 10
+    }
+  },
+  {
+    "prefix": "cycle_network",
+    "total_count": 10,
+    "description": "A system of bicycle routes typically maintained or designated by a single agency or organization. Often corresponds to a well-defined route numbering protocol.",
+    "keys": {
+      "cycle_network": 10
+    }
+  }
+]
