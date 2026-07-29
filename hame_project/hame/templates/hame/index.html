@@ -24,12 +24,13 @@
         maxBounds: [  // lock the area visible on the map to just Edinburgh
             [-3.5, 55.855],  // west, south
             [-2.9, 56.0145]  // east, north
-        ]
+        ],
+        maxPitch: 0,
     });
 
-    // define the area that isn't Edinburgh
+    // define the target area from .geojson file
     map.on('load', async () => {
-        const response = await fetch("{% static 'edinburghmask.geojson' %}");
+        const response = await fetch("{% static 'edinburghmask.geojson' %}?t=" + Date.now());  // force browser to get most recent geojson
         const geojson = await response.json();
 
         map.addSource('mask', {
@@ -37,6 +38,7 @@
             data: geojson
         });
 
+        // mask the outer area
         map.addLayer({
             id: 'mask-layer',
             type: 'fill',
@@ -47,6 +49,28 @@
                 'fill-outline-color': '#242424',
             }
         });
+        
+        // show navigation controls
+        map.addControl(
+            new maplibregl.NavigationControl({
+                visualizeRoll: true,
+                showZoom: true,
+                shoCompass: true}),
+            'bottom-right'
+        );
+
+        // geolocate the user
+        // TODO: restrict so user is only located if within max bounds
+        map.addControl(
+            new maplibregl.GeolocateControl({
+                positionOptions: {
+                    enableHighAccuracy: true
+                },
+                trackUserLocation: true
+            }),
+            'bottom-right'
+        );
+        
     });
 </script>
 {% endblock %}
