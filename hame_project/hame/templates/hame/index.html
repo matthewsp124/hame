@@ -6,16 +6,17 @@
 {% endblock %}
 
 {% block header %}
-    <link rel='stylesheet' href='https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.css' />
-    <script src='https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js'></script>
+    <link rel='stylesheet' href='https://unpkg.com/maplibre-gl@6.0.0/dist/maplibre-gl.css' />
+    <!-- <script src='https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js'></script> -->
 {% endblock %}
 
 {% block body %}
 <div id="map"></div>
-<script>
+<script type="module">
+    import * as maplibregl from 'https://unpkg.com/maplibre-gl@6.0.0/dist/maplibre-gl.mjs';
     // initialise the map
     const map = new maplibregl.Map({
-        style: 'https://tiles.openfreemap.org/styles/liberty',  // tile source
+        style: 'https://tiles.openfreemap.org/styles/bright',  // tile source
         center: [-3.1958, 55.9416],  // centre on Edinburgh by default
         zoom: 11.8,
         minZoom: 11.8,  // lock how far out the map can be zoomed to only the size of Edinburgh
