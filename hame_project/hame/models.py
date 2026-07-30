@@ -16,7 +16,7 @@ class LocationCategory(models.Model):
 
 def get_default_category():
     category, created = LocationCategory.objects.get_or_create(
-        name = 'Uncategorized',
+        name = 'Uncategorised',
         defaults = {'osm_key': None, 'osm_value': None}
     )
     return category.pk
