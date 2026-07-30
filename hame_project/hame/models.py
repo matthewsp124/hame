@@ -38,7 +38,7 @@ class Location(models.Model):
     class Meta:
         constraints = [
             models.UniqueConstraint(fields = ['osm_type', 'osm_id'], name = 'unique_osm_type_id', 
-                                    conditions = models.Q(source = 'osm'))
+                                    condition = models.Q(source = 'osm'))
         ]
         
 
