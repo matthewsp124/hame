@@ -87,7 +87,8 @@ class POIHandler(osmium.SimpleHandler):
         )
 
         way_location, created = Location.objects.get_or_create(
-            osm_id = w.id,           
+            osm_id = w.id,
+            osm_type = 'w',           
             defaults = {
                 'name': '',
                 'address': build_address(tags),
