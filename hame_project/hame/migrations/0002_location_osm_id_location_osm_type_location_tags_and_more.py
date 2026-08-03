@@ -39,11 +39,6 @@ class Migration(migrations.Migration):
             name='osm_value',
             field=models.CharField(blank=True, max_length=64, null=True),
         ),
-        migrations.AlterField(
-            model_name='location',
-            name='category',
-            field=models.ForeignKey(default=hame.models.get_default_category, on_delete=django.db.models.deletion.SET_DEFAULT, to='hame.locationcategory'),
-        ),
         migrations.AddConstraint(
             model_name='location',
             constraint=models.UniqueConstraint(condition=models.Q(('source', 'osm')), fields=('osm_type', 'osm_id'), name='unique_osm_type_id'),
