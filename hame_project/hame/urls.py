@@ -8,4 +8,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('about/', views.about, name='about'),
     path('resources/', views.resources, name='resources'),
+    path('api/locations/', views.locations_geojson, name='locations_geojson')
 ]
