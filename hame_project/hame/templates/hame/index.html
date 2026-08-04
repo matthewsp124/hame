@@ -7,13 +7,50 @@
 
 {% block header %}
     <link rel='stylesheet' href='https://unpkg.com/maplibre-gl@6.0.0/dist/maplibre-gl.css' />
-    <!-- <script src='https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js'></script> -->
 {% endblock %}
 
 {% block body %}
-<div id="map"></div>
+<style>
+    .map-page {
+        position: relative;
+        flex: 1;
+        min-height: 0;
+        display: flex;
+    }
+
+    #map {
+        flex: 1;
+        min-height: 0;
+        width: 100%;
+    }
+
+    #info {
+        display: block;
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translate(-50%);
+        width: 50%;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        font-size: 12px;
+        text-align: center;
+        color: #222;
+        background: #fff;
+    }
+</style>
+
+<div class="map-page">
+    <div id="map"></div>
+    <pre id="info"></pre>
+</div>
+
 <script type="module">
     import * as maplibregl from 'https://unpkg.com/maplibre-gl@6.0.0/dist/maplibre-gl.mjs';
+
+    const debug = true;
+
     // initialise the map
     const map = new maplibregl.Map({
         style: 'https://tiles.openfreemap.org/styles/bright',  // tile source
@@ -28,14 +65,15 @@
         maxPitch: 0,
     });
 
-    // define the target area from .geojson file
-    map.on('load', async () => {
-        const response = await fetch("{% static 'edinburghmask.geojson' %}?t=" + Date.now());  // force browser to get most recent geojson
-        const geojson = await response.json();
 
+    map.on('load', async () => {
+        const maskResponse = await fetch("{% static 'edinburghmask.geojson' %}?t=" + Date.now());  // force browser to get most recent geojson
+        const maskGeojson = await maskResponse.json();
+
+        // define the target area from .geojson file
         map.addSource('mask', {
             type: 'geojson',
-            data: geojson
+            data: maskGeojson
         });
 
         // mask the outer area
@@ -70,6 +108,116 @@
             }),
             'bottom-right'
         );
+
+        // get the locations from the database
+        const locationResponse = await fetch("{% url 'hame:locations_geojson' %}");
+        const locationGeojson = await locationResponse.json();
+
+        map.addSource('locations', {
+            type: 'geojson',
+            data: locationGeojson,
+            cluster: true,
+            clusterMaxZoom: 16,  // stop clustering when zoomed in
+            clusterRadius: 50,  // pixel radius of each cluster
+        });
+
+        // add clusters
+        map.addLayer({
+            id: 'clusters',
+            type: 'circle',
+            source: 'locations',
+            filter: ['has', 'point_count'],
+            paint: {
+                'circle-color': [
+                    'step', ['get', 'point_count'],
+                    '#51bbd6', 100,  // blue circles when <= 100 points
+                    '#f1f075', 750,  // yellow circles when 101 to 749 points
+                    '#f28cb1'  // pink cicles when >= 750 points
+            ],
+                'circle-radius': [
+                    'step', ['get', 'point_count'],
+                    20, 100,  // blue circles are 20px
+                    30, 750,  // yellow circles are 30px
+                    40  // pink circles are 40px
+                ]
+            }
+        });
+
+        // display the number of points in each cluster
+        map.addLayer({
+            id: 'cluster-count',
+            type: 'symbol',
+            source: 'locations',
+            filter: ['has', 'point_count'],
+            layout: {
+                'text-field': '{point_count_abbreviated}',
+                'text-font': ['Noto Sans Regular'],
+                'text-size': 12
+            }
+        });
+
+        // add the individual points
+        map.addLayer({
+            id: 'unclustered-point',
+            type: 'circle',
+            source: 'locations',
+            filter: ['!', ['has', 'point_count']],
+            paint: {
+                'circle-color': '#11b4da',
+                'circle-radius': 4,
+                'circle-stroke-width': 1,
+                'circle-stroke-color': '#fff'
+            }
+        });
+
+        // inspect a cluster on click
+        map.on('click', 'clusters', async (e) => {
+            const features = map.queryRenderedFeatures(e.point, {
+                layers: ['clusters']
+            });
+            const clusterId = features[0].properties.cluster_id;
+            const zoom = await map.getSource('locations').getClusterExpansionZoom(clusterId);
+            map.easeTo({
+                center: features[0].geometry.coordinates,
+                zoom: zoom
+            });
+        });
+
+        // show a popup when clicking on an individual point
+        map.on('click', 'unclustered-point', (e) => {
+            const feature = e.features[0];
+            const properties = feature.properties;
+            const coordinates = feature.geometry.coordinates.slice();
+
+            new maplibregl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(`
+                    <strong>${properties.name}</strong>
+                    <br />
+                    ${properties.address ? properties.address + 
+                    '<br />' : ''}
+                    <em>${properties.categories}</em>
+                `)
+                .addTo(map);
+        });
+
+        // change the cursor to a pointer when hovering over clickables
+        for (const layer of ['clusters', 'unclustered-point']) {
+            map.on('mouseenter', layer, () => { map.getCanvas().style.cursor = 'pointer'; });
+            map.on('mouseleave', layer, () => { map.getCanvas().style.cursor = ''; });
+        }
+
+        // features for debugging
+        if (debug) {
+            // show mouse coordinates
+            map.on('mousemove', (e) => {
+                document.getElementById('info').innerHTML = 
+                // e.point is (x, y) relative to top-left of map, e.lngLat is (lng, lat) in degrees
+                `${JSON.stringify(e.point)}  
+                <br />
+                ${JSON.stringify(e.lngLat.wrap())}`;
+            });
+        }
         
     });
 </script>

@@ -15,9 +15,9 @@
         {% endblock %}
     </head>
 
-    <body>
+    <body class="d-flex flex-column min-vh-100">
         <!-- header -->
-        <nav class="navbar fixed-top navbar-expand-lg mint-green-background border-bottom border-dark">
+        <nav class="navbar sticky-top navbar-expand-lg mint-green-background border-bottom border-dark">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand fs-2" href="{% url 'hame:index' %}">HAME</a>
@@ -44,10 +44,10 @@
             </div>
         </nav>
 
-        <div>
+        <main class="flex-grow-1 d-flex flex-column">
             {% block body %}
             {% endblock %}
-        </div>
+        </main>
         <!-- Bootstrap's JavaScript -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     </body>
