@@ -9,7 +9,7 @@ import osmium
 from hame.models import LocationCategory, LocationCategoryKey, Location
 
 # get file stored outside of django project directory
-osmpbf_file = Path(__file__).parent.parent / 'osm_data' / 'data' / 'edinburgh.osm.pbf'
+osmpbf_file = Path(__file__).parent.parent / 'osm_data' / 'data' / 'testdata.osm.pbf'
 
 # primary feature keys taken from https://wiki.openstreetmap.org/wiki/Map_Features and https://wiki.openstreetmap.org/wiki/Top-level_tag
 primary_keys = ["aerialway", "aeroway", "amenity", "barrier", "craft", 
@@ -17,13 +17,23 @@ primary_keys = ["aerialway", "aeroway", "amenity", "barrier", "craft",
                 "leisure", "man_made", "military", "natural", "office", "public_transport", 
                 "railway", "shop", "tourism"]
 
+# irrelevant tags largely sourced from https://taginfo.openstreetmap.org/
+bad_tags = ["source", "source_ref", "source:", "attribution", "created_by", "todo", "ref", "ref:"
+            "editor", "naptan:", "note", "note:", "fixme", "fixme:", "comment", "comment:", "import",
+            "maxspeed", "start_date", "end_date", "leaf_type", "leaf_cycle", "roof:", "material", 
+            "wikidata", "wikipedia", "network", "check_date", "description", "gauge", "species"]
+
 def build_address(tags):
     parts = [
+        tags.get('addr:housenumber', ''),
         tags.get('addr:street', ''),
         tags.get('addr:city', ''),
         tags.get('addr:postcode', '')
     ]
     return ', '.join(p for p in parts if p)
+
+def strip_bad_tags(tags):
+    return {k: v for k, v in dict(tags).items() if not any(k.startswith(t) or k == t for t in bad_tags)}
 
 class POIHandler(osmium.SimpleHandler):
     def __init__(self):
@@ -31,7 +41,7 @@ class POIHandler(osmium.SimpleHandler):
         self.count = 0 
 
     def node(self, n):
-        tags = n.tags
+        tags = strip_bad_tags(n.tags)
         if 'name' not in tags:
             return
         
@@ -46,7 +56,7 @@ class POIHandler(osmium.SimpleHandler):
             osm_value = value,
         )
 
-        location, created = Location.objects.get_or_create(
+        node_location, created = Location.objects.get_or_create(
             osm_id = n.id,
             osm_type = 'n',
             defaults = {
@@ -59,14 +69,14 @@ class POIHandler(osmium.SimpleHandler):
             },
         )
 
-        location.categories.add(category)
+        node_location.categories.add(category)
 
         if created:
             self.count += 1
 
     def way(self, w):
         # adds locations for highways based on the approximate midpoint of the way
-        tags = w.tags
+        tags = strip_bad_tags(w.tags)
         if 'highway' not in tags:
             return
 
@@ -90,7 +100,7 @@ class POIHandler(osmium.SimpleHandler):
             osm_id = w.id,
             osm_type = 'w',           
             defaults = {
-                'name': '',
+                'name': tags.get('name', ''),
                 'address': build_address(tags),
                 'lat': midpoint.lat,
                 'lng': midpoint.lon,
