@@ -38,7 +38,8 @@ def strip_bad_tags(tags):
 class POIHandler(osmium.SimpleHandler):
     def __init__(self):
         super().__init__()
-        self.count = 0 
+        self.created_count = 0
+        self.updated_count = 0
 
     def node(self, n):
         tags = strip_bad_tags(n.tags)
@@ -56,7 +57,7 @@ class POIHandler(osmium.SimpleHandler):
             osm_value = value,
         )
 
-        node_location, created = Location.objects.get_or_create(
+        node_location, created = Location.objects.update_or_create(
             osm_id = n.id,
             osm_type = 'n',
             defaults = {
@@ -69,10 +70,12 @@ class POIHandler(osmium.SimpleHandler):
             },
         )
 
-        node_location.categories.add(category)
+        node_location.categories.set([category])
 
         if created:
-            self.count += 1
+            self.created_count += 1
+        else:
+            self.updated_count += 1
 
     def way(self, w):
         # adds locations for highways based on the approximate midpoint of the way
@@ -96,7 +99,7 @@ class POIHandler(osmium.SimpleHandler):
             osm_value = value,
         )
 
-        way_location, created = Location.objects.get_or_create(
+        way_location, created = Location.objects.update_or_create(
             osm_id = w.id,
             osm_type = 'w',           
             defaults = {
@@ -109,16 +112,18 @@ class POIHandler(osmium.SimpleHandler):
             }
         )
 
-        way_location.categories.add(highway_category)
+        way_location.categories.set([highway_category])
 
         if created:
-            self.count += 1
+            self.created_count += 1
+        else:
+            self.updated_count += 1
             
 
 if __name__ == "__main__":
     handler = POIHandler()
     handler.apply_file(str(osmpbf_file), locations = True)
-    print(f"Created {handler.count} new locations from {osmpbf_file}")
+    print(f"Created {handler.created_count} new locations and updated {handler.updated_count} locations from {osmpbf_file}")
 
 
             
