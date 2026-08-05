@@ -18,6 +18,16 @@
         display: flex;
     }
 
+    #location-panel {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        height: 100%;
+        max-width: 380px;
+        z-index: 10; 
+    }
+
     #map {
         flex: 1;
         min-height: 0;
@@ -43,6 +53,21 @@
 
 <div class="map-page">
     <div id="map"></div>
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="location-panel" data-bs-backdrop="false" aria-labelledby="location-panel-name" aria-hidden="true">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title" id="location-panel-name">Location Name</h2>
+                <!-- TODO: replace Location Name with the location's name -->
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+
+        <div class="offcanvas-body">
+            <!-- TODO: replace with actual details -->
+            <p id="location-panel-address">Location Address</p>
+            <p id="location-panel-categories">Location Categories</p>
+        </div>    
+    </div>
+
     <pre id="info"></pre>
 </div>
 
@@ -184,22 +209,23 @@
         });
 
         // show a popup when clicking on an individual point
+        const locationPanel = new bootstrap.Offcanvas(document.getElementById('location-panel'));
+
         map.on('click', 'unclustered-point', (e) => {
             const feature = e.features[0];
             const properties = feature.properties;
             const coordinates = feature.geometry.coordinates.slice();
 
-            new maplibregl.Popup()
-                .setLngLat(coordinates)
-                .setHTML(`
-                    <strong>${properties.name}</strong>
-                    <br />
-                    ${properties.address ? properties.address + 
-                    '<br />' : ''}
-                    <em>${properties.categories}</em>
-                `)
-                .addTo(map);
+            document.getElementById('location-panel-name').textContent = properties.name || '';
+            document.getElementById('location-panel-address').textContent = properties.address || '';
+            document.getElementById('location-panel-categories').textContent = properties.categories || '';
+
+            map.flyTo({ center: coordinates });
+            const marker = new maplibregl.Marker().setLngLat(coordinates).addTo(map);
+            locationPanel.show();
+                
         });
+
 
         // change the cursor to a pointer when hovering over clickables
         for (const layer of ['clusters', 'unclustered-point']) {
