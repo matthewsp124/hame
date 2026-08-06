@@ -54,17 +54,23 @@
 <div class="map-page">
     <div id="map"></div>
 
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="location-panel" data-bs-backdrop="false" aria-labelledby="location-panel-name" aria-hidden="true">
+    <div class="light-green-background offcanvas offcanvas-start" tabindex="-1" id="location-panel" data-bs-backdrop="false" aria-labelledby="location-panel-name" aria-hidden="true">
         <div class="offcanvas-header">
             <h2 class="offcanvas-title" id="location-panel-name">Location Name</h2>
-                <!-- TODO: replace Location Name with the location's name -->
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
 
         <div class="offcanvas-body">
-            <!-- TODO: replace with actual details -->
-            <p id="location-panel-address">Location Address</p>
-            <p id="location-panel-categories">Location Categories</p>
+            <div id="location-details">
+                <p id="location-panel-address">Location Address</p>
+                <p id="location-panel-categories">Location Categories</p>
+            </div>
+            <div id="accessibility-details">
+
+            </div>
+            <div id="reviews">
+
+            </div>
         </div>    
     </div>
 
@@ -75,6 +81,14 @@
     import * as maplibregl from 'https://unpkg.com/maplibre-gl@6.0.0/dist/maplibre-gl.mjs';
 
     const debug = true;
+    let activeMarker = null;
+
+    function clearActiveMarker() {
+        if (activeMarker) {
+            activeMarker.remove();
+            activeMarker = null;
+        }
+    }
 
     // initialise the map
     const map = new maplibregl.Map({
@@ -208,20 +222,56 @@
             });
         });
 
+        // clean the category names for display
+        const categoryLabelOverrides = {
+            "leisure|pitch": "Sports Pitch",
+            "shop|do_it_yourself": "DIY Store",
+            "highway|primary": "Main Road",
+            "highway|secondary": "Road",
+            "highway|tertiary": "Road",
+            "highway|footway": "Footpath/Crossing",
+            "amenity|taxi": "Taxi Rank",
+        }
+
+        function getCategoryLabel(key, value) {
+            const override = categoryLabelOverrides[`${key}|${value}`];
+            if (override) return override;
+            return value
+                // regex
+                .replace(/_/g, ' ')  // replace all underscores with spaces
+                .replace(/\w\S*/g, (word) => word.charAt(0).toUpperCase() + word.substr(1).toLowerCase());
+                    // capitalise the first letter of each word
+        }
+
+        function formatCategories(categoryString) {
+            if (!categoryString) return '';
+            const [key, value] = categoryString.split('=');
+            return getCategoryLabel(key?.trim() ?? '', value?.trim() ?? '');
+                // if key, trim whitespace, else empty string - same for value
+        }
+
         // show a popup when clicking on an individual point
+        const locationPanelElement = document.getElementById('location-panel');
         const locationPanel = new bootstrap.Offcanvas(document.getElementById('location-panel'));
+
+        // clear marker when the location panel is closed
+        locationPanelElement.addEventListener('hidden.bs.offcanvas', () => {
+            clearActiveMarker();
+        });
 
         map.on('click', 'unclustered-point', (e) => {
             const feature = e.features[0];
             const properties = feature.properties;
             const coordinates = feature.geometry.coordinates.slice();
 
+            clearActiveMarker();
+
             document.getElementById('location-panel-name').textContent = properties.name || '';
             document.getElementById('location-panel-address').textContent = properties.address || '';
-            document.getElementById('location-panel-categories').textContent = properties.categories || '';
+            document.getElementById('location-panel-categories').textContent = formatCategories(properties.categories);
 
             map.flyTo({ center: coordinates });
-            const marker = new maplibregl.Marker().setLngLat(coordinates).addTo(map);
+            activeMarker = new maplibregl.Marker().setLngLat(coordinates).addTo(map);
             locationPanel.show();
                 
         });
