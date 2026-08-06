@@ -18,23 +18,96 @@
         display: flex;
     }
 
-    #location-panel {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        height: 100%;
-        max-width: 380px;
-        z-index: 10; 
-    }
-
     #map {
         flex: 1;
         min-height: 0;
         width: 100%;
     }
 
-    #info {
+    #location-panel {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 380px;
+        max-width: 88vw;
+        z-index: 10; 
+        display: flex;
+        flex-direction: column;
+        box-shadow: 3px 0 16px rgba(0, 0, 0, 0.2);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        visibility: hidden;
+    }
+
+    #location-panel.is-open {
+        transform: translateX(0);
+        visibility: visible;
+    }
+
+    #location-panel-header {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 18px 20px 14px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    #location-panel-name {
+        margin: 0;
+        font-size: 1.25rem;
+        line-height: 1.2;
+        word-break: break-word;
+    }
+
+    #location-panel-close {
+        flex: 0 0 auto;
+        border: none;
+        background: transparent;
+        font-size: 1.5rem;
+        line-height: 1;
+        cursor: pointer;
+        padding: 4px 6px;
+        border-radius: 4px;
+        color: inherit;
+    }
+
+    #location-panel-close:hover,
+    #location-panel-close:focus-visible {
+        background-color: rgba(0, 0, 0, 0.1);
+        outline: none;
+    }
+
+    #location-panel-body {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+        padding: 16px 20px;
+    }
+
+    #location-panel-address,
+    #location-panel-categories {
+        margin: 0;
+        font-weight: 600;
+    }
+
+    #accessibility-details:not(:empty),
+    #reviews:not(:empty) {
+        margin-top: 20px;
+        padding-top: 16px;
+        border-top: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    @media (max-width: 768px) {
+        #location-panel {
+            width: 100%;
+            max-width: 100vw;
+        }
+    }
+
+    #debug-info {
         display: block;
         position: absolute;
         top: 20px;
@@ -54,13 +127,13 @@
 <div class="map-page">
     <div id="map"></div>
 
-    <div class="light-green-background offcanvas offcanvas-start" tabindex="-1" id="location-panel" data-bs-backdrop="false" aria-labelledby="location-panel-name" aria-hidden="true">
-        <div class="offcanvas-header">
-            <h2 class="offcanvas-title" id="location-panel-name">Location Name</h2>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <div class="light-green-background" id="location-panel" aria-labelledby="location-panel-name" aria-hidden="true">
+        <div id="location-panel-header">
+            <h2 id="location-panel-name">Location Name</h2>
+            <button type="button" id="location-panel-close" aria-label="Close location details">&times;</button>
         </div>
 
-        <div class="offcanvas-body">
+        <div id="location-panel-body">
             <div id="location-details">
                 <p id="location-panel-address">Location Address</p>
                 <p id="location-panel-categories">Location Categories</p>
@@ -74,7 +147,7 @@
         </div>    
     </div>
 
-    <pre id="info"></pre>
+    <pre id="debug-info"></pre>
 </div>
 
 <script type="module">
@@ -250,13 +323,27 @@
                 // if key, trim whitespace, else empty string - same for value
         }
 
-        // show a popup when clicking on an individual point
-        const locationPanelElement = document.getElementById('location-panel');
-        const locationPanel = new bootstrap.Offcanvas(document.getElementById('location-panel'));
+        // show location info panel when clicking on an individual point
+        const locationPanel = document.getElementById('location-panel');
+        const locationPanelCloseButton = document.getElementById('location-panel-close');
 
-        // clear marker when the location panel is closed
-        locationPanelElement.addEventListener('hidden.bs.offcanvas', () => {
+        function openLocationPanel() {
+            locationPanel.classList.add('is-open');
+            locationPanel.setAttribute('aria-hidden', 'false');
+        }
+
+        function closeLocationPanel() {
+            locationPanel.classList.remove('is-open');
+            locationPanel.setAttribute('aria-hidden', 'true');
             clearActiveMarker();
+        }
+
+        // add event listeners to close the location panel
+        locationPanelCloseButton.addEventListener('click', closeLocationPanel);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && locationPanel.classList.contains('is-open')) {
+                closeLocationPanel();
+            }
         });
 
         map.on('click', 'unclustered-point', (e) => {
@@ -272,10 +359,8 @@
 
             map.flyTo({ center: coordinates });
             activeMarker = new maplibregl.Marker().setLngLat(coordinates).addTo(map);
-            locationPanel.show();
-                
+            openLocationPanel();
         });
-
 
         // change the cursor to a pointer when hovering over clickables
         for (const layer of ['clusters', 'unclustered-point']) {
@@ -287,7 +372,7 @@
         if (debug) {
             // show mouse coordinates
             map.on('mousemove', (e) => {
-                document.getElementById('info').innerHTML = 
+                document.getElementById('debug-info').innerHTML = 
                 // e.point is (x, y) relative to top-left of map, e.lngLat is (lng, lat) in degrees
                 `${JSON.stringify(e.point)}  
                 <br />
