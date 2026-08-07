@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import HttpResponse, JsonResponse
-from django.contrib.auth import authenticate, login
-from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 
 from .models import Location
 from .forms import UserForm
@@ -31,23 +31,16 @@ def register(request):
 
     return render(request, 'hame/register.html', context = {'user_form': user_form})
 
-# def user_login(request):
-#     if request.method == 'POST':
-#         username = request.POST.get('username')
-#         password = request.POST.get('password')
-
-#         user = authenticate(username=username, password=password)
-
-#         if user:
-#             login(request, user)
-#             return redirect(reverse('hame:index'))
-#         else:
-#             messages.error(request, "The username and/or password entered is invalid.")
-
-#         return render(request, 'hame/login.html')
-
+@login_required
 def profile(request):
+    context_dict = {}
+
     return render(request, 'hame/profile.html')
+
+@login_required
+def user_logout(request):
+    logout(request)
+    return redirect(reverse('hame:index'))
 
 
 def locations_geojson(request):
