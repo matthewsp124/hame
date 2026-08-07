@@ -58,8 +58,6 @@
     
     #location-panel-name {
         margin: 0;
-        font-size: 1.25rem;
-        line-height: 1.2;
         word-break: break-word;
         text-align: center;
         width: 100%;
@@ -98,7 +96,7 @@
     #location-panel-address,
     #location-panel-categories {
         margin: 0;
-        font-weight: 600;
+        font-weight: 400;
         justify-self: center;
     }
 
@@ -143,15 +141,29 @@
         </div>
 
         <div id="location-panel-body">
-            <div id="location-details">
-                <p id="location-panel-address">Location Address</p>
-                <p id="location-panel-categories">Location Categories</p>
-            </div>
-            <div id="accessibility-details">
 
+            <div class="list-group" id="location-details">
+                <div class="list-group-item d-flex gap-3 py-2" id="location-panel-address">
+                    <i class="bi bi-geo-alt-fill fs-4"></i>
+                    <span id="location-panel-address-text">Location Address</span>
+                </div>
+                <div class="list-group-item d-flex gap-3 py-2" id="location-panel-categories">
+                    <i class="bi bi-tags-fill fs-4"></i>
+                    <span id="location-panel-categories-text">Location Categories</span>
+                </div>
+                <div class="list-group-item d-flex gap-3 py-2" id="location-panel-website">
+                    <i class="bi bi-globe fs-4"></i>
+                    <span id="location-panel-websites-text">Location Website</span>
+                </div>
+                <div class="list-group-item d-flex gap-3 py-2" id="location-panel-phone">
+                    <i class="bi bi-telephone-fill fs-4"></i>
+                    <span id="location-panel-phone-text">Location Phone Number</span>
+                </div>
+            </div>
+
+            <div id="accessibility-details">
             </div>
             <div id="reviews">
-
             </div>
         </div>    
     </div>
@@ -307,12 +319,26 @@
         // clean the category names for display
         const categoryLabelOverrides = {
             "leisure|pitch": "Sports Pitch",
-            "shop|do_it_yourself": "DIY Store",
+
             "highway|primary": "Main Road",
             "highway|secondary": "Road",
             "highway|tertiary": "Road",
             "highway|footway": "Footpath/Crossing",
+            
+            "shop|alcohol": "Off Licence",
+            "shop|art": "Art Store",
+            "shop|convenience": "Convenience Store",
+            "shop|clothes": "Clothing Store",
+            "shop|do_it_yourself": "DIY Store",
+            "shop|gift": "Gift Shop",
+            "shop|houseware": "Housewares/Homegoods Store",
+            "shop|ice_cream": "Ice Cream Store",
+            "shop|jewelry": "Jewellery Store",
+            "shop|mobile_phone": "Mobile Phone Store",
+
             "amenity|taxi": "Taxi Rank",
+            "amenity|fast_food": "Fast Food Restaurant",
+            "amenity|hairdresser": "Hairdresser/Barbershop",
         }
 
         function getCategoryLabel(key, value) {
@@ -359,12 +385,14 @@
             const feature = e.features[0];
             const properties = feature.properties;
             const coordinates = feature.geometry.coordinates.slice();
+            let latitude = coordinates[1].toFixed(6);
+            let longitude = coordinates[0].toFixed(6);
 
             clearActiveMarker();
 
             document.getElementById('location-panel-name').textContent = properties.name || '';
-            document.getElementById('location-panel-address').textContent = properties.address || '';
-            document.getElementById('location-panel-categories').textContent = formatCategories(properties.categories);
+            document.getElementById('location-panel-address-text').textContent = properties.address || latitude.toString() + ', ' + longitude.toString();
+            document.getElementById('location-panel-categories-text').textContent = formatCategories(properties.categories);
 
             map.flyTo({ center: coordinates });
             activeMarker = new maplibregl.Marker().setLngLat(coordinates).addTo(map);
