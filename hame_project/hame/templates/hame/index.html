@@ -47,9 +47,10 @@
 
     #location-panel-header {
         flex: 0 0 auto;
+        position: relative;
         display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
+        align-items: center;
+        justify-content: center;
         gap: 10px;
         padding: 18px 20px 14px;
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -60,10 +61,17 @@
         font-size: 1.25rem;
         line-height: 1.2;
         word-break: break-word;
+        text-align: center;
+        width: 100%;
+        padding-right: 30px;
     }
 
     #location-panel-close {
         flex: 0 0 auto;
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
         border: none;
         background: transparent;
         font-size: 1.5rem;
@@ -91,6 +99,7 @@
     #location-panel-categories {
         margin: 0;
         font-weight: 600;
+        justify-self: center;
     }
 
     #accessibility-details:not(:empty),
@@ -127,7 +136,7 @@
 <div class="map-page">
     <div id="map"></div>
 
-    <div class="light-green-background" id="location-panel" aria-labelledby="location-panel-name" aria-hidden="true">
+    <div class="light-yellow-background" id="location-panel" aria-labelledby="location-panel-name" aria-hidden="true">
         <div id="location-panel-header">
             <h2 id="location-panel-name">Location Name</h2>
             <button type="button" id="location-panel-close" aria-label="Close location details">&times;</button>
