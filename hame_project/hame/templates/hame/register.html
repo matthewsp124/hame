@@ -1,0 +1,17 @@
+{% extends 'hame/base.html' %}
+{% load static %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+<h1>Create an Account</h1>
+{% if registered %}
+    <p>Account created! You can now <a href="{% url 'login' %}">log in</a>.</p>
+{% else %}
+    <form id="user_form" method="post" action="{% url 'hame:register' %}">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+{% endif %}
+{% endblock %}

@@ -1,6 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.http import HttpResponse, JsonResponse
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
+
 from .models import Location
+from .forms import UserForm
 
 def index(request):
     return render(request, 'hame/index.html')
@@ -10,6 +15,39 @@ def about(request):
 
 def resources(request):
     return render(request, 'hame/resources.html')
+
+def register(request):
+    if request.method == 'POST':
+        user_form = UserForm(data=request.POST)
+
+        if user_form.is_valid():
+            user = user_form.save()
+            return redirect(reverse('hame:login'))
+        else:
+            print(user_form.errors)
+
+    else:  # if not POST request, render registration form
+        user_form = UserForm()
+
+    return render(request, 'hame/register.html', context = {'user_form': user_form})
+
+# def user_login(request):
+#     if request.method == 'POST':
+#         username = request.POST.get('username')
+#         password = request.POST.get('password')
+
+#         user = authenticate(username=username, password=password)
+
+#         if user:
+#             login(request, user)
+#             return redirect(reverse('hame:index'))
+#         else:
+#             messages.error(request, "The username and/or password entered is invalid.")
+
+#         return render(request, 'hame/login.html')
+
+def profile(request):
+    return render(request, 'hame/profile.html')
 
 
 def locations_geojson(request):
