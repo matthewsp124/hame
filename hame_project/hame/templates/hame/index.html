@@ -100,6 +100,11 @@
         justify-self: center;
     }
 
+    #location-panel-website,
+    #location-panel-phone {
+        display: none;
+    }
+
     #accessibility-details:not(:empty),
     #reviews:not(:empty) {
         margin-top: 20px;
@@ -153,7 +158,7 @@
                 </div>
                 <div class="list-group-item d-flex gap-3 py-2" id="location-panel-website">
                     <i class="bi bi-globe fs-4"></i>
-                    <span id="location-panel-websites-text">Location Website</span>
+                    <span id="location-panel-website-text">Location Website</span>
                 </div>
                 <div class="list-group-item d-flex gap-3 py-2" id="location-panel-phone">
                     <i class="bi bi-telephone-fill fs-4"></i>
@@ -296,10 +301,12 @@
             source: 'locations',
             filter: ['!', ['has', 'point_count']],
             paint: {
-                'circle-color': '#11b4da',
-                'circle-radius': 4,
-                'circle-stroke-width': 1,
-                'circle-stroke-color': '#fff'
+                // 'circle-color': '#11b4da',
+                'circle-opacity': 0,
+                'circle-radius': 6,
+                'circle-stroke-width': 3,
+                'circle-stroke-color': '#000',
+                'circle-stroke-opacity': 0.8,
             }
         });
 
@@ -393,6 +400,27 @@
             document.getElementById('location-panel-name').textContent = properties.name || '';
             document.getElementById('location-panel-address-text').textContent = properties.address || latitude.toString() + ', ' + longitude.toString();
             document.getElementById('location-panel-categories-text').textContent = formatCategories(properties.categories);
+            
+            const websiteRow = document.getElementById('location-panel-website');
+            const phoneRow = document.getElementById('location-panel-phone');
+            const websiteText = document.getElementById('location-panel-website-text');
+            const phoneText = document.getElementById('location-panel-phone-text');
+
+            if (Object.hasOwn(properties, 'website')) {
+                websiteRow.style.display = '';
+                websiteText.textContent = properties.website || '';
+            } else {
+                websiteText.textContent = 'No website available';
+                websiteRow.style.display = 'none';
+            }
+
+            if (Object.hasOwn(properties, 'phone')) {
+                phoneRow.style.display = '';
+                phoneText.textContent = properties.phone || '';
+            } else {
+                phoneText.textContent = 'No phone number available';
+                phoneRow.style.display = 'none';
+            }
 
             map.flyTo({ center: coordinates });
             activeMarker = new maplibregl.Marker().setLngLat(coordinates).addTo(map);

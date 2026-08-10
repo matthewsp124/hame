@@ -51,19 +51,26 @@ def locations_geojson(request):
 
     features = []
     for loc in locations:
+        tags = loc.tags
+        properties = {
+            "id": loc.id,
+            "name": loc.name,
+            "address": loc.address,
+            "categories": ", ".join(str(cat) for cat in loc.categories.all()),
+        }
+
+        if "website" in tags:
+            properties["website"] = tags["website"]
+        if "phone" in tags:
+            properties["phone"] = tags["phone"]
+
         features.append({
             "type": "Feature",
             "geometry": {
                 "type": "Point",
                 "coordinates": [loc.lng, loc.lat],
             },
-            "properties": {
-                "id": loc.id,
-                "name": loc.name,
-                "address": loc.address,
-                "categories": ", ".join(str(cat) for cat in loc.categories.all()),
-                # start with just categories, can add all tags later if needed
-            },
+            "properties": properties
         })
 
     return JsonResponse({
