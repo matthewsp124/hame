@@ -89,28 +89,42 @@ class UserEntryModelTests(TestCase):
         self.location = Location.objects.create(name = "TestLocation", address = "123 Test St", lat = 0.0, lng = 0.0)
         self.user = User.objects.create_user(username = "testuser", password = "12345")
 
-    def test_create_user_entry(self):
-        entry = UserEntry.objects.create(location = self.location, user = self.user, text_body = "This is a test entry")
+    def test_create_user_entry_with_defaults(self):
+        entry = UserEntry.objects.create(location = self.location, user = self.user)
+
         self.assertEqual(entry.location, self.location)
         self.assertEqual(entry.user, self.user)
-        self.assertEqual(entry.text_body, "This is a test entry")
+        self.assertEqual(entry.wheelchair, 'U')
+        self.assertEqual(entry.auto_doors, 'U')
+        self.assertEqual(entry.level_floor_or_lift, 'U')
+        self.assertEqual(entry.accessible_toilet, 'U')
+        self.assertEqual(entry.parking, 'U')
+        self.assertEqual(entry.disabled_bay, 'U')
+        self.assertEqual(entry.braille_signage, 'U')
+        self.assertEqual(entry.hearing_loop, 'U')
+        self.assertEqual(entry.quiet_space, 'U')
+        self.assertEqual(entry.tactile_paving, 'U')
+        self.assertEqual(entry.nonvisual_crossing_cues, 'U')
+        self.assertEqual(entry.surface_type, 'U')
+        self.assertEqual(entry.gradient, 'U')
+        self.assertIsNone(entry.text_body)
         self.assertIsNotNone(entry.created_at)
 
     def test_location_entry_count(self):
-        UserEntry.objects.create(location = self.location, user = self.user, text_body = "Entry 1")
-        UserEntry.objects.create(location = self.location, user = self.user, text_body = "Entry 2")
+        UserEntry.objects.create(location = self.location, user = self.user)
+        UserEntry.objects.create(location = self.location, user = self.user)
         self.assertEqual(self.location.user_entries.count(), 2)
 
     def test_null_user_allowed(self):
-        entry = UserEntry.objects.create(location = self.location, user = None, text_body = "This entry has no user")
+        entry = UserEntry.objects.create(location = self.location, user = None)
         self.assertIsNone(entry.user)
 
     def test_user_deletion_protected(self):
-        UserEntry.objects.create(location = self.location, user = self.user, text_body = "This is a test entry")
+        UserEntry.objects.create(location = self.location, user = self.user)
         with self.assertRaises(IntegrityError):
             self.user.delete()
 
     def test_location_deletion_cascades(self):
-        UserEntry.objects.create(location = self.location, user = self.user, text_body = "This is a test entry")
+        UserEntry.objects.create(location = self.location, user = self.user)
         self.location.delete()
         self.assertEqual(UserEntry.objects.count(), 0)
