@@ -37,8 +37,42 @@ class Location(models.Model):
     def __str__(self):
         return f"{self.osm_id} - {self.name or self.address} ({self.lat}, {self.lng})"
 
+
+ANSWER_CHOICES = [
+    ('Y', 'Yes'),
+    ('N', 'No'),
+    ('U', 'Unknown'),
+    ('NA', 'Not Applicable'),
+]
+
+SURFACE_CHOICES = [
+    ('P', 'Paved/smooth'),
+    ('C', 'Cobblestone'),
+    ('G', 'Gravel'),
+    ('S', 'Sand'),
+    ('B', 'Bumpy/uneven'),
+    ('U', 'Unknown'),
+    ('NA', 'Not applicable'),
+]
+
 class UserEntry(models.Model):
     location = models.ForeignKey(Location, on_delete = models.CASCADE, related_name = 'user_entries')
     user = models.ForeignKey(User, on_delete = models.PROTECT, null = True)  # protect because deletion of users should be rare and handled by admin in case of vandalism
-    text_body = models.TextField()
+    wheelchair = models.CharField(max_length = 2, choices = ANSWER_CHOICES, default = 'U', null = False, blank = False)
+    auto_doors = models.CharField(max_length = 2, choices = ANSWER_CHOICES, default = 'U', null = False, blank = False)
+    level_floor_or_lift = models.CharField(max_length = 2, choices = ANSWER_CHOICES, default = 'U', null = False, blank = False)
+    accessible_toilet = models.CharField(max_length = 2, choices = ANSWER_CHOICES, default = 'U', null = False, blank = False)
+    parking = models.CharField(max_length = 2, choices = ANSWER_CHOICES, default = 'U', null = False, blank = False)
+    disabled_bay = models.CharField(max_length = 2, choices = ANSWER_CHOICES, default = 'U', null = False, blank = False)
+    braille_signage = models.CharField(max_length = 2, choices = ANSWER_CHOICES, default = 'U', null = False, blank = False)
+    hearing_loop = models.CharField(max_length = 2, choices = ANSWER_CHOICES, default = 'U', null = False, blank = False)
+    quiet_space = models.CharField(max_length = 2, choices = ANSWER_CHOICES, default = 'U', null = False, blank = False)
+    tactile_paving = models.CharField(max_length = 2, choices = ANSWER_CHOICES, default = 'U', null = False, blank = False)
+    nonvisual_crossing_cues = models.CharField(max_length = 2, choices = ANSWER_CHOICES, default = 'U', null = False, blank = False)
+    surface_type = models.CharField(max_length = 2, choices = SURFACE_CHOICES, default = 'U', null = False, blank = False)
+    gradient = models.CharField(max_length = 2, choices = [('F', 'Flat'), ('G', 'Gentle'), ('M', 'Moderate'), ('S', 'Steep'), ('U', 'Unknown'), ('NA', 'Not applicable')], default = 'U', null = False, blank = False)
+    text_body = models.TextField(blank = True, null = True)
     created_at = models.DateTimeField(auto_now_add = True)
+
+    def __str__(self):
+        return f"Entry by {self.user.username} for {self.location} ({self.created_at:%Y-%m-%d %H:%M:%S})"
