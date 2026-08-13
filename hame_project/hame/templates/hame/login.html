@@ -4,18 +4,14 @@
 {% block title %}Log In{% endblock %}
 
 {% block body %}
-<h1>Log In</h1>
-<form id="login_form" method="post" action="{% url 'hame:login' %}">
-    {% csrf_token %}
-    <!-- <div class="mb-3">
-        <label for="username" class="form-label">Username:</label>
-        <input type="text" id="username" name="username" class="form-control" required>
-    </div>
-    <div class="mb-3">
-        <label for="password" class="form-label">Password:</label>
-        <input type="password" id="password" name="password" class="form-control" required>
-    </div> -->
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Log In</button>
-</form>
+<main class="flex-grow-1 d-flex flex-column light-green-background">
+    <div class="form-signin w-100 m-auto align-items-center" style="max-width: 330px; padding: 1rem;">
+        <h1 class="mb-3">Log in</h1>
+        <form id="login_form" method="post" action="{% url 'hame:login' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Log In</button>
+        </form>
+    </main>
+</main>
 {% endblock %}
