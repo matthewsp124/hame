@@ -4,14 +4,18 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-<h1>Create an Account</h1>
-{% if registered %}
-    <p>Account created! You can now <a href="{% url 'login' %}">log in</a>.</p>
-{% else %}
-    <form id="user_form" method="post" action="{% url 'hame:register' %}">
-        {% csrf_token %}
-        {{ user_form.as_p }}
-        <button type="submit" class="btn btn-primary">Register</button>
-    </form>
-{% endif %}
+<div class="flex-grow-1 d-flex flex-column light-green-background">
+    <main class="form-register w-100 m-auto align-items-center" style="max-width: 400px; padding: 1rem;">
+        <h1 class="mb-3">Create an Account</h1>
+        {% if registered %}
+            <p>Account created! You can now <a href="{% url 'login' %}">log in</a>.</p>
+        {% else %}
+            <form id="user_form" method="post" action="{% url 'hame:register' %}">
+                {% csrf_token %}
+                {{ user_form.as_p }}
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        {% endif %}
+    </main>
+</div>
 {% endblock %}

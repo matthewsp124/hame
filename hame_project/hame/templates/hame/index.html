@@ -41,62 +41,63 @@
     }
 </style>
 
-<div class="map-page">
-    <div id="map"></div>
+<main class="flex-grow-1 d-flex flex-column">
+    <div class="map-page">
+        <div id="map"></div>
 
-    <div class="light-yellow-background" id="location-panel" aria-labelledby="location-panel-name" aria-hidden="true">
-        <div id="location-panel-header">
-            <h2 id="location-panel-name">Location Name</h2>
-            <button type="button" id="location-panel-close" aria-label="Close location details">&times;</button>
-        </div>
-
-        <div id="location-panel-body">
-
-            <div class="list-group" id="location-details">
-                <div class="list-group-item d-flex gap-3 py-2" id="location-panel-address">
-                    <i class="bi bi-geo-alt-fill fs-4"></i>
-                    <span id="location-panel-address-text">Location Address</span>
-                </div>
-                <div class="list-group-item d-flex gap-3 py-2" id="location-panel-categories">
-                    <i class="bi bi-tags-fill fs-4"></i>
-                    <span id="location-panel-categories-text">Location Categories</span>
-                </div>
-                <div class="list-group-item d-flex gap-3 py-2" id="location-panel-website">
-                    <i class="bi bi-globe fs-4"></i>
-                    <span id="location-panel-website-text">Location Website</span>
-                </div>
-                <div class="list-group-item d-flex gap-3 py-2" id="location-panel-phone">
-                    <i class="bi bi-telephone-fill fs-4"></i>
-                    <span id="location-panel-phone-text">Location Phone Number</span>
-                </div>
+        <div class="light-yellow-background" id="location-panel" aria-labelledby="location-panel-name" aria-hidden="true">
+            <div id="location-panel-header">
+                <h2 id="location-panel-name">Location Name</h2>
+                <button type="button" id="location-panel-close" aria-label="Close location details">&times;</button>
             </div>
 
-            <div class="list-group" id="accessibility-details">
+            <div id="location-panel-body">
+
+                <div class="list-group" id="location-details">
+                    <div class="list-group-item d-flex gap-3 py-2" id="location-panel-address">
+                        <i class="bi bi-geo-alt-fill fs-4"></i>
+                        <span id="location-panel-address-text">Location Address</span>
+                    </div>
+                    <div class="list-group-item d-flex gap-3 py-2" id="location-panel-categories">
+                        <i class="bi bi-tags-fill fs-4"></i>
+                        <span id="location-panel-categories-text">Location Categories</span>
+                    </div>
+                    <div class="list-group-item d-flex gap-3 py-2" id="location-panel-website">
+                        <i class="bi bi-globe fs-4"></i>
+                        <span id="location-panel-website-text">Location Website</span>
+                    </div>
+                    <div class="list-group-item d-flex gap-3 py-2" id="location-panel-phone">
+                        <i class="bi bi-telephone-fill fs-4"></i>
+                        <span id="location-panel-phone-text">Location Phone Number</span>
+                    </div>
+                </div>
+
+                <div class="list-group" id="accessibility-details">
+                </div>
+                <div class="list-group" id="reviews">
+                </div>
             </div>
-            <div class="list-group" id="reviews">
+            
+            <div id="location-panel-footer">
+                <button type="button" class="btn btn-primary">Add Info</button>
             </div>
         </div>
-        
-        <div id="location-panel-footer">
-            <button type="button" class="btn btn-primary">Add Info</button>
-        </div>
+
+        <pre id="debug-info"></pre>
     </div>
-
-    <pre id="debug-info"></pre>
-</div>
-<nav class="navbar sticky-bottom navbar-expand-lg mint-green-background border-top border-dark">
-    <div class="container-fluid d-flex justify-content-center gap-3 py-3">
-        <div class="col-md-6">
-            <form class="mb-0">
-                <div class="input-group">
-                    <input type="text" class="form-control fs-5" placeholder="Search for a location..." aria-label="Search for a location">
-                    <button class="btn btn-outline-dark fs-5" type="button">Search</button>
-                </div>
-            </form>
+    <nav class="navbar sticky-bottom navbar-expand-lg mint-green-background border-top border-dark">
+        <div class="container-fluid d-flex justify-content-center gap-3 py-3">
+            <div class="col-md-6">
+                <form class="mb-0">
+                    <div class="input-group">
+                        <input type="text" class="form-control fs-5" placeholder="Search for a location..." aria-label="Search for a location">
+                        <button class="btn btn-outline-dark fs-5" type="button">Search</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-</div>
-
+    </nav>
+</main>
 
 <script type="module">
     import * as maplibregl from 'https://unpkg.com/maplibre-gl@6.0.0/dist/maplibre-gl.mjs';
