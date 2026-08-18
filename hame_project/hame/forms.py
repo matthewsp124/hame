@@ -43,7 +43,7 @@ class UserEntryForm(forms.ModelForm):
             'level_floor_or_lift': forms.Select(choices=REVIEW_ANSWER_CHOICES),
             'accessible_toilet': forms.Select(choices=REVIEW_ANSWER_CHOICES),
             'parking': forms.Select(choices=REVIEW_ANSWER_CHOICES),
-            'disabled_bhay': forms.Select(choices=REVIEW_ANSWER_CHOICES),
+            'disabled_bay': forms.Select(choices=REVIEW_ANSWER_CHOICES),
             'braille_signage': forms.Select(choices=REVIEW_ANSWER_CHOICES),
             'hearing_loop': forms.Select(choices=REVIEW_ANSWER_CHOICES),
             'quiet_space': forms.Select(choices=REVIEW_ANSWER_CHOICES),

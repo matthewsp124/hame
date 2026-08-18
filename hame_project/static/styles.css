@@ -15,6 +15,7 @@
     background-color: #f5eebc;
 }
 
+
 /* map page location panel styling */
 
 #location-panel {
@@ -106,6 +107,37 @@
 #location-panel-website,
 #location-panel-phone {
     display: none;
+}
+
+.stat-bar-row {
+    margin-bottom: 14px;
+}
+
+.stat-bar-label {
+    text-align:center;
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+}
+
+.stat-bar-track { 
+    display: flex;
+    height: 8px;
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.stat-bar-segment.yes { background: #2e7d32; }
+.stat-bar-segment.na { background: #9e9e9e; }
+.stat-bar-segment.no { background: #c62828; }
+
+.stat-bar-values {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: #555;
+    margin-top: 3px;
 }
 
 #accessibility-details:not(:empty),

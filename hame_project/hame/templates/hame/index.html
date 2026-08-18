@@ -75,11 +75,12 @@
                 <div class="list-group" id="accessibility-details">
                 </div>
                 <div class="list-group" id="reviews">
+                    What others are saying:
                 </div>
             </div>
             
-            <div id="location-panel-footer">
-                <button type="button" class="btn btn-primary">Add Info</button>
+            <div id="location-panel-footer" class="mt-3">
+                <a href="#" id="add-info-button" class="btn btn-primary w-100">Add Info</a>
             </div>
         </div>
 
@@ -312,18 +313,26 @@
         });
 
         map.on('click', 'unclustered-point', (e) => {
+
+            clearActiveMarker();
+
             const feature = e.features[0];
             const properties = feature.properties;
             const coordinates = feature.geometry.coordinates.slice();
             let latitude = coordinates[1].toFixed(6);
             let longitude = coordinates[0].toFixed(6);
 
-            clearActiveMarker();
-
             document.getElementById('location-panel-name').textContent = properties.name || '';
             document.getElementById('location-panel-address-text').textContent = properties.address || latitude.toString() + ', ' + longitude.toString();
             document.getElementById('location-panel-categories-text').textContent = formatCategories(properties.categories);
-            
+
+            const statsContainer = document.getElementById('accessibility-details');
+            const reviewsContainer = document.getElementById('reviews');
+            const addInfoButton = document.getElementById('add-info-button');
+
+            const addReviewUrlTemplate = "{% url 'hame:add_review' 0 %}";
+            const reviewsUrlTemplate = "{% url 'hame:location_reviews' 0 %}";
+
             const websiteRow = document.getElementById('location-panel-website');
             const phoneRow = document.getElementById('location-panel-phone');
             const websiteText = document.getElementById('location-panel-website-text');
@@ -344,6 +353,63 @@
                 phoneText.textContent = 'No phone number available';
                 phoneRow.style.display = 'none';
             }
+
+            // prevent injection attacks by escaping HTML
+            function escapeHtml(str) {  
+                const div = document.createElement('div');
+                div.textContent = str || '';
+                return div.innerHTML;
+            }
+
+            function renderStatBar(stat) {
+                return `
+                    <div class="stat-bar-row">
+                        <div class="stat-bar-label">${escapeHtml(stat.label)}</div>
+                        <div class="stat-bar-track">
+                            ${stat.yes_pct > 0 ? `<div class="stat-bar-segment yes" style="width: ${stat.yes_pct}%"></div>` : ''}
+                            ${stat.na_pc > 0 ? `<div class="stat-bar-segment na" style="width: ${stat.na_pct}%"></div>` : ''}
+                            ${stat.no_pct > 0 ? `<div class="stat-bar-segment no" style="width: ${stat.no_pct}%"></div>` : ''}
+                        </div>
+                        <div class="stat-bar-values">
+                            <span>Yes: ${stat.yes_count}</span>
+                            ${stat.na_count > 0 ? `<span>N/A: ${stat.na_count}</span>` : ''}
+                            <span>No: ${stat.no_count}</span>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            async function loadReviews(locationId) {
+                statsContainer.innerHTML = '<p class="px-2">Loading accessibility stats...</p>';
+                reviewsContainer.innerHTML = '';
+
+                try {
+                    const response = await fetch(reviewsUrlTemplate.replace('/0/', `/${locationId}/`));
+                    const data = await response.json();
+
+                    statsContainer.innerHTML = data.stats.length
+                        ? data.stats.map(renderStatBar).join('')
+                        : `<p class="px-2">No accessibility ratings yet.</p>`;
+
+                    reviewsContainer.innerHTML = data.reviews.length
+                        ? data.reviews.map(review => `
+                            <div class="list-group-item py-2">
+                                <div class="d-flex justify-content-between">
+                                    <strong>${escapeHtml(review.username)}</strong>
+                                    <span class="small">${review.created_at}</span>
+                                </div>
+                                <p class="mb-0">${escapeHtml(review.text_body)}</p>
+                            </div>
+                        `).join('')
+                        : '<p class="px-2">No info yet. Be the first to add some!</p>';
+                } catch (err) {
+                    console.error('loadReviews error:', err);
+                    statsContainer.innerHTML = `<p class="px-2">Could not load accessibility stats. Please try again later.</p>`;
+                }
+            }
+
+            loadReviews(properties.id);
+            addInfoButton.href = addReviewUrlTemplate.replace('/0/', `/${properties.id}/`);
 
             map.flyTo({ center: coordinates });
             activeMarker = new maplibregl.Marker().setLngLat(coordinates).addTo(map);

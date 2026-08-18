@@ -1,0 +1,16 @@
+{% extends 'hame/base.html' %}
+{% load static %}
+
+{% block title %}Add Review{% endblock %}
+
+{% block body %}
+<div class="container py-4">
+    <h2>Add a review for {{ location.name|default:location.address }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="{% url 'hame:index' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
