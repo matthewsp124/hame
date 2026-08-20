@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from django.db.models import Q
 
 from .models import Location, UserEntry
 from .forms import UserForm, UserEntryForm
@@ -128,12 +129,7 @@ def location_reviews(request, location_id):
         logger.exception(f"Error loading reviews for location {location_id}")
         return JsonResponse({'error': str(e)}, status=500)
 
-def locations_geojson(request):
-    # API between database and map - returns locations as GeoJSON for map display
-
-    # prefetch to avoid separate database queries for each location's categories
-    locations = Location.objects.prefetch_related('categories__key').all() 
-
+def _locations_to_geojson(locations):
     features = []
     for loc in locations:
         tags = loc.tags
@@ -158,7 +154,53 @@ def locations_geojson(request):
             "properties": properties
         })
 
-    return JsonResponse({
+    return {
         "type": "FeatureCollection",
         "features": features,
-    })
+    }
+
+def locations_geojson(request):
+    # API between database and map - returns locations as GeoJSON for map display
+    locations = Location.objects.prefetch_related('categories__key').all()  # prefetch to avoid separate database queries for each location's categories
+    return JsonResponse(_locations_to_geojson(locations))
+
+
+CATEGORY_PREFIXES = ('category:', 'cat:', 'type:')
+
+def search_locations(request):
+    # same as locations_geojson but with search query filtering
+    query = request.GET.get('q', '').strip()
+    locations = Location.objects.prefetch_related('categories__key').all()
+
+    if query:
+        category_text = []
+        name_text = []
+
+        for word in query.split():
+            lower_word = word.lower()
+            matched_prefix = next((p for p in CATEGORY_PREFIXES if lower_word.startswith(p)), None)
+            if matched_prefix:
+                value = word[len(matched_prefix):]
+                if value:
+                    category_text.append(value)
+            else:
+                name_text.append(word)
+
+        if category_text:
+            category_filter = Q()  # Q builds and/or conditions for queries
+            for cat in category_text:
+                category_filter |= (  # location matches if any of its osm_value's or osm_keys contain the category text
+                    Q(categories__osm_value__icontains = cat) |  # icontains = case insensitive
+                    Q(categories__key__osm_key__icontains = cat)
+                )
+            locations = locations.filter(category_filter)
+
+        if name_text:
+            text = ' '.join(name_text)
+            locations = locations.filter(
+                Q(name__icontains = text) | Q(address__icontains = text)
+            )
+
+        locations = locations.distinct()  # deduplication where multiple categories match the same location
+
+    return JsonResponse(_locations_to_geojson(locations))

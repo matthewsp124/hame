@@ -89,10 +89,10 @@
     <nav class="navbar sticky-bottom navbar-expand-lg mint-green-background border-top border-dark">
         <div class="container-fluid d-flex justify-content-center gap-3 py-3">
             <div class="col-md-6">
-                <form class="mb-0">
+                <form class="mb-0" id="search-form">
                     <div class="input-group">
-                        <input type="text" class="form-control fs-5" placeholder="Search for a location..." aria-label="Search for a location">
-                        <button class="btn btn-outline-dark fs-5" type="button">Search</button>
+                        <input type="text" class="form-control fs-5" id="search-input" placeholder="Search for a location..." aria-label="Search for a location">
+                        <button class="btn btn-outline-dark fs-5" type="submit">Search</button>
                     </div>
                 </form>
             </div>
@@ -112,6 +112,13 @@
             activeMarker = null;
         }
     }
+
+    /*
+    Load the map and all of its components, including:
+    - the mask layer to restrict the map to Edinburgh
+    - the locations layer with clustering enabled
+    - navigation controls and geolocation
+    */
 
     // initialise the map
     const map = new maplibregl.Map({
@@ -160,7 +167,6 @@
         );
 
         // geolocate the user
-        // TODO: restrict so user is only located if within max bounds
         map.addControl(
             new maplibregl.GeolocateControl({
                 positionOptions: {
@@ -233,6 +239,14 @@
                 'circle-stroke-opacity': 0.8,
             }
         });
+
+
+        /*
+        Add interactivity to the map, including:
+        - zooming in on clusters when clicked
+        - opening the location info panel when clicking on an individual point
+        - search bar functionality
+        */
 
         // inspect a cluster on click
         map.on('click', 'clusters', async (e) => {
@@ -412,7 +426,7 @@
             addInfoButton.href = addReviewUrlTemplate.replace('/0/', `/${properties.id}/`);
 
             map.flyTo({ center: coordinates });
-            activeMarker = new maplibregl.Marker().setLngLat(coordinates).addTo(map);
+            activeMarker = new maplibregl.Marker({color: "#ea4335"}).setLngLat(coordinates).addTo(map);
             openLocationPanel();
         });
 
@@ -421,6 +435,48 @@
             map.on('mouseenter', layer, () => { map.getCanvas().style.cursor = 'pointer'; });
             map.on('mouseleave', layer, () => { map.getCanvas().style.cursor = ''; });
         }
+
+        const searchForm = document.getElementById('search-form');
+        const searchInput = document.getElementById('search-input');
+        const searchLocationsUrlBase = "{% url 'hame:search_locations' %}";
+
+        async function searchLocations(query) {
+            try {
+                const url = new URL(searchLocationsUrlBase, window.location.origin);
+                if (query) url.searchParams.set('q', query);
+
+                const response = await fetch(url);
+                const data = await response.json();
+
+                map.getSource('locations').setData(data);
+                closeLocationPanel();
+
+                data.features.forEach(feature => {
+                    const marker = new maplibregl.Marker()
+                        .setLngLat(feature.geometry.coordinates)
+                        .addTo(map);
+                })
+
+                if (data.features.length > 0) {
+                    const bounds = new maplibregl.LngLatBounds();
+                    data.features.forEach(feature => {
+                        bounds.extend(feature.geometry.coordinates);
+                    });
+                    map.fitBounds(bounds, { padding: 50, maxZoom: 15.5 });  
+                } else {
+                    alert("No locations found for your search query.");
+                }
+
+            } catch (err) {
+                console.error("searchLocations error:", err);
+                alert("An error occurred while searching for locations. Please try again later.");
+            }
+        }
+
+        searchForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            searchLocations(searchInput.value.trim());
+        });
 
         // features for debugging
         if (debug) {
