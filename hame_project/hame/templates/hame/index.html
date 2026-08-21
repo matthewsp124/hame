@@ -64,7 +64,8 @@
                     </div>
                     <div class="list-group-item d-flex gap-3 py-2" id="location-panel-website">
                         <i class="bi bi-globe fs-4"></i>
-                        <span id="location-panel-website-text">Location Website</span>
+                        <a id="location-panel-website-text" href="#" target="_blank" rel="noopener noreferrer">Location Website</a>
+                            <!-- _blank opens in new tab, noopener noreferrer prevents reverse tabnabbing and hides the source URL -->
                     </div>
                     <div class="list-group-item d-flex gap-3 py-2" id="location-panel-phone">
                         <i class="bi bi-telephone-fill fs-4"></i>
@@ -242,26 +243,8 @@
 
 
         /*
-        Add interactivity to the map, including:
-        - zooming in on clusters when clicked
-        - opening the location info panel when clicking on an individual point
-        - search bar functionality
+        Clean category names for display
         */
-
-        // inspect a cluster on click
-        map.on('click', 'clusters', async (e) => {
-            const features = map.queryRenderedFeatures(e.point, {
-                layers: ['clusters']
-            });
-            const clusterId = features[0].properties.cluster_id;
-            const zoom = await map.getSource('locations').getClusterExpansionZoom(clusterId);
-            map.easeTo({
-                center: features[0].geometry.coordinates,
-                zoom: zoom
-            });
-        });
-
-        // clean the category names for display
         const categoryLabelOverrides = {
             "leisure|pitch": "Sports Pitch",
 
@@ -303,36 +286,133 @@
                 // if key, trim whitespace, else empty string - same for value
         }
 
-        // show location info panel when clicking on an individual point
+
+        /*
+        Add clickable interactivity to the map, including:
+        - zooming in on clusters when clicked
+        - opening the location info panel when clicking on an individual point
+        */
+
         const locationPanel = document.getElementById('location-panel');
         const locationPanelCloseButton = document.getElementById('location-panel-close');
 
+        const statsContainer = document.getElementById('accessibility-details');
+        const reviewsContainer = document.getElementById('reviews');
+        const addInfoButton = document.getElementById('add-info-button');
+
+        const addReviewUrlTemplate = "{% url 'hame:add_review' 0 %}";
+        const reviewsUrlTemplate = "{% url 'hame:location_reviews' 0 %}";
+
+        let panelJustOpened = false;
+
+        // change the cursor to a pointer when hovering over clickables
+        for (const layer of ['clusters', 'unclustered-point']) {
+            map.on('mouseenter', layer, () => { map.getCanvas().style.cursor = 'pointer'; });
+            map.on('mouseleave', layer, () => { map.getCanvas().style.cursor = ''; });
+        }
+
+        // inspect a cluster on click
+        map.on('click', 'clusters', async (e) => {
+            const features = map.queryRenderedFeatures(e.point, {
+                layers: ['clusters']
+            });
+            const clusterId = features[0].properties.cluster_id;
+            const zoom = await map.getSource('locations').getClusterExpansionZoom(clusterId);
+            map.easeTo({
+                center: features[0].geometry.coordinates,
+                zoom: zoom
+            });
+        });
+
+        // location panel open/close functions
         function openLocationPanel() {
             locationPanel.classList.add('is-open');
             locationPanel.setAttribute('aria-hidden', 'false');
+            panelJustOpened = true;
         }
 
         function closeLocationPanel() {
             locationPanel.classList.remove('is-open');
             locationPanel.setAttribute('aria-hidden', 'true');
+            panelJustOpened = false;
             clearActiveMarker();
         }
 
-        // add event listeners to close the location panel
+        // close the location panel when X is clicked
         locationPanelCloseButton.addEventListener('click', closeLocationPanel);
+
         document.addEventListener('keydown', (e) => {
+            // close the location panel when Escape is pressed
             if (e.key === 'Escape' && locationPanel.classList.contains('is-open')) {
                 closeLocationPanel();
             }
+
+            // first tab press after opening panel goes to 'Add Info' button
+            if (e.key === 'Tab' && !e.shiftKey && panelJustOpened) {
+                e.preventDefault();
+                addInfoButton.focus();
+                panelJustOpened = false;
+            }
         });
 
-        map.on('click', 'unclustered-point', (e) => {
+        // prevent injection attacks by escaping HTML
+        function escapeHtml(str) {  
+            const div = document.createElement('div');
+            div.textContent = str || '';
+            return div.innerHTML;
+        }
 
-            clearActiveMarker();
+        // render the accessibility stats bar for each stat
+        function renderStatBar(stat) {
+            return `
+                <div class="stat-bar-row">
+                    <div class="stat-bar-label">${escapeHtml(stat.label)}</div>
+                    <div class="stat-bar-track">
+                        ${stat.yes_pct > 0 ? `<div class="stat-bar-segment yes" style="width: ${stat.yes_pct}%"></div>` : ''}
+                        ${stat.na_pc > 0 ? `<div class="stat-bar-segment na" style="width: ${stat.na_pct}%"></div>` : ''}
+                        ${stat.no_pct > 0 ? `<div class="stat-bar-segment no" style="width: ${stat.no_pct}%"></div>` : ''}
+                    </div>
+                    <div class="stat-bar-values">
+                        <span>Yes: ${stat.yes_count}</span>
+                        ${stat.na_count > 0 ? `<span>N/A: ${stat.na_count}</span>` : ''}
+                        <span>No: ${stat.no_count}</span>
+                    </div>
+                </div>
+            `;
+        }
 
-            const feature = e.features[0];
-            const properties = feature.properties;
-            const coordinates = feature.geometry.coordinates.slice();
+        // load the accessibility stats and reviews for a location
+        async function loadReviews(locationId) {
+            statsContainer.innerHTML = '<p class="px-2">Loading accessibility stats...</p>';
+            reviewsContainer.innerHTML = '';
+
+            try {
+                const response = await fetch(reviewsUrlTemplate.replace('/0/', `/${locationId}/`));
+                const data = await response.json();
+
+                statsContainer.innerHTML = data.stats.length
+                    ? data.stats.map(renderStatBar).join('')
+                    : `<p class="px-2">No accessibility ratings yet.</p>`;
+
+                reviewsContainer.innerHTML = data.reviews.length
+                    ? data.reviews.map(review => `
+                        <div class="list-group-item py-2">
+                            <div class="d-flex justify-content-between">
+                                <strong>${escapeHtml(review.username)}</strong>
+                                <span class="small">${review.created_at}</span>
+                            </div>
+                            <p class="mb-0">${escapeHtml(review.text_body)}</p>
+                        </div>
+                    `).join('')
+                    : '<p class="px-2">No info yet. Be the first to add some!</p>';
+            } catch (err) {
+                console.error('loadReviews error:', err);
+                statsContainer.innerHTML = `<p class="px-2">Could not load accessibility stats. Please try again later.</p>`;
+            }
+        }
+
+        // display the location panel and fly to the relevant location
+        function showLocationPanel(properties, coordinates) {
             let latitude = coordinates[1].toFixed(6);
             let longitude = coordinates[0].toFixed(6);
 
@@ -340,24 +420,34 @@
             document.getElementById('location-panel-address-text').textContent = properties.address || latitude.toString() + ', ' + longitude.toString();
             document.getElementById('location-panel-categories-text').textContent = formatCategories(properties.categories);
 
-            const statsContainer = document.getElementById('accessibility-details');
-            const reviewsContainer = document.getElementById('reviews');
-            const addInfoButton = document.getElementById('add-info-button');
-
-            const addReviewUrlTemplate = "{% url 'hame:add_review' 0 %}";
-            const reviewsUrlTemplate = "{% url 'hame:location_reviews' 0 %}";
-
             const websiteRow = document.getElementById('location-panel-website');
             const phoneRow = document.getElementById('location-panel-phone');
             const websiteText = document.getElementById('location-panel-website-text');
             const phoneText = document.getElementById('location-panel-phone-text');
 
-            if (Object.hasOwn(properties, 'website')) {
+            const rawWebsite = (properties.website || '').trim();
+            if (rawWebsite) {
+                const websiteUrl = /^https?:\/\//i.test(rawWebsite) ? rawWebsite : `https://${rawWebsite}`;
+                    // checks if website starts with http(s), if not then adds it to start
                 websiteRow.style.display = '';
-                websiteText.textContent = properties.website || '';
+                websiteText.textContent = rawWebsite;
+                websiteText.setAttribute('href', websiteUrl);
+                websiteText.setAttribute('target', '_blank');
+                websiteText.setAttribute('rel', 'noopener noreferrer');
+                websiteText.style.pointerEvents = 'auto';  // make link clickable
+                websiteText.style.textDecoration = 'underline';  // underline to look like a link
+                websiteText.removeAttribute('aria-disabled');
+                websiteText.removeAttribute('tabindex');
             } else {
+                websiteRow.style.display = '';  // keep row visible but disable link
                 websiteText.textContent = 'No website available';
-                websiteRow.style.display = 'none';
+                websiteText.removeAttribute('href');
+                websiteText.removeAttribute('target');
+                websiteText.removeAttribute('rel');
+                websiteText.style.pointerEvents = 'none';
+                websiteText.style.textDecoration = 'none';
+                websiteText.setAttribute('aria-disabled', 'true');
+                websiteText.setAttribute('tabindex', '1');
             }
 
             if (Object.hasOwn(properties, 'phone')) {
@@ -368,79 +458,46 @@
                 phoneRow.style.display = 'none';
             }
 
-            // prevent injection attacks by escaping HTML
-            function escapeHtml(str) {  
-                const div = document.createElement('div');
-                div.textContent = str || '';
-                return div.innerHTML;
-            }
-
-            function renderStatBar(stat) {
-                return `
-                    <div class="stat-bar-row">
-                        <div class="stat-bar-label">${escapeHtml(stat.label)}</div>
-                        <div class="stat-bar-track">
-                            ${stat.yes_pct > 0 ? `<div class="stat-bar-segment yes" style="width: ${stat.yes_pct}%"></div>` : ''}
-                            ${stat.na_pc > 0 ? `<div class="stat-bar-segment na" style="width: ${stat.na_pct}%"></div>` : ''}
-                            ${stat.no_pct > 0 ? `<div class="stat-bar-segment no" style="width: ${stat.no_pct}%"></div>` : ''}
-                        </div>
-                        <div class="stat-bar-values">
-                            <span>Yes: ${stat.yes_count}</span>
-                            ${stat.na_count > 0 ? `<span>N/A: ${stat.na_count}</span>` : ''}
-                            <span>No: ${stat.no_count}</span>
-                        </div>
-                    </div>
-                `;
-            }
-            
-            async function loadReviews(locationId) {
-                statsContainer.innerHTML = '<p class="px-2">Loading accessibility stats...</p>';
-                reviewsContainer.innerHTML = '';
-
-                try {
-                    const response = await fetch(reviewsUrlTemplate.replace('/0/', `/${locationId}/`));
-                    const data = await response.json();
-
-                    statsContainer.innerHTML = data.stats.length
-                        ? data.stats.map(renderStatBar).join('')
-                        : `<p class="px-2">No accessibility ratings yet.</p>`;
-
-                    reviewsContainer.innerHTML = data.reviews.length
-                        ? data.reviews.map(review => `
-                            <div class="list-group-item py-2">
-                                <div class="d-flex justify-content-between">
-                                    <strong>${escapeHtml(review.username)}</strong>
-                                    <span class="small">${review.created_at}</span>
-                                </div>
-                                <p class="mb-0">${escapeHtml(review.text_body)}</p>
-                            </div>
-                        `).join('')
-                        : '<p class="px-2">No info yet. Be the first to add some!</p>';
-                } catch (err) {
-                    console.error('loadReviews error:', err);
-                    statsContainer.innerHTML = `<p class="px-2">Could not load accessibility stats. Please try again later.</p>`;
-                }
-            }
-
             loadReviews(properties.id);
             addInfoButton.href = addReviewUrlTemplate.replace('/0/', `/${properties.id}/`);
-
             map.flyTo({ center: coordinates });
-            activeMarker = new maplibregl.Marker({color: "#ea4335"}).setLngLat(coordinates).addTo(map);
             openLocationPanel();
-        });
-
-        // change the cursor to a pointer when hovering over clickables
-        for (const layer of ['clusters', 'unclustered-point']) {
-            map.on('mouseenter', layer, () => { map.getCanvas().style.cursor = 'pointer'; });
-            map.on('mouseleave', layer, () => { map.getCanvas().style.cursor = ''; });
         }
 
+        // when an individual point is clicked, add a marker and display the location panel
+        map.on('click', 'unclustered-point', (e) => {
+            clearActiveMarker();
+
+            const feature = e.features[0];
+            const properties = feature.properties;
+            const coordinates = feature.geometry.coordinates.slice();
+            
+            activeMarker = new maplibregl.Marker({color: "#ea4335"}).setLngLat(coordinates).addTo(map);
+            showLocationPanel(properties, coordinates);
+        });
+
+
+        /*
+        Add search bar functionality, including:
+        - searching for locations
+        - adding markers to the map for search results
+        - maintaining markers when an individual point is clicked for easy comparison of similar locations
+        */
         const searchForm = document.getElementById('search-form');
         const searchInput = document.getElementById('search-input');
         const searchLocationsUrlBase = "{% url 'hame:search_locations' %}";
 
+        let searchMarkers = [];
+
+        // helper to clear all markers from search results
+        function clearSearchMarkers() {
+            searchMarkers.forEach(marker => marker.remove());
+            searchMarkers = [];
+        }
+
         async function searchLocations(query) {
+            clearSearchMarkers();
+
             try {
                 const url = new URL(searchLocationsUrlBase, window.location.origin);
                 if (query) url.searchParams.set('q', query);
@@ -451,11 +508,21 @@
                 map.getSource('locations').setData(data);
                 closeLocationPanel();
 
+                if (!query) return;  // if the search query is empty, don't add markers 
+
                 data.features.forEach(feature => {
                     const marker = new maplibregl.Marker()
                         .setLngLat(feature.geometry.coordinates)
                         .addTo(map);
-                })
+
+                    marker.getElement().addEventListener('click', (e) => {
+                        e.stopPropagation();  // unlikely to be necessary, but included for safety
+                        clearActiveMarker();
+                        showLocationPanel(feature.properties, feature.geometry.coordinates);
+                    });
+
+                    searchMarkers.push(marker);
+                });
 
                 if (data.features.length > 0) {
                     const bounds = new maplibregl.LngLatBounds();
