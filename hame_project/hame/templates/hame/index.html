@@ -84,8 +84,6 @@
                 <a href="#" id="add-info-button" class="btn btn-primary w-100">Add Info</a>
             </div>
         </div>
-
-        <pre id="debug-info"></pre>
     </div>
     <nav class="navbar sticky-bottom navbar-expand-lg mint-green-background border-top border-dark">
         <div class="container-fluid d-flex justify-content-center gap-3 py-3">
@@ -104,7 +102,6 @@
 <script type="module">
     import * as maplibregl from 'https://unpkg.com/maplibre-gl@6.0.0/dist/maplibre-gl.mjs';
 
-    const debug = true;
     let activeMarker = null;
 
     function clearActiveMarker() {
@@ -544,18 +541,6 @@
             e.preventDefault();
             searchLocations(searchInput.value.trim());
         });
-
-        // features for debugging
-        if (debug) {
-            // show mouse coordinates
-            map.on('mousemove', (e) => {
-                document.getElementById('debug-info').innerHTML = 
-                // e.point is (x, y) relative to top-left of map, e.lngLat is (lng, lat) in degrees
-                `${JSON.stringify(e.point)}  
-                <br />
-                ${JSON.stringify(e.lngLat.wrap())}`;
-            });
-        }
         
     });
 </script>
