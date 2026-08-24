@@ -4,13 +4,20 @@
 {% block title %}Add Review{% endblock %}
 
 {% block body %}
-<div class="container py-4">
-    <h2>Add a review for {{ location.name|default:location.address }}</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <a href="{% url 'hame:index' %}" class="btn btn-secondary">Cancel</a>
-    </form>
-</div>
+<main class="flex-grow-1 d-flex flex-column light-green-background">
+    <div class="container py-4">
+        <h2>{% if is_edit %}
+                Edit your
+            {% else %}
+                Add a 
+            {% endif %}
+                review for {{ location.name|default:"Unnamed Location" }} - {{ location.address }}</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a href="{% url 'hame:index' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</main>
 {% endblock %}
