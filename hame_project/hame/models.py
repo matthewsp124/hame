@@ -74,5 +74,10 @@ class UserEntry(models.Model):
     text_body = models.TextField(blank = True, null = True)
     created_at = models.DateTimeField(auto_now_add = True)
 
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields = ['location', 'user'], name = 'unique_entry_per_user_location')
+        ]
+
     def __str__(self):
         return f"Entry by {self.user.username} for {self.location} ({self.created_at:%Y-%m-%d %H:%M:%S})"

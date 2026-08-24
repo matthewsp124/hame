@@ -18,9 +18,10 @@ def index(request):
 @login_required
 def add_review(request, location_id):
     location = get_object_or_404(Location, id=location_id)
+    entry = UserEntry.objects.filter(location=location, user=request.user).first()
 
     if request.method == 'POST':
-        form = UserEntryForm(request.POST)
+        form = UserEntryForm(request.POST, instance = entry)  # if entry exists, edit it, otherwise create new entry
         if form.is_valid():
             entry = form.save(commit=False)
             entry.location = location
@@ -28,9 +29,9 @@ def add_review(request, location_id):
             entry.save()
             return redirect(reverse('hame:index'))
     else:
-        form = UserEntryForm()
+        form = UserEntryForm(instance = entry)
 
-    return render(request, 'hame/add_review.html', {'form': form, 'location': location})
+    return render(request, 'hame/add_review.html', {'form': form, 'location': location, 'is_edit': entry is not None})
 
 def about(request):
     return render(request, 'hame/about.html')
@@ -55,9 +56,12 @@ def register(request):
 
 @login_required
 def profile(request):
-    context_dict = {}
+    entries = (UserEntry.objects
+            .filter(user=request.user)
+            .select_related('location')
+            .order_by('-created_at'))
 
-    return render(request, 'hame/profile.html')
+    return render(request, 'hame/profile.html', {'entries': entries})
 
 @login_required
 def user_logout(request):
