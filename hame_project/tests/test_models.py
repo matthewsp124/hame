@@ -110,10 +110,10 @@ class UserEntryModelTests(TestCase):
         self.assertIsNone(entry.text_body)
         self.assertIsNotNone(entry.created_at)
 
-    def test_location_entry_count(self):
+    def test_one_entry_per_location_user(self):
         UserEntry.objects.create(location = self.location, user = self.user)
-        UserEntry.objects.create(location = self.location, user = self.user)
-        self.assertEqual(self.location.user_entries.count(), 2)
+        with self.assertRaises(IntegrityError):
+            UserEntry.objects.create(location = self.location, user = self.user)
 
     def test_null_user_allowed(self):
         entry = UserEntry.objects.create(location = self.location, user = None)

@@ -99,10 +99,15 @@ class LocationReviewsViewTests(TestCase):
         self.location = make_location()
         self.user = User.objects.create_user(username = 'testuser', password = 'testpass123!')
         self.url = reverse('hame:location_reviews', args = [self.location.id])
+        self._user_idx = 0  # create unique user for each entry
 
     # helper function to create a default UserEntry for testing
-    def make_entry(self, **arg_overrides):
-        defaults = dict(location = self.location, user = self.user, text_body = '')
+    def make_entry(self, user=None, **arg_overrides):
+        if user is None:
+            self._user_idx += 1
+            user = User.objects.create_user(username = f'testuser_{self._user_idx}', password = 'testpass123!')
+
+        defaults = dict(location = self.location, user = user, text_body = '')
         defaults.update(arg_overrides)
         return UserEntry.objects.create(**defaults)
 
@@ -128,7 +133,6 @@ class LocationReviewsViewTests(TestCase):
         self.assertEqual(wheelchair_stat['no_pct'], 67)
 
     def test_field_excluded_if_all_answers_unknown(self):
-        self.make_entry(wheelchair = 'U')
         self.make_entry(wheelchair = 'U')
 
         response = self.client.get(self.url)
