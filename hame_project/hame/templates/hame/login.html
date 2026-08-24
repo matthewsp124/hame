@@ -4,14 +4,22 @@
 {% block title %}Log In{% endblock %}
 
 {% block body %}
-<main class="flex-grow-1 d-flex flex-column light-green-background">
-    <div class="form-signin w-100 m-auto align-items-center" style="max-width: 330px; padding: 1rem;">
-        <h1 class="mb-3">Log in</h1>
-        <form id="login_form" method="post" action="{% url 'hame:login' %}">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Log In</button>
-        </form>
-    </main>
-</main>
+<div class="flex-grow-1 d-flex flex-column light-green-background">
+    <div class="modal modal-sheet position-static d-block p-4 py-md-5">
+        <div class="modal-dialog" style="max-width: 400px;">
+            <div class="modal-content border-black light-blue-background">
+
+                <main class="form-signin w-100 m-auto align-items-center" style="max-width: 330px; padding: 1rem;">
+                    <h1 class="mb-3 text-center">Log in</h1>
+                    <form id="login_form" method="post" action="{% url 'hame:login' %}">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary">Log In</button>
+                    </form>
+                </main>
+
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

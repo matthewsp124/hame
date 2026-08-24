@@ -4,18 +4,37 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-<div class="flex-grow-1 d-flex flex-column light-green-background">
-    <main class="form-register w-100 m-auto align-items-center" style="max-width: 400px; padding: 1rem;">
-        <h1 class="mb-3">Create an Account</h1>
-        {% if registered %}
-            <p>Account created! You can now <a href="{% url 'login' %}">log in</a>.</p>
-        {% else %}
-            <form id="user_form" method="post" action="{% url 'hame:register' %}">
-                {% csrf_token %}
-                {{ user_form.as_p }}
-                <button type="submit" class="btn btn-primary">Register</button>
-            </form>
-        {% endif %}
-    </main>
+<div class="flex-grow-1 d-flex flex-column light-green-background p-5">
+    <div class="modal modal-sheet position-static d-block p-4 py-md-5">
+        <div class="modal-dialog" style="max-width: 400px;">
+            <div class="modal-content border-black light-blue-background">
+                <main class="form-register w-100 m-auto align-items-center" style="max-width: 400px; padding: 1rem;">
+                    <h1 class="mb-3 text-center">Create an Account</h1>
+                    {% if registered %}
+                        <p>Account created! You can now <a href="{% url 'login' %}">log in</a>.</p>
+                    {% else %}
+                        <form id="user_form" method="post" action="{% url 'hame:register' %}">
+                            {% csrf_token %}
+
+                            {% for field in user_form %}
+                                <div class="mb-3">
+                                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                                    {{ field }}
+                                    {% if field.help_text %}<div class="form-text">{{ field.help_text }}</div>{% endif %}
+                                    {% for error in field.errors %}<p>{{ error }}</p>{% endfor %}
+                                </div>
+                            {% endfor %}
+
+                            {% if user_form.non_field_errors %}
+                                <div class="alert py-2">{{ user_form.non_field_errors }}</div>
+                            {% endif %}
+
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </form>
+                    {% endif %}
+                </main>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
