@@ -14,6 +14,7 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='hame/login.html'), name='login'),
     path('logout/', views.user_logout, name='logout'),
     path('profile/', views.profile, name='profile'),
+    path('reviews/<int:entry_id>/delete/', views.delete_review, name='delete_review'),
     path('search/', views.search_locations, name='search_locations'),
     path('locations/<int:location_id>/reviews/', views.location_reviews, name='location_reviews'),
     path('locations/<int:location_id>/reviews/add', views.add_review, name='add_review'),

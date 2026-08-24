@@ -6,6 +6,7 @@ from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.db.models import Q
+from django.views.decorators.http import require_POST
 
 from .models import Location, UserEntry
 from .forms import UserForm, UserEntryForm
@@ -62,6 +63,13 @@ def profile(request):
             .order_by('-created_at'))
 
     return render(request, 'hame/profile.html', {'entries': entries})
+
+@require_POST
+@login_required
+def delete_review(request, entry_id):
+    entry = get_object_or_404(UserEntry, id=entry_id, user=request.user)
+    entry.delete()
+    return redirect(reverse('hame:profile'))
 
 @login_required
 def user_logout(request):
