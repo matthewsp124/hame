@@ -4,3 +4,4 @@ __pycache__/
 thumbs.db
 db.sqlite3
 .env
+osm_data/
