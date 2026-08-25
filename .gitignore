@@ -6,3 +6,4 @@ db.sqlite3
 .env
 osm_data/
 .venv/
+requirements_local.txt
