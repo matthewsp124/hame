@@ -83,23 +83,15 @@ WSGI_APPLICATION = 'hame_project.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default='postgresql://hame_user:UKloKZeoFoTgBelBozcm9eo3VgivfwxE@dpg-da6r95c9v7es73bqfcrg-a/hame_db',
-        conn_max_age=600
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'edinburgh_map',
+        'USER': 'hame_user',
+        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
 }
-
-# local database for testing:
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'edinburgh_map',
-#         'USER': 'hame_user',
-#         'PASSWORD': os.getenv('DATABASE_PASSWORD'),
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
 
 
 # Password validation
