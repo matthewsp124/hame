@@ -176,7 +176,7 @@
         );
 
         // get the locations from the database
-        const locationResponse = await fetch("{% url 'hame:locations_geojson' %}");
+        const locationResponse = await fetch("{% static 'locations.geojson' %}?t=" + Date.now());
         const locationGeojson = await locationResponse.json();
 
         map.addSource('locations', {
@@ -196,9 +196,9 @@
             paint: {
                 'circle-color': [
                     'step', ['get', 'point_count'],
-                    '#51bbd6', 100,  // blue circles when <= 100 points
+                    '#51bbd6', 50,  // blue circles when <= 100 points
                     '#f1f075', 750,  // yellow circles when 101 to 749 points
-                    '#f28cb1'  // pink cicles when >= 750 points
+                    '#f28cb1'  // pink circles when >= 750 points
             ],
                 'circle-radius': [
                     'step', ['get', 'point_count'],
@@ -492,51 +492,59 @@
             searchMarkers = [];
         }
 
-        async function searchLocations(query) {
-            clearSearchMarkers();
+        let allLocationsGeojson = locationGeojson;
 
-            try {
-                const url = new URL(searchLocationsUrlBase, window.location.origin);
-                if (query) url.searchParams.set('q', query);
-
-                const response = await fetch(url);
-                const data = await response.json();
-
-                map.getSource('locations').setData(data);
-                closeLocationPanel();
-
-                if (!query) return;  // if the search query is empty, don't add markers 
-
-                data.features.forEach(feature => {
-                    const marker = new maplibregl.Marker()
-                        .setLngLat(feature.geometry.coordinates)
-                        .addTo(map);
-
-                    marker.getElement().addEventListener('click', (e) => {
-                        e.stopPropagation();  // unlikely to be necessary, but included for safety
-                        clearActiveMarker();
-                        showLocationPanel(feature.properties, feature.geometry.coordinates);
-                    });
-
-                    searchMarkers.push(marker);
-                });
-
-                if (data.features.length > 0) {
-                    const bounds = new maplibregl.LngLatBounds();
-                    data.features.forEach(feature => {
-                        bounds.extend(feature.geometry.coordinates);
-                    });
-                    map.fitBounds(bounds, { padding: 50, maxZoom: 15.5 });  
-                } else {
-                    alert("No locations found for your search query.");
+        function matchesQuery(feature, query) {
+            const words = query.toLowerCase().split(/\s+/);
+            return words.every(word => {
+                const matchedPrefix = ['category:', 'cat:', 'type:'].find(p => word.startsWith(p));
+                if (matchedPrefix) {
+                    const val = word.slice(matchedPrefix.length);
+                    return (feature.properties.categories || '').toLowerCase().includes(val);
                 }
-
-            } catch (err) {
-                console.error("searchLocations error:", err);
-                alert("An error occurred while searching for locations. Please try again later.");
-            }
+                const name = (feature.properties.name || '').toLowerCase();
+                const address = (feature.properties.address || '').toLowerCase();
+                return name.includes(word) || address.includes(word);
+            });
         }
 
+        function searchLocations(query) {
+            clearSearchMarkers();
+
+            const data = query 
+            ? { ...allLocationsGeojson, features: allLocationsGeojson.features.filter(f => matchesQuery(f, query)) }
+            : allLocationsGeojson;
+
+            map.getSource('locations').setData(data);
+            closeLocationPanel();
+
+            if (!query) return;  // if the search query is empty, don't add markers 
+
+            data.features.forEach(feature => {
+                const marker = new maplibregl.Marker()
+                    .setLngLat(feature.geometry.coordinates)
+                    .addTo(map);
+
+                marker.getElement().addEventListener('click', (e) => {
+                    e.stopPropagation();  // unlikely to be necessary, but included for safety
+                    clearActiveMarker();
+                    showLocationPanel(feature.properties, feature.geometry.coordinates);
+                });
+
+                searchMarkers.push(marker);
+            });
+
+            if (data.features.length > 0) {
+                const bounds = new maplibregl.LngLatBounds();
+                data.features.forEach(feature => {
+                    bounds.extend(feature.geometry.coordinates);
+                });
+                map.fitBounds(bounds, { padding: 50, maxZoom: 15.5 });  
+            } else {
+                alert("No locations found for your search query.");
+            }
+        }
+        
         searchForm.addEventListener('submit', (e) => {
             e.preventDefault();
             searchLocations(searchInput.value.trim());
