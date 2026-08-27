@@ -482,15 +482,6 @@
         */
         const searchForm = document.getElementById('search-form');
         const searchInput = document.getElementById('search-input');
-        const searchLocationsUrlBase = "{% url 'hame:search_locations' %}";
-
-        let searchMarkers = [];
-
-        // helper to clear all markers from search results
-        function clearSearchMarkers() {
-            searchMarkers.forEach(marker => marker.remove());
-            searchMarkers = [];
-        }
 
         let allLocationsGeojson = locationGeojson;
 
@@ -509,30 +500,12 @@
         }
 
         function searchLocations(query) {
-            clearSearchMarkers();
-
             const data = query 
             ? { ...allLocationsGeojson, features: allLocationsGeojson.features.filter(f => matchesQuery(f, query)) }
             : allLocationsGeojson;
 
             map.getSource('locations').setData(data);
             closeLocationPanel();
-
-            if (!query) return;  // if the search query is empty, don't add markers 
-
-            data.features.forEach(feature => {
-                const marker = new maplibregl.Marker()
-                    .setLngLat(feature.geometry.coordinates)
-                    .addTo(map);
-
-                marker.getElement().addEventListener('click', (e) => {
-                    e.stopPropagation();  // unlikely to be necessary, but included for safety
-                    clearActiveMarker();
-                    showLocationPanel(feature.properties, feature.geometry.coordinates);
-                });
-
-                searchMarkers.push(marker);
-            });
 
             if (data.features.length > 0) {
                 const bounds = new maplibregl.LngLatBounds();
