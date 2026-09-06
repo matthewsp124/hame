@@ -183,8 +183,8 @@
             type: 'geojson',
             data: locationGeojson,
             cluster: true,
-            clusterMaxZoom: 16,  // stop clustering when zoomed in
-            clusterRadius: 50,  // pixel radius of each cluster
+            clusterMaxZoom: 17.4,  // stop clustering when zoomed in
+            clusterRadius: 80,  // pixel radius of each cluster
         });
 
         // add clusters
@@ -196,16 +196,19 @@
             paint: {
                 'circle-color': [
                     'step', ['get', 'point_count'],
-                    '#51bbd6', 50,  // blue circles when <= 100 points
-                    '#f1f075', 750,  // yellow circles when 101 to 749 points
-                    '#f28cb1'  // pink circles when >= 750 points
-            ],
+                    '#51bbd6', 25,  // blue circles when <= 25 points
+                    '#f1f075', 500,  // yellow circles when 26 to 499 points
+                    '#f28cb1'  // pink circles when >= 500 points
+                ],
                 'circle-radius': [
                     'step', ['get', 'point_count'],
                     20, 100,  // blue circles are 20px
                     30, 750,  // yellow circles are 30px
                     40  // pink circles are 40px
-                ]
+                ],
+                'circle-stroke-width': 2,
+                'circle-stroke-color': '#000',
+                'circle-stroke-opacity': 0.8,
             }
         });
 
