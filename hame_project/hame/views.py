@@ -2,10 +2,9 @@ import logging
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from django.db.models import Q
 from django.views.decorators.http import require_POST
 
 from .models import Location, UserEntry
@@ -140,3 +139,4 @@ def location_reviews(request, location_id):
     except Exception as e:
         logger.exception(f"Error loading reviews for location {location_id}")
         return JsonResponse({'error': str(e)}, status=500)
+
