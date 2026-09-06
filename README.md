@@ -1,3 +1,8 @@
+## Deployment
+HAME is deployed at https://hame-kf72.onrender.com using Render's free plan. Due to the limitations of the free plan, it may take 30-60 seconds for the site to load if it has had no activity recently.  
+Please be aware that Render's free PostgreSQL server is only available for 30 days from its creation, so the database behind HAME will be deactivated on 26th September 2026 and the deployed application will no longer be functional. 
+
+## AI use declaration
 Predominantly user written, Claude used in debugging:
 |      File       |             Description            |
 | --------------- | ---------------------------------- |
