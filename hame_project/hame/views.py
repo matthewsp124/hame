@@ -92,8 +92,8 @@ BAR_FIELDS = [
 ]
 
 def location_reviews(request, location_id):
+    location = get_object_or_404(Location, id = location_id)
     try:
-        location = get_object_or_404(Location, id = location_id)
         entries = (UserEntry.objects
                 .filter(location_id=location_id)
                 .select_related('user')
@@ -138,5 +138,5 @@ def location_reviews(request, location_id):
     
     except Exception as e:
         logger.exception(f"Error loading reviews for location {location_id}")
-        return JsonResponse({'error': str(e)}, status=500)
+        return JsonResponse({'error': 'Unable to load reviews.'}, status=500)
 
