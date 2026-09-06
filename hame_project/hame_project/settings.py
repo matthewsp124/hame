@@ -87,14 +87,6 @@ DATABASES = {
         default = os.getenv('DATABASE_URL'),
         conn_max_age = 600
     ),
-    'local': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'edinburgh_map',
-        'USER': 'hame_user',
-        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
 }
 
 
