@@ -19,7 +19,7 @@
                         <strong>{{ entry.location.name|default:"Unnamed Location" }} - {{ entry.location.address }}</strong>
                         <span class="text-muted">{{ entry.created_at|date:"Y-m-d" }}</span>
                     </div>
-                    {% if entry.text_body %}
+                    {% if entry %}
                         <p class="mb-1 fs-5">{{ entry.text_body }}</p>
                         <br>
                         <a href="{% url 'hame:add_review' entry.location.id %}" class="btn btn-primary">Edit</a>
