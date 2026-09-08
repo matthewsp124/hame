@@ -118,22 +118,43 @@
     - navigation controls and geolocation
     */
 
+    // define maximum bounding box
+    const maxBounds = new maplibregl.LngLatBounds(
+        [-3.5, 55.855],  // west, south
+        [-2.9, 56.0145]  // east, north
+    );
+    // define Edinburgh bounding box
+    const edBounds = new maplibregl.LngLatBounds(
+        [-3.4032, 55.8882],  // west, south
+        [-3.0561, 55.9983]  // east, north
+    );
+
     // initialise the map
     const map = new maplibregl.Map({
         style: 'https://tiles.openfreemap.org/styles/bright',  // tile source
         center: [-3.1958, 55.9416],  // centre on Edinburgh by default
         zoom: 11.8,
-        minZoom: 11.8,  // lock how far out the map can be zoomed to only the size of Edinburgh
+        // minZoom: 11.8,  // lock how far out the map can be zoomed to only the size of Edinburgh
         container: 'map',
-        maxBounds: [  // lock the area visible on the map to just Edinburgh
-            [-3.5, 55.855],  // west, south
-            [-2.9, 56.0145]  // east, north
-        ],
+        maxBounds: maxBounds, // lock the area visible on the map to just Edinburgh
         maxPitch: 0,
     });
 
+    // scale zoom level depending on viewport size
+    function fitViewport() {
+        const camera = map.cameraForBounds(maxBounds);
+        if (!camera) return;  // in case cameraForBounds returns null (eg viewport size set to 0)
+        map.setMinZoom(camera.zoom);
+
+        if (map.getZoom() < camera.zoom) {  // if currently zoomed out further than new minimum zoom
+            map.jumpTo({
+                zoom: camera.zoom
+            });
+        }
+    }
 
     map.on('load', async () => {
+        fitViewport();
         const maskResponse = await fetch("{% static 'edinburghmask.geojson' %}?t=" + Date.now());  // force browser to get most recent geojson
         const maskGeojson = await maskResponse.json();
 
@@ -175,7 +196,7 @@
             'bottom-right'
         );
 
-        // get the locations from the database
+        // get the locations from geojson
         const locationResponse = await fetch("{% static 'locations.geojson' %}?t=" + Date.now());
         const locationGeojson = await locationResponse.json();
 
@@ -240,6 +261,8 @@
                 'circle-stroke-opacity': 0.8,
             }
         });
+
+        window.addEventListener('resize', fitViewport);
 
 
         /*
