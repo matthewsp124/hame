@@ -19,7 +19,7 @@
                         <strong>{{ entry.location.name|default:"Unnamed Location" }} - {{ entry.location.address }}</strong>
                         <span class="text-muted">{{ entry.created_at|date:"Y-m-d" }}</span>
                     </div>
-                    {% if entry %}
+                    {% if entry.text_body %}
                         <p class="mb-1 fs-5">{{ entry.text_body }}</p>
                     {% endif %}
                         <br>
