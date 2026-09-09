@@ -140,6 +140,14 @@
     margin-top: 3px;
 }
 
+.legend-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 4px;
+}
+
 #accessibility-details:not(:empty),
 #reviews:not(:empty) {
     margin-top: 20px;

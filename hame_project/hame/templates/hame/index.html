@@ -392,7 +392,7 @@
                     <div class="stat-bar-label">${escapeHtml(stat.label)}</div>
                     <div class="stat-bar-track">
                         ${stat.yes_pct > 0 ? `<div class="stat-bar-segment yes" style="width: ${stat.yes_pct}%"></div>` : ''}
-                        ${stat.na_pc > 0 ? `<div class="stat-bar-segment na" style="width: ${stat.na_pct}%"></div>` : ''}
+                        ${stat.na_pct > 0 ? `<div class="stat-bar-segment na" style="width: ${stat.na_pct}%"></div>` : ''}
                         ${stat.no_pct > 0 ? `<div class="stat-bar-segment no" style="width: ${stat.no_pct}%"></div>` : ''}
                     </div>
                     <div class="stat-bar-values">
@@ -400,6 +400,36 @@
                         ${stat.na_count > 0 ? `<span>N/A: ${stat.na_count}</span>` : ''}
                         <span>No: ${stat.no_count}</span>
                     </div>
+                </div>
+            `;
+        }
+
+        const pavedColour = '#1E1E1E'
+        const cobbleColour = '#056F00'
+        const gravelColour = '#7E7E7E'
+        const sandColour = '#FDF48A'
+        const bumpyColour = '#DE7A50'
+        const multiChoiceColours = [pavedColour, cobbleColour, gravelColour, sandColour, bumpyColour]
+
+        function renderMultiChoiceBar(stat) {
+            const segments = stat.segments.map((segment, i) => {
+                const colour = multiChoiceColours[i % multiChoiceColours.length];  // should never be more segments than 5 but for safety
+                return `<div class="stat-bar-segment" style="width: ${segment.pct}%; background-color: ${colour};"></div>`;
+            }).join('');
+
+            const segmentValues = stat.segments.map((segment, i) => {
+                const colour = multiChoiceColours[i % multiChoiceColours.length]; 
+                return `<span>
+                            <span class="legend-dot" style="background-color: ${colour};"></span>
+                            ${escapeHtml(segment.label)}: ${segment.count}
+                        </span>`;
+            }).join('');
+
+            return `
+                <div class="stat-bar-row">
+                    <div class="stat-bar-label">${escapeHtml(stat.label)}</div>
+                    <div class="stat-bar-track">${segments}</div>
+                    <div class="stat-bar-values">${segmentValues}</div>
                 </div>
             `;
         }
@@ -413,8 +443,11 @@
                 const response = await fetch(reviewsUrlTemplate.replace('/0/', `/${locationId}/`));
                 const data = await response.json();
 
-                statsContainer.innerHTML = data.stats.length
-                    ? data.stats.map(renderStatBar).join('')
+                statsContainer.innerHTML = (data.stats.length || data.multi_choice_stat.length)
+                    ? [
+                        ...data.stats.map(renderStatBar),
+                        ...data.multi_choice_stats.map(renderMultiChoiceBar),
+                    ].join('')
                     : `<p class="px-2">No accessibility ratings yet.</p>`;
 
                 reviewsContainer.innerHTML = data.reviews.length

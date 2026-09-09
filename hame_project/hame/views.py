@@ -77,6 +77,25 @@ def user_logout(request):
 
 
 # consolidate multiple choice questions
+SURFACE_CHOICES = [
+    ('P', 'Paved/smooth'),
+    ('C', 'Cobblestone'),
+    ('G', 'Gravel'),
+    ('S', 'Sand'),
+    ('B', 'Bumpy/uneven'),
+    ('U', 'Unknown'),
+    ('NA', 'Not applicable'),
+]
+
+GRADIENT_CHOICES = [
+    ('F', 'Flat'),
+    ('G', 'Gentle'),
+    ('M', 'Moderate'),
+    ('S', 'Steep'),
+    ('U', 'Unknown'),
+    ('NA', 'Not applicable'),
+]
+
 BAR_FIELDS = [
     ('wheelchair', 'Wheelchair accessible entrance'),
     ('auto_doors', 'Automatic doors'),
@@ -89,6 +108,11 @@ BAR_FIELDS = [
     ('quiet_space', 'Quiet space available'),
     ('tactile_paving', 'Tactile paving present'),
     ('nonvisual_crossing_cues', 'Auditory / tactile road crossing cues'),
+]
+
+MULTI_CHOICE_FIELDS = [
+    ('surface_type', 'Surface type', SURFACE_CHOICES),
+    ('gradient', 'Gradient', GRADIENT_CHOICES),
 ]
 
 def location_reviews(request, location_id):
@@ -128,13 +152,42 @@ def location_reviews(request, location_id):
                 'total': total,
             })
 
+        multi_choice_stats = []
+        for field, label, choices in MULTI_CHOICE_FIELDS:
+            counts = {key: 0 for key, _ in choices}
+            for entry in entries:
+                value = getattr(entry, field)
+                if value in counts:
+                    counts[value] += 1
+
+            total = sum(counts.values())
+            if total == 0:  # no answers
+                continue
+
+            segments = []
+            for key, choice_label in choices:
+                count = counts[key]
+                if count == 0:
+                    continue
+                segments.append({
+                    'label': choice_label,
+                    'count': count,
+                    'pct': round(count / total * 100),
+                })
+
+            multi_choice_stats.append({
+                'label': label,
+                'total': total,
+                'segments': segments,
+            })
+
         reviews = [{
             'username': entry.user.username if entry.user else 'Anonymous',  # Anon should be exceptional
             'created_at': entry.created_at.strftime('%Y-%m-%d'),
             'text_body': entry.text_body,
         } for entry in entries if entry.text_body]
 
-        return JsonResponse({'stats': stats, 'reviews': reviews})
+        return JsonResponse({'stats': stats, 'multi_choice_stats': multi_choice_stats, 'reviews': reviews})
     
     except Exception as e:
         logger.exception(f"Error loading reviews for location {location_id}")
