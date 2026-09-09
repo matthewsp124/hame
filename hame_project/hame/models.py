@@ -57,7 +57,7 @@ SURFACE_CHOICES = [
 
 class UserEntry(models.Model):
     location = models.ForeignKey(Location, on_delete = models.CASCADE, related_name = 'user_entries')
-    user = models.ForeignKey(User, on_delete = models.PROTECT, null = True)  # protect because deletion of users should be rare and handled by admin in case of vandalism
+    user = models.ForeignKey(User, on_delete = models.SET_NULL, null = True)  # maintain user entry even if user is deleted
     wheelchair = models.CharField(max_length = 2, choices = ANSWER_CHOICES, default = 'U', null = False, blank = False)
     auto_doors = models.CharField(max_length = 2, choices = ANSWER_CHOICES, default = 'U', null = False, blank = False)
     level_floor_or_lift = models.CharField(max_length = 2, choices = ANSWER_CHOICES, default = 'U', null = False, blank = False)
