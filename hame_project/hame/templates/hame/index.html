@@ -443,7 +443,7 @@
                 const response = await fetch(reviewsUrlTemplate.replace('/0/', `/${locationId}/`));
                 const data = await response.json();
 
-                statsContainer.innerHTML = (data.stats.length || data.multi_choice_stat.length)
+                statsContainer.innerHTML = (data.stats.length || data.multi_choice_stats.length)
                     ? [
                         ...data.stats.map(renderStatBar),
                         ...data.multi_choice_stats.map(renderMultiChoiceBar),
