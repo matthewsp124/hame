@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
 
+# [AI-GENERATED], human-tweaked
 class RegisterViewTests(TestCase):
 
     def test_get_renders_empty_form(self):

@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 from hame.models import LocationCategoryKey, LocationCategory, Location, UserEntry
 from hame.forms import UserEntryForm
 
-# helper function for setup
-def make_location():
+# [AI-GENERATED], human-tweaked
+def make_location(): # helper function for setup
     key = LocationCategoryKey.objects.create(osm_key = "amenity")
     category = LocationCategory.objects.create(key = key, osm_value = "restaurant")
     location = Location.objects.create(name = "Testaurant", address = "123 Test St", lat = 56.0, lng = 3.0)

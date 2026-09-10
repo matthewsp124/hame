@@ -3,6 +3,10 @@ HAME is deployed at https://hame-kf72.onrender.com using Render's free plan. Due
 Please be aware that Render's free PostgreSQL server is only available for 30 days from its creation, so the database behind HAME will be deactivated on 26th September 2026 and the deployed application will no longer be functional. 
 
 ## AI use declaration
+These tables show a rough overview of which files were predominantly human written, AI written, or had a roughly equal split.  
+AI-generated code is is preceded with an inline comment in the form: [AI-GENERATED]. Coincidentally, all AI-generated code appears at the end of whichever file it appears in - the [AI-GENERATED] marker therefore applies to all code from that line onwards.  
+All AI-generated code was reviewed, understood, and rewritten where necessary.
+
 Predominantly user written, Claude used in debugging:
 |      File       |             Description            |
 | --------------- | ---------------------------------- |
@@ -17,10 +21,14 @@ Predominantly user written, Claude used in debugging:
 | models.py       | Defines database structure         | 
 | urls.py (both)  | Defines url scheme                 |
 
-Predominantly AI assisted (Claude):
+Approximately even AI-user split (Claude):
 |      File       |             Description            |
 | --------------- | ---------------------------------- |
 | views.py        | Connects backend to templates      |
+
+Predominantly AI assisted (Claude):
+|      File       |             Description            |
+| --------------- | ---------------------------------- |
 | styles.css      | Customising beyond Bootstrap       |
 | test_auth.py    | Authentication tests               |
 | test_models.py  | Model/database tests               |

@@ -115,6 +115,7 @@ MULTI_CHOICE_FIELDS = [
     ('gradient', 'Gradient', GRADIENT_CHOICES),
 ]
 
+# [AI-GENERATED]
 def location_reviews(request, location_id):
     location = get_object_or_404(Location, id = location_id)
     try:

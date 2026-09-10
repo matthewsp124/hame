@@ -29,6 +29,7 @@ bad_tags = ["source", "source_ref", "source:", "attribution", "created_by", "tod
             "maxspeed", "start_date", "end_date", "leaf_type", "leaf_cycle", "roof:", "material", 
             "wikidata", "wikipedia", "network", "check_date", "description", "gauge", "species"]
 
+# [AI-GENERATED], human-tweaked
 def get_boundary_polygon(boundary_file):
     with open(boundary_file) as f:
         data = json.load(f)

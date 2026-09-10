@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 from hame.models import LocationCategoryKey, LocationCategory, Location, UserEntry
 
+# [AI-GENERATED], human-tweaked
 class LocationCategoryKeyModelTests(TestCase):
     def test_str_method(self):
         key = LocationCategoryKey.objects.create(osm_key = "amenity")
